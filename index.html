@@ -1,52 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Michelle Project | Workflow Automation</title>
 
   <meta
     name="description"
-    content="Michelle Project builds practical workflow automation that reduces repetitive work and improves business processes."
-  >
+    content="Michelle Project builds practical workflow automation, AI agents, API integrations, and Python solutions."
+  />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
-  >
+  />
 
   <style>
-
     :root {
-      --bg: #0d0f0f;
-      --bg-soft: #111414;
-      --panel: #141818;
-      --panel-hover: #181d1d;
+      --bg: #03070a;
+      --bg-soft: #071016;
+      --panel: #081117;
+      --panel-2: #0b151c;
 
-      --text: #f1f1ec;
-      --muted: #92968f;
-      --muted-light: #c0c3bd;
+      --text: #f4f7fa;
+      --muted: #87939d;
+      --muted-2: #64727d;
 
-      --blue: #8dbce0;
-      --blue-bright: #abd5f3;
-      --blue-soft: rgba(141, 188, 224, 0.10);
-      --blue-line: rgba(141, 188, 224, 0.34);
-      --blue-glow: rgba(69, 130, 180, 0.15);
+      --blue: #4c9cff;
+      --blue-light: #72b3ff;
+      --blue-dark: #1768c4;
 
-      --border: rgba(241, 241, 236, 0.11);
-      --border-strong: rgba(241, 241, 236, 0.22);
+      --border: rgba(130, 157, 178, 0.19);
+      --border-strong: rgba(92, 169, 255, 0.4);
 
-      --max-width: 1320px;
+      --green: #7df4c0;
+      --purple: #c985ff;
+      --orange: #ff976e;
+
+      --max-width: 1100px;
+
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+
+      --shadow-blue:
+        0 0 30px rgba(36, 125, 233, 0.15),
+        inset 0 0 35px rgba(35, 120, 230, 0.025);
     }
-
-
-    /* =========================
-       RESET
-    ========================= */
 
     * {
       margin: 0;
@@ -59,19 +62,33 @@
     }
 
     body {
-      background: var(--bg);
+      font-family: "Inter", sans-serif;
+      background:
+        radial-gradient(circle at 70% 9%, rgba(19, 91, 164, 0.13), transparent 24%),
+        radial-gradient(circle at 12% 42%, rgba(22, 83, 135, 0.07), transparent 26%),
+        var(--bg);
       color: var(--text);
-
-      font-family: "Manrope", sans-serif;
-      font-weight: 400;
-
-      line-height: 1.6;
-
       overflow-x: hidden;
+      line-height: 1.5;
     }
 
-    body.modal-open {
-      overflow: hidden;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.45;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: linear-gradient(
+        to bottom,
+        black 0%,
+        rgba(0, 0, 0, 0.55) 45%,
+        transparent 100%
+      );
     }
 
     a {
@@ -80,279 +97,201 @@
     }
 
     button,
-    input,
-    textarea {
-      font: inherit;
-    }
-
-    button,
     a {
       -webkit-tap-highlight-color: transparent;
     }
 
-    section {
-      scroll-margin-top: 84px;
-    }
-
     .container {
-      width: min(
-        var(--max-width),
-        calc(100% - 72px)
-      );
-
+      width: min(var(--max-width), calc(100% - 64px));
       margin: 0 auto;
-    }
-
-    .mono {
-      font-family: "DM Mono", monospace;
-    }
-
-
-    /* =========================
-       BACKGROUND
-    ========================= */
-
-    body::before {
-      content: "";
-
-      position: fixed;
-      inset: 0;
-
-      z-index: -3;
-
-      pointer-events: none;
-
-      background:
-        linear-gradient(
-          rgba(241, 241, 236, 0.021) 1px,
-          transparent 1px
-        ),
-        linear-gradient(
-          90deg,
-          rgba(241, 241, 236, 0.021) 1px,
-          transparent 1px
-        );
-
-      background-size: 72px 72px;
-
-      mask-image:
-        linear-gradient(
-          to bottom,
-          black,
-          transparent 92%
-        );
-    }
-
-    body::after {
-      content: "";
-
-      position: fixed;
-
-      width: 850px;
-      height: 850px;
-
-      left: 50%;
-      top: 0;
-
-      transform: translateX(-50%);
-
-      background:
-        radial-gradient(
-          circle,
-          rgba(61, 119, 165, 0.10),
-          transparent 69%
-        );
-
-      filter: blur(75px);
-
-      z-index: -2;
-
-      pointer-events: none;
-    }
-
-
-    /* =========================
-       NAVIGATION
-    ========================= */
-
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-
-      border-bottom: 1px solid var(--border);
-
-      background:
-        rgba(13, 15, 15, 0.88);
-
-      backdrop-filter: blur(18px);
-    }
-
-    .nav-inner {
-      min-height: 76px;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-
-      font-size: 17px;
-      font-weight: 800;
-
-      letter-spacing: -0.04em;
-    }
-
-    .logo-mark {
-      width: 28px;
-      height: 28px;
-
-      display: grid;
-      place-items: center;
-
-      border: 1.5px solid var(--text);
-    }
-
-    .logo-mark::after {
-      content: "";
-
-      width: 8px;
-      height: 8px;
-
-      background: var(--blue);
-
-      box-shadow:
-        0 0 14px rgba(141, 188, 224, 0.25);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 34px;
-
-      list-style: none;
-
-      color: var(--muted-light);
-
-      font-size: 13px;
-    }
-
-    .nav-links a {
-      transition: color 0.2s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--blue-bright);
-    }
-
-    .nav-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-
-      padding: 10px 15px;
-
-      border: 1px solid var(--border-strong);
-
-      font-size: 12px;
-
-      transition:
-        color 0.2s ease,
-        background 0.2s ease,
-        border-color 0.2s ease;
-    }
-
-    .nav-button:hover {
-      color: var(--blue-bright);
-
-      background: var(--blue-soft);
-
-      border-color:
-        rgba(141, 188, 224, 0.42);
-    }
-
-
-    /* =========================
-       HERO
-    ========================= */
-
-    .hero {
-      min-height: calc(100vh - 76px);
-
-      display: flex;
-      align-items: center;
-
-      padding: 54px 0 68px;
-
-      overflow: hidden;
-
-      position: relative;
-    }
-
-    .hero-grid {
-      display: grid;
-
-      grid-template-columns:
-        0.72fr 1.28fr;
-
-      align-items: center;
-
-      gap: 34px;
-    }
-
-    .hero-copy {
-      position: relative;
-      z-index: 5;
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-
-      margin-bottom: 24px;
-
-      color: var(--blue);
-
-      font-family: "DM Mono", monospace;
-
-      font-size: 9px;
-
+      gap: 9px;
+      color: #5fb3ff;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      letter-spacing: 0.09em;
     }
 
-    .eyebrow-dot {
-      width: 7px;
-      height: 7px;
+    .eyebrow::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: #4da4ff;
+      box-shadow: 0 0 12px rgba(77, 164, 255, 0.9);
+    }
 
-      border-radius: 50%;
+    .section {
+      position: relative;
+      padding: 72px 0;
+    }
 
-      background: var(--blue);
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(123, 152, 176, 0.18),
+        transparent
+      );
+    }
 
-      box-shadow:
-        0 0 15px rgba(141, 188, 224, 0.7);
+    /* NAVIGATION */
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      height: 66px;
+      border-bottom: 1px solid rgba(105, 138, 161, 0.17);
+      background: rgba(3, 7, 10, 0.82);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .nav-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-size: 15px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 27px;
+      height: 27px;
+      border: 1px solid rgba(111, 169, 223, 0.4);
+      border-radius: 4px;
+      display: grid;
+      place-items: center;
+      background: #070e13;
+      box-shadow: inset 0 0 10px rgba(59, 131, 218, 0.08);
+    }
+
+    .brand-mark::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border: 1px solid #85bbf3;
+      background: rgba(58, 132, 211, 0.18);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      margin-left: auto;
+      margin-right: 22px;
+    }
+
+    .nav-links a {
+      position: relative;
+      font-size: 11px;
+      color: #b8c3ca;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -6px;
+      height: 1px;
+      transform: scaleX(0);
+      transform-origin: center;
+      background: #4e9dff;
+      transition: transform 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(145, 171, 193, 0.26);
+      border-radius: 4px;
+      padding: 10px 15px;
+      font-size: 11px;
+      color: #e5ebf0;
+      background: rgba(255, 255, 255, 0.015);
+      transition:
+        background 0.2s ease,
+        border 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      background: rgba(65, 146, 234, 0.1);
+      border-color: rgba(72, 157, 250, 0.48);
+    }
+
+    /* HERO */
+
+    .hero {
+      position: relative;
+      min-height: 525px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 550px;
+      height: 550px;
+      right: 80px;
+      top: -160px;
+      background: radial-gradient(
+        circle,
+        rgba(27, 115, 208, 0.16),
+        rgba(5, 14, 22, 0) 70%
+      );
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 2;
     }
 
     .hero-title {
-      max-width: 570px;
-
-      font-size:
-        clamp(
-          62px,
-          6.7vw,
-          100px
-        );
-
+      margin-top: 22px;
+      font-size: clamp(58px, 6.8vw, 94px);
       line-height: 0.88;
-
-      letter-spacing: -0.062em;
-
-      font-weight: 800;
+      letter-spacing: -0.065em;
+      font-weight: 700;
     }
 
     .hero-title span {
@@ -361,2684 +300,1341 @@
 
     .hero-title .outline {
       color: transparent;
-
-      -webkit-text-stroke:
-        1px
-        rgba(241, 241, 236, 0.30);
+      -webkit-text-stroke: 1px rgba(221, 231, 239, 0.7);
     }
 
     .hero-title .blue {
-      color: var(--blue);
+      color: #54a7ff;
+      text-shadow: 0 0 30px rgba(65, 152, 255, 0.12);
     }
 
     .hero-description {
-      max-width: 455px;
-
-      margin-top: 28px;
-
-      color: var(--muted-light);
-
+      width: min(430px, 100%);
+      margin-top: 23px;
+      color: #9ba7af;
       font-size: 13px;
-
-      line-height: 1.85;
+      line-height: 1.8;
     }
 
     .hero-actions {
       display: flex;
       align-items: center;
-      gap: 11px;
-
-      margin-top: 29px;
-
-      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
     }
 
     .button {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-
-      padding: 12px 17px;
-
-      border: 1px solid var(--border-strong);
-
+      justify-content: center;
+      gap: 9px;
+      height: 38px;
+      padding: 0 15px;
+      border-radius: 4px;
       font-size: 11px;
-
+      font-weight: 500;
+      border: 1px solid rgba(255, 255, 255, 0.15);
       transition:
         transform 0.2s ease,
-        border-color 0.2s ease,
+        box-shadow 0.2s ease,
         background 0.2s ease,
-        color 0.2s ease;
+        border 0.2s ease;
     }
 
-    .button.primary {
-      color: #0c1114;
-
-      background: var(--blue);
-
-      border-color: var(--blue);
-
-      font-weight: 800;
+    .button-primary {
+      color: white;
+      border-color: rgba(77, 158, 255, 0.75);
+      background: linear-gradient(
+        180deg,
+        rgba(62, 151, 255, 0.95),
+        rgba(41, 105, 198, 0.95)
+      );
+      box-shadow: 0 10px 25px rgba(26, 106, 198, 0.17);
     }
 
-    .button.primary:hover {
-      background: var(--blue-bright);
-
-      border-color: var(--blue-bright);
-
+    .button-primary:hover {
       transform: translateY(-2px);
+      box-shadow: 0 15px 30px rgba(26, 106, 198, 0.25);
     }
 
-    .button.secondary:hover {
-      color: var(--blue-bright);
+    .button-secondary {
+      background: rgba(255, 255, 255, 0.015);
+      color: #d1d8dc;
+    }
 
-      background: var(--blue-soft);
-
-      border-color:
-        rgba(141, 188, 224, 0.42);
-
+    .button-secondary:hover {
       transform: translateY(-2px);
+      border-color: rgba(100, 152, 198, 0.5);
     }
-
-
-    /* =========================
-       HERO WORKFLOW VISUAL
-    ========================= */
 
     .hero-visual {
       position: relative;
-
-      min-height: 570px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      min-height: 380px;
+      display: grid;
+      place-items: center;
     }
 
-    .workflow {
-      position: relative;
-
-      width: 100%;
-      max-width: 800px;
-
-      height: 560px;
-
-      overflow: hidden;
-
-      border:
-        1px solid
-        rgba(141, 188, 224, 0.09);
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(141, 188, 224, 0.035),
-          transparent 55%
-        );
-    }
-
-    .workflow::before {
+    .hero-visual::after {
       content: "";
-
       position: absolute;
-      inset: 0;
-
-      background:
-        linear-gradient(
-          rgba(141, 188, 224, 0.026) 1px,
-          transparent 1px
-        ),
-        linear-gradient(
-          90deg,
-          rgba(141, 188, 224, 0.026) 1px,
-          transparent 1px
-        );
-
-      background-size: 44px 44px;
+      width: 600px;
+      height: 360px;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(30, 117, 210, 0.09),
+        transparent 70%
+      );
+      pointer-events: none;
     }
 
-    .workflow-glow {
-      position: absolute;
-
-      width: 320px;
-      height: 320px;
-
-      top: 46%;
-      left: 51%;
-
-      transform: translate(-50%, -50%);
-
-      border-radius: 50%;
-
-      background:
-        radial-gradient(
-          circle,
-          rgba(66, 135, 191, 0.13),
-          transparent 69%
-        );
-
-      filter: blur(22px);
-    }
-
-    .workflow-connection {
-      position: absolute;
-
-      height: 1px;
-
-      z-index: 1;
-
-      transform-origin: left center;
-
-      background:
-        rgba(141, 188, 224, 0.34);
-
-      box-shadow:
-        0 0 8px rgba(141, 188, 224, 0.12);
-    }
-
-    .workflow-connection.dashed {
-      background:
-        repeating-linear-gradient(
-          90deg,
-          rgba(141, 188, 224, 0.36) 0 5px,
-          transparent 5px 10px
-        );
-    }
-
-    .connection-a {
-      width: 150px;
-      left: 23%;
-      top: 22%;
-
-      transform: rotate(24deg);
-    }
-
-    .connection-b {
-      width: 140px;
-      left: 49%;
-      top: 21%;
-    }
-
-    .connection-c {
-      width: 145px;
-      left: 69%;
-      top: 23%;
-
-      transform: rotate(27deg);
-    }
-
-    .connection-d {
-      width: 140px;
-      left: 25%;
-      top: 39%;
-    }
-
-    .connection-e {
-      width: 140px;
-      left: 51%;
-      top: 41%;
-    }
-
-    .connection-f {
-      width: 145px;
-      left: 27%;
-      top: 61%;
-
-      transform: rotate(-23deg);
-    }
-
-    .connection-g {
-      width: 145px;
-      left: 51%;
-      top: 63%;
-
-      transform: rotate(-2deg);
-    }
-
-    .connection-h {
-      width: 150px;
-      left: 69%;
-      top: 61%;
-
-      transform: rotate(-23deg);
-    }
-
-    .connection-i {
-      width: 100px;
-      left: 51%;
-      top: 70%;
-
-      transform: rotate(90deg);
+    .workflow-stage {
+      position: relative;
+      width: 530px;
+      height: 340px;
+      max-width: 100%;
     }
 
     .workflow-node {
       position: absolute;
-
-      z-index: 3;
-
-      min-width: 125px;
-
-      padding: 14px 15px;
-
-      border:
-        1px solid
-        rgba(141, 188, 224, 0.34);
-
-      background:
-        rgba(11, 15, 15, 0.89);
-
-      box-shadow:
-        0 14px 35px
-        rgba(0, 0, 0, 0.24);
-
-      backdrop-filter: blur(8px);
-    }
-
-    .workflow-node.main {
-      min-width: 190px;
-
-      border-color:
-        rgba(141, 188, 224, 0.70);
-
-      box-shadow:
-        0 0 45px
-        rgba(63, 132, 190, 0.12);
-    }
-
-    .node-symbol {
-      margin-bottom: 8px;
-
-      color: var(--blue);
-
-      font-size: 18px;
-
-      line-height: 1;
-    }
-
-    .node-name {
-      color: var(--text);
-
-      font-size: 11px;
-
-      font-weight: 600;
-    }
-
-    .main .node-name {
-      color: var(--blue-bright);
-    }
-
-    .node-description {
-      margin-top: 4px;
-
-      color: var(--muted);
-
-      font-size: 8px;
-
-      line-height: 1.45;
-    }
-
-    .trigger {
-      left: 9%;
-      top: 16%;
-    }
-
-    .collect {
-      left: 38%;
-      top: 14%;
-    }
-
-    .understand {
-      left: 7%;
-      top: 34%;
-    }
-
-    .agent {
-      left: 38%;
-      top: 34%;
-    }
-
-    .integrate {
-      left: 68%;
-      top: 34%;
-    }
-
-    .act {
-      left: 10%;
-      top: 56%;
-    }
-
-    .review {
-      left: 39%;
-      top: 57%;
-    }
-
-    .notify {
-      left: 69%;
-      top: 56%;
-    }
-
-    .done {
-      left: 39%;
-      top: 77%;
-    }
-
-    .workflow-note {
-      position: absolute;
-
-      z-index: 2;
-
-      color:
-        rgba(141, 188, 224, 0.42);
-
-      font-family:
-        "DM Mono",
-        monospace;
-
-      font-size: 8px;
-
-      line-height: 1.55;
-    }
-
-    .workflow-note.one {
-      top: 7%;
-      left: 4%;
-
-      transform: rotate(-5deg);
-    }
-
-    .workflow-note.two {
-      top: 10%;
-      right: 4%;
-
-      transform: rotate(4deg);
-    }
-
-    .workflow-note.three {
-      bottom: 8%;
-      left: 4%;
-
-      transform: rotate(-4deg);
-    }
-
-
-    /* =========================
-       HUMAN LINE ART
-    ========================= */
-
-    .tiny-human {
-      position: absolute;
-
-      left: 3%;
-      bottom: 2%;
-
-      width: 125px;
-
-      z-index: 3;
-
-      color:
-        rgba(141, 188, 224, 0.28);
-    }
-
-    .tiny-human svg {
-      display: block;
-
-      width: 100%;
-      height: auto;
-    }
-
-
-    /* =========================
-       GENERIC SECTIONS
-    ========================= */
-
-    .section {
-      padding: 104px 0;
-
-      border-top:
-        1px solid
-        var(--border);
-    }
-
-    .section-header {
       display: flex;
-
-      align-items: flex-end;
-
-      justify-content: space-between;
-
-      gap: 42px;
-
-      margin-bottom: 42px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(90, 159, 220, 0.5);
+      background: rgba(6, 15, 22, 0.74);
+      box-shadow:
+        inset 0 0 20px rgba(66, 142, 220, 0.045),
+        0 0 20px rgba(34, 123, 213, 0.05);
+      backdrop-filter: blur(6px);
     }
 
-    .section-label {
-      margin-bottom: 10px;
-
-      color: var(--blue);
-
-      font-family:
-        "DM Mono",
-        monospace;
-
-      font-size: 9px;
-
-      text-transform: uppercase;
-
-      letter-spacing: 0.10em;
+    .workflow-node.small {
+      width: 63px;
+      height: 54px;
+      border-radius: 11px;
     }
 
-    .section-title {
-      font-size:
-        clamp(
-          40px,
-          5vw,
-          67px
-        );
-
-      line-height: 0.94;
-
-      letter-spacing: -0.045em;
-
-      font-weight: 700;
+    .workflow-node.center {
+      left: 41%;
+      top: 37%;
+      width: 110px;
+      height: 82px;
+      border-radius: 11px;
+      border-color: rgba(81, 159, 228, 0.65);
     }
 
-    .section-description {
-      max-width: 410px;
-
-      color: var(--muted);
-
-      font-size: 12px;
-
-      line-height: 1.85;
+    .workflow-node.right {
+      width: 63px;
+      height: 54px;
+      right: 2%;
+      border-radius: 10px;
     }
 
+    .workflow-node.top-left {
+      left: 2%;
+      top: 12%;
+    }
 
-    /* =========================
-       WHAT I DO
-    ========================= */
+    .workflow-node.mid-left {
+      left: 2%;
+      top: 40%;
+    }
 
-    .capability-layout {
+    .workflow-node.bottom-left {
+      left: 2%;
+      bottom: 10%;
+    }
+
+    .workflow-node.right-top {
+      top: 5%;
+    }
+
+    .workflow-node.right-bottom {
+      bottom: 5%;
+    }
+
+    .workflow-node.icon-only {
+      font-size: 19px;
+    }
+
+    .workflow-node.center .robot {
+      width: 32px;
+      height: 32px;
+      border: 1px solid rgba(123, 184, 236, 0.9);
+      border-radius: 10px;
+      position: relative;
+      margin-bottom: 5px;
+    }
+
+    .workflow-node.center .robot::before,
+    .workflow-node.center .robot::after {
+      content: "";
+      position: absolute;
+      top: 10px;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #72b7ef;
+    }
+
+    .workflow-node.center .robot::before {
+      left: 8px;
+    }
+
+    .workflow-node.center .robot::after {
+      right: 8px;
+    }
+
+    .node-label {
+      color: #a6b6c1;
+      font-size: 8px;
+      letter-spacing: 0.03em;
+    }
+
+    .node-icon {
+      font-size: 19px;
+      margin-bottom: 4px;
+    }
+
+    .green {
+      color: var(--green);
+    }
+
+    .purple {
+      color: var(--purple);
+    }
+
+    .orange {
+      color: var(--orange);
+    }
+
+    .workflow-lines {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      pointer-events: none;
+    }
+
+    .workflow-lines path {
+      fill: none;
+      stroke: rgba(82, 166, 238, 0.75);
+      stroke-width: 1.2;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .workflow-lines .dashed {
+      stroke: rgba(81, 148, 208, 0.42);
+      stroke-dasharray: 5 6;
+    }
+
+    .workflow-lines marker {
+      overflow: visible;
+    }
+
+    .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: #74bdff;
+      box-shadow: 0 0 12px rgba(116, 189, 255, 0.95);
+    }
+
+    .p1 {
+      top: 1%;
+      left: 18%;
+    }
+
+    .p2 {
+      top: 10%;
+      right: 26%;
+    }
+
+    .p3 {
+      top: 20%;
+      right: 7%;
+    }
+
+    .p4 {
+      bottom: 17%;
+      right: 31%;
+    }
+
+    .p5 {
+      bottom: 15%;
+      left: 25%;
+    }
+
+    /* CAPABILITIES */
+
+    .capabilities-grid {
       display: grid;
-
-      grid-template-columns:
-        0.84fr
-        1.15fr
-        0.86fr;
-
-      gap: 52px;
-
+      grid-template-columns: 0.95fr 1.05fr 1.2fr;
+      gap: 40px;
       align-items: start;
     }
 
+    .section-title {
+      margin-top: 14px;
+      font-size: 34px;
+      line-height: 1.03;
+      letter-spacing: -0.04em;
+      font-weight: 500;
+    }
+
     .capability-list {
-      border-top:
-        1px solid
-        var(--border);
+      display: grid;
+      gap: 7px;
     }
 
     .capability-item {
-      min-height: 61px;
-
-      display: flex;
-
+      min-height: 40px;
+      display: grid;
+      grid-template-columns: 30px 1fr 22px;
       align-items: center;
-
-      justify-content: space-between;
-
-      border-bottom:
-        1px solid
-        var(--border);
-
-      font-size: 12px;
+      gap: 9px;
+      padding: 0 10px;
+      border: 1px solid transparent;
+      border-bottom-color: rgba(111, 140, 163, 0.14);
+      color: #d7dfe4;
     }
 
-    .capability-item .tool {
-      display: flex;
-
-      align-items: center;
-
-      gap: 12px;
+    .capability-item:last-child {
+      border-bottom-color: transparent;
     }
 
     .capability-icon {
-      width: 28px;
-      height: 28px;
-
+      width: 26px;
+      height: 26px;
       display: grid;
-
       place-items: center;
+      border: 1px solid rgba(111, 153, 189, 0.24);
+      border-radius: 5px;
+      color: #9ec7ed;
+      font-size: 12px;
+    }
 
-      border:
-        1px solid
-        var(--border-strong);
-
-      color:
-        var(--blue);
-
-      font-family:
-        "DM Mono",
-        monospace;
-
-      font-size: 9px;
+    .capability-name {
+      font-size: 11px;
     }
 
     .capability-number {
-      color: var(--muted);
-
-      font-family:
-        "DM Mono",
-        monospace;
-
+      color: #697681;
       font-size: 9px;
+      text-align: right;
     }
 
     .capability-copy {
-      color: var(--muted);
+      padding-top: 4px;
+    }
 
+    .capability-copy p {
+      max-width: 300px;
+      color: #98a6af;
       font-size: 12px;
-
-      line-height: 1.85;
+      line-height: 1.8;
     }
 
-    .capability-copy p + p {
-      margin-top: 21px;
+    .tech-stack {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      color: #6bb0f2;
+      font-size: 11px;
     }
 
-    .stack {
-      margin-top: 18px;
-
-      color:
-        var(--blue);
-
-      font-family:
-        "DM Mono",
-        monospace;
-
-      font-size: 9px;
+    .tech-stack span {
+      position: relative;
     }
 
+    .tech-stack span:not(:last-child)::after {
+      content: "•";
+      position: absolute;
+      right: -9px;
+      color: #4f6e87;
+    }
 
-    /* =========================
-       ABOUT
-    ========================= */
+    /* ABOUT */
 
-    .about-layout {
+    .about-grid {
       display: grid;
-
-      grid-template-columns:
-        1.06fr
-        0.94fr;
-
-      gap: 72px;
-
+      grid-template-columns: 1fr 1fr;
+      gap: 58px;
       align-items: center;
     }
 
     .about-visual {
       position: relative;
-
-      min-height: 455px;
-
-      overflow: hidden;
-
-      border:
-        1px solid
-        var(--border);
-
+      min-height: 330px;
+      border: 1px solid rgba(96, 131, 157, 0.12);
       background:
-        linear-gradient(
-          145deg,
-          rgba(141, 188, 224, 0.045),
-          transparent 56%
-        );
+        linear-gradient(180deg, rgba(10, 20, 27, 0.8), rgba(4, 9, 13, 0.68)),
+        radial-gradient(circle at 50% 45%, rgba(38, 121, 206, 0.08), transparent 60%);
+      overflow: hidden;
     }
 
     .about-visual::before {
       content: "";
-
       position: absolute;
       inset: 0;
-
-      background:
-        linear-gradient(
-          rgba(141, 188, 224, 0.026) 1px,
-          transparent 1px
-        ),
-        linear-gradient(
-          90deg,
-          rgba(141, 188, 224, 0.026) 1px,
-          transparent 1px
-        );
-
-      background-size: 43px 43px;
+      background-image:
+        linear-gradient(rgba(71, 115, 150, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(71, 115, 150, 0.07) 1px, transparent 1px);
+      background-size: 26px 26px;
+      opacity: 0.45;
     }
 
-    .about-board {
+    .board {
       position: absolute;
-
-      left: 20%;
-      top: 14%;
-
-      width: 69%;
-      height: 68%;
-
-      border:
-        1px solid
-        rgba(141, 188, 224, 0.30);
-
-      background:
-        rgba(11, 15, 15, 0.74);
-    }
-
-    .about-board::before {
-      content: "";
-
-      position: absolute;
-      inset: 0;
-
-      background:
-        linear-gradient(
-          rgba(141, 188, 224, 0.026) 1px,
-          transparent 1px
-        ),
-        linear-gradient(
-          90deg,
-          rgba(141, 188, 224, 0.026) 1px,
-          transparent 1px
-        );
-
-      background-size: 36px 36px;
-    }
-
-    .board-label {
-      position: absolute;
-
-      z-index: 2;
-
-      top: 15px;
-      left: 16px;
-
-      color: var(--blue);
-
-      font-family:
-        "DM Mono",
-        monospace;
-
-      font-size: 8px;
-
-      text-transform: uppercase;
-    }
-
-    .about-node {
-      position: absolute;
-
-      z-index: 2;
-
-      min-width: 63px;
-
-      padding: 8px 7px;
-
-      text-align: center;
-
-      border:
-        1px solid
-        rgba(141, 188, 224, 0.30);
-
-      color: var(--muted-light);
-
-      font-family:
-        "DM Mono",
-        monospace;
-
-      font-size: 7px;
-    }
-
-    .about-node.active {
-      color: var(--blue-bright);
-
-      border-color:
-        rgba(141, 188, 224, 0.57);
-    }
-
-    .about-link {
-      position: absolute;
-
-      z-index: 1;
-
-      height: 1px;
-
-      background:
-        rgba(141, 188, 224, 0.31);
-
-      transform-origin:
-        left center;
-    }
-
-    .about-node.n1 {
-      left: 8%;
-      top: 29%;
-    }
-
-    .about-node.n2 {
-      left: 39%;
-      top: 23%;
-    }
-
-    .about-node.n3 {
+      left: 18%;
       right: 8%;
-      top: 29%;
+      top: 11%;
+      bottom: 13%;
+      border: 1px solid rgba(102, 144, 179, 0.25);
+      background: rgba(7, 15, 20, 0.74);
+      box-shadow: inset 0 0 35px rgba(31, 106, 180, 0.04);
     }
 
-    .about-node.n4 {
-      left: 39%;
-      top: 49%;
-    }
-
-    .about-node.n5 {
-      left: 12%;
-      top: 66%;
-    }
-
-    .about-node.n6 {
-      right: 11%;
-      top: 66%;
-    }
-
-    .about-link.l1 {
-      width: 92px;
-      left: 24%;
-      top: 32%;
-      transform: rotate(-10deg);
-    }
-
-    .about-link.l2 {
-      width: 90px;
-      left: 56%;
-      top: 32%;
-      transform: rotate(10deg);
-    }
-
-    .about-link.l3 {
-      width: 90px;
-      left: 24%;
-      top: 57%;
-      transform: rotate(15deg);
-    }
-
-    .about-link.l4 {
-      width: 90px;
-      left: 56%;
-      top: 57%;
-      transform: rotate(-15deg);
-    }
-
-    .about-person {
+    .board-node {
       position: absolute;
-
-      left: 3%;
-      bottom: 2%;
-
-      width: 39%;
-
-      z-index: 4;
-
-      color:
-        rgba(141, 188, 224, 0.58);
-    }
-
-    .about-person svg {
-      display: block;
-
-      width: 100%;
-      height: auto;
-    }
-
-    .about-plant {
-      position: absolute;
-
-      right: 4%;
-      bottom: 3%;
-
-      width: 48px;
-
-      color:
-        rgba(141, 188, 224, 0.25);
-    }
-
-    .about-copy-column {
-      max-width: 625px;
-    }
-
-    .about-title {
-      max-width: 620px;
-
-      font-size:
-        clamp(
-          34px,
-          4vw,
-          54px
-        );
-
-      line-height: 1.02;
-
-      letter-spacing:
-        -0.042em;
-
-      font-weight: 600;
-    }
-
-    .about-title .blue {
-      color: var(--blue);
-    }
-
-    .about-text {
-      max-width: 590px;
-
-      margin-top: 28px;
-
-      color: var(--muted);
-
-      font-size: 13px;
-
-      line-height: 1.9;
-    }
-
-    .about-text + .about-text {
-      margin-top: 22px;
-    }
-
-
-    /* =========================
-       PORTFOLIOS
-    ========================= */
-
-    .portfolio-header {
+      min-width: 54px;
+      height: 39px;
+      padding: 0 9px;
       display: flex;
-
-      align-items: flex-end;
-
-      justify-content: space-between;
-
-      gap: 30px;
-
-      margin-bottom: 39px;
-    }
-
-    .github-all {
-      color: var(--blue);
-
-      font-family:
-        "DM Mono",
-        monospace;
-
-      font-size: 9px;
-    }
-
-    .portfolio-grid {
-      display: grid;
-
-      grid-template-columns:
-        repeat(3, 1fr);
-
-      gap: 16px;
-    }
-
-    .portfolio-card {
-      min-height: 405px;
-
-      padding: 21px;
-
-      border:
-        1px solid
-        var(--border);
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(141, 188, 224, 0.025),
-          transparent 55%
-        ),
-        var(--panel);
-
-      transition:
-        transform 0.25s ease,
-        border-color 0.25s ease,
-        background 0.25s ease;
-    }
-
-    .portfolio-card:hover {
-      transform: translateY(-5px);
-
-      border-color:
-        rgba(141, 188, 224, 0.31);
-
-      background:
-        var(--panel-hover);
-    }
-
-    .portfolio-meta {
-      display: flex;
-
       align-items: center;
-
-      justify-content: space-between;
-
-      color: var(--muted);
-
-      font-family:
-        "DM Mono",
-        monospace;
-
+      justify-content: center;
+      border: 1px solid rgba(81, 151, 213, 0.42);
+      border-radius: 7px;
+      background: #071015;
+      color: #b7d8f7;
       font-size: 8px;
-
-      text-transform: uppercase;
     }
 
-    .portfolio-meta .number {
-      color: var(--blue);
+    .board-node b {
+      font-size: 10px;
+      font-weight: 500;
+      color: #dceafa;
+      margin-left: 4px;
     }
 
-    .portfolio-visual {
-      height: 158px;
-
-      margin-top: 23px;
-
-      display: grid;
-
-      place-items: center;
-
-      position: relative;
-
-      overflow: hidden;
-
-      border:
-        1px solid
-        var(--border);
-
-      background:
-        radial-gradient(
-          circle,
-          rgba(141, 188, 224, 0.065),
-          transparent 67%
-        );
+    .board-trigger {
+      top: 14%;
+      left: 8%;
     }
 
-    .portfolio-visual::before {
-      content: "";
+    .board-agent {
+      top: 14%;
+      left: 43%;
+    }
 
+    .board-integrate {
+      top: 14%;
+      right: 8%;
+    }
+
+    .board-review {
+      bottom: 17%;
+      left: 13%;
+    }
+
+    .board-act {
+      bottom: 17%;
+      left: 44%;
+    }
+
+    .board-notify {
+      bottom: 17%;
+      right: 10%;
+    }
+
+    .board-done {
+      bottom: -13%;
+      left: 44%;
+      transform: translateY(50%);
+    }
+
+    .board-lines {
       position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
 
-      width: 145px;
-      height: 145px;
+    .board-lines path {
+      fill: none;
+      stroke: rgba(98, 171, 235, 0.62);
+      stroke-width: 1;
+    }
 
+    .board-person {
+      position: absolute;
+      left: 4%;
+      bottom: 6%;
+      width: 70px;
+      height: 120px;
+      opacity: 0.82;
+    }
+
+    .board-person .head {
+      width: 22px;
+      height: 22px;
+      border: 1px solid rgba(206, 225, 241, 0.75);
       border-radius: 50%;
-
-      border:
-        1px solid
-        rgba(141, 188, 224, 0.13);
+      margin: 0 auto;
     }
 
-    .portfolio-icon {
-      position: relative;
+    .board-person .body {
+      width: 24px;
+      height: 58px;
+      margin: 1px auto 0;
+      border: 1px solid rgba(206, 225, 241, 0.75);
+      border-top-left-radius: 13px;
+      border-top-right-radius: 13px;
+      border-bottom: 0;
+    }
 
-      z-index: 2;
+    .board-person .arm {
+      position: absolute;
+      left: 12px;
+      top: 33px;
+      width: 31px;
+      height: 45px;
+      border-left: 1px solid rgba(206, 225, 241, 0.75);
+      border-bottom: 1px solid rgba(206, 225, 241, 0.75);
+      transform: rotate(-32deg);
+      transform-origin: top left;
+      border-bottom-left-radius: 12px;
+    }
 
-      width: 88px;
-      height: 88px;
+    .board-person .arm.right {
+      left: 35px;
+      top: 32px;
+      transform: rotate(25deg);
+    }
 
+    .board-person .leg {
+      position: absolute;
+      bottom: 0;
+      width: 1px;
+      height: 52px;
+      background: rgba(206, 225, 241, 0.75);
+    }
+
+    .board-person .leg.left {
+      left: 31px;
+      transform: rotate(7deg);
+    }
+
+    .board-person .leg.right {
+      left: 44px;
+      transform: rotate(-9deg);
+    }
+
+    .about-copy h2 {
+      margin-top: 18px;
+      font-size: 30px;
+      line-height: 1.05;
+      letter-spacing: -0.045em;
+      font-weight: 500;
+      max-width: 400px;
+    }
+
+    .about-copy h2 span {
+      color: #52a9ff;
+    }
+
+    .about-copy p {
+      margin-top: 18px;
+      max-width: 440px;
+      color: #98a5ae;
+      font-size: 12px;
+      line-height: 1.85;
+    }
+
+    /* PROJECTS */
+
+    .projects-layout {
       display: grid;
-
-      place-items: center;
-
-      border:
-        1px solid
-        rgba(141, 188, 224, 0.42);
-
-      background:
-        rgba(10, 13, 13, 0.73);
-
-      color: var(--blue);
-
-      box-shadow:
-        0 0 40px
-        rgba(141, 188, 224, 0.07);
-    }
-
-    .portfolio-icon svg {
-      width: 53px;
-      height: 53px;
-    }
-
-    .portfolio-info {
-      margin-top: 22px;
-    }
-
-    .portfolio-info h3 {
-      font-size: 19px;
-
-      line-height: 1.15;
-
-      letter-spacing: -0.035em;
-
-      font-weight: 700;
-    }
-
-    .portfolio-info p {
-      margin-top: 8px;
-
-      color: var(--muted);
-
-      font-size: 10.5px;
-
-      line-height: 1.72;
-    }
-
-    .tech-tags {
-      display: flex;
-
-      flex-wrap: wrap;
-
-      gap: 6px;
-
-      margin-top: 12px;
-    }
-
-    .tech-tag {
-      padding:
-        4px 7px;
-
-      border:
-        1px solid
-        var(--border);
-
-      color:
-        var(--muted-light);
-
-      font-family:
-        "DM Mono",
-        monospace;
-
-      font-size: 7px;
-    }
-
-    .portfolio-link {
-      display: inline-flex;
-
-      margin-top: 13px;
-
-      color:
-        var(--blue);
-
-      font-family:
-        "DM Mono",
-        monospace;
-
-      font-size: 8px;
-    }
-
-
-    /* =========================
-       HOW I WORK
-    ========================= */
-
-    .how-layout {
-      display: grid;
-
-      grid-template-columns:
-        0.68fr 1.32fr;
-
-      gap: 58px;
-
+      grid-template-columns: 170px 1fr;
+      gap: 22px;
       align-items: start;
     }
 
-    .how-title {
-      max-width: 400px;
-
-      font-size:
-        clamp(
-          42px,
-          5vw,
-          67px
-        );
-
-      line-height:
-        0.94;
-
-      letter-spacing:
-        -0.05em;
-
-      font-weight:
-        700;
+    .projects-heading h2 {
+      margin-top: 15px;
+      font-size: 30px;
+      line-height: 1.05;
+      letter-spacing: -0.045em;
+      font-weight: 500;
     }
 
-    .how-title .blue {
-      color:
-        var(--blue);
-    }
-
-    .steps {
-      display: grid;
-
-      grid-template-columns:
-        repeat(5, 1fr);
-
-      border-left:
-        1px solid
-        var(--border);
-    }
-
-    .step {
-      min-height: 186px;
-
-      padding:
-        0 17px;
-
-      border-right:
-        1px solid
-        var(--border);
-    }
-
-    .step:last-child {
-      border-right:
-        none;
-    }
-
-    .step-icon {
-      width: 45px;
-      height: 45px;
-
-      display: grid;
-
-      place-items: center;
-
-      margin-bottom: 20px;
-
-      border:
-        1px solid
-        rgba(141, 188, 224, 0.42);
-
-      border-radius: 50%;
-
-      color:
-        var(--blue);
-
-      font-family:
-        "DM Mono",
-        monospace;
-
-      font-size: 8px;
-    }
-
-    .step-number {
-      color:
-        var(--blue);
-
-      font-family:
-        "DM Mono",
-        monospace;
-
-      font-size: 8px;
-    }
-
-    .step h3 {
-      max-width: 120px;
-
-      margin-top: 7px;
-
-      font-size: 11px;
-
-      line-height: 1.45;
-
-      font-weight: 600;
-    }
-
-
-    /* =========================
-       CONTACT
-    ========================= */
-
-    .contact {
-      padding: 86px 0;
-
-      border-top:
-        1px solid
-        var(--border);
-    }
-
-    .contact-box {
+    .projects-main {
       position: relative;
-
-      display: grid;
-
-      grid-template-columns:
-        1fr
-        0.75fr
-        auto;
-
-      align-items: center;
-
-      gap: 42px;
-
-      padding:
-        34px 38px;
-
-      overflow: hidden;
-
-      border:
-        1px solid
-        var(--border);
-
-      background:
-        linear-gradient(
-          120deg,
-          rgba(141, 188, 224, 0.045),
-          transparent 59%
-        );
     }
 
-    .contact-box::before {
-      content: "";
-
+    .projects-link {
       position: absolute;
+      top: -3px;
+      right: 0;
+      color: #64adfb;
+      font-size: 10px;
+    }
 
-      inset: 0;
+    .projects-link:hover {
+      color: white;
+    }
 
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      padding-top: 20px;
+    }
+
+    .project-card {
+      min-height: 216px;
+      padding: 18px;
+      border: 1px solid rgba(92, 128, 157, 0.23);
       background:
-        linear-gradient(
-          rgba(141, 188, 224, 0.022) 1px,
-          transparent 1px
-        ),
-        linear-gradient(
-          90deg,
-          rgba(141, 188, 224, 0.022) 1px,
-          transparent 1px
-        );
-
-      background-size:
-        42px 42px;
-    }
-
-    .contact-left,
-    .contact-middle,
-    .contact-right {
-      position: relative;
-      z-index: 1;
-    }
-
-    .contact-label {
-      margin-bottom: 8px;
-
-      color:
-        var(--blue);
-
-      font-family:
-        "DM Mono",
-        monospace;
-
-      font-size: 8px;
-
-      text-transform: uppercase;
-    }
-
-    .contact-title {
-      max-width: 430px;
-
-      font-size:
-        clamp(
-          30px,
-          3.8vw,
-          49px
-        );
-
-      line-height:
-        0.95;
-
-      letter-spacing:
-        -0.045em;
-
-      font-weight:
-        700;
-    }
-
-    .contact-title .blue {
-      color:
-        var(--blue);
-    }
-
-    .contact-middle {
-      max-width: 315px;
-
-      color:
-        var(--muted);
-
-      font-size: 11px;
-
-      line-height:
-        1.8;
-    }
-
-    .contact-button {
-      display: inline-flex;
-
-      align-items: center;
-
-      gap: 9px;
-
-      padding:
-        14px 18px;
-
-      border:
-        none;
-
-      background:
-        var(--blue);
-
-      color:
-        #0c1114;
-
-      font-size:
-        11px;
-
-      font-weight:
-        800;
-
-      cursor:
-        pointer;
-
-      white-space:
-        nowrap;
-
+        linear-gradient(180deg, rgba(9, 17, 23, 0.9), rgba(6, 12, 16, 0.94));
+      box-shadow: var(--shadow-blue);
       transition:
+        border 0.2s ease,
         transform 0.2s ease,
         background 0.2s ease;
     }
 
-    .contact-button:hover {
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(74, 154, 236, 0.4);
       background:
-        var(--blue-bright);
-
-      transform:
-        translateY(-2px);
+        linear-gradient(180deg, rgba(10, 20, 27, 0.95), rgba(6, 13, 17, 0.98));
     }
 
-
-    /* =========================
-       CONTACT MODAL
-    ========================= */
-
-    .modal {
-      position: fixed;
-
-      inset: 0;
-
-      z-index: 1000;
-
+    .project-card-top {
       display: flex;
-
       align-items: center;
-
-      justify-content: center;
-
-      padding: 22px;
-
-      opacity: 0;
-      visibility: hidden;
-
-      transition:
-        opacity 0.25s ease,
-        visibility 0.25s ease;
-    }
-
-    .modal.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .modal-backdrop {
-      position: absolute;
-
-      inset: 0;
-
-      background:
-        rgba(0, 0, 0, 0.80);
-
-      backdrop-filter:
-        blur(9px);
-    }
-
-    .modal-box {
-      position: relative;
-
-      z-index: 2;
-
-      width:
-        min(
-          600px,
-          100%
-        );
-
-      max-height: 90vh;
-
-      overflow-y: auto;
-
-      padding:
-        36px;
-
-      border:
-        1px solid
-        var(--border-strong);
-
-      background:
-        #151918;
-
-      box-shadow:
-        0 30px 100px
-        rgba(0, 0, 0, 0.50);
-    }
-
-    .modal-close {
-      position: absolute;
-
-      top: 16px;
-      right: 16px;
-
-      width: 34px;
-      height: 34px;
-
-      display: grid;
-
-      place-items: center;
-
-      border:
-        1px solid
-        var(--border);
-
-      background:
-        transparent;
-
-      color:
-        var(--muted-light);
-
-      font-size:
-        19px;
-
-      cursor:
-        pointer;
-    }
-
-    .modal-close:hover {
-      color:
-        var(--blue);
-
-      border-color:
-        var(--blue);
-    }
-
-    .modal-label {
-      margin-bottom: 8px;
-
-      color:
-        var(--blue);
-
-      font-family:
-        "DM Mono",
-        monospace;
-
-      font-size: 9px;
-
-      text-transform:
-        uppercase;
-    }
-
-    .modal-title {
-      margin-bottom: 30px;
-
-      font-size:
-        clamp(
-          31px,
-          5vw,
-          52px
-        );
-
-      line-height:
-        0.96;
-
-      letter-spacing:
-        -0.05em;
-
-      font-weight:
-        700;
-    }
-
-    .field {
-      margin-bottom:
-        19px;
-    }
-
-    .field label {
-      display: block;
-
-      margin-bottom: 7px;
-
-      color:
-        var(--muted-light);
-
-      font-family:
-        "DM Mono",
-        monospace;
-
+      justify-content: space-between;
+      margin-bottom: 24px;
+      color: #6db5f8;
       font-size: 8px;
-
-      text-transform:
-        uppercase;
-
-      letter-spacing:
-        0.08em;
+      letter-spacing: 0.08em;
     }
 
-    .field input,
-    .field textarea {
-      width: 100%;
-
-      padding:
-        13px 14px;
-
-      border:
-        1px solid
-        var(--border);
-
-      background:
-        #0f1110;
-
-      color:
-        var(--text);
-
-      font-size:
-        12px;
-
-      outline:
-        none;
-
-      resize:
-        vertical;
+    .project-icon {
+      width: 52px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 15px;
+      border: 1px solid rgba(83, 154, 222, 0.6);
+      color: #6bb0f2;
+      font-size: 25px;
+      box-shadow: inset 0 0 18px rgba(66, 143, 220, 0.05);
     }
 
-    .field input::placeholder,
-    .field textarea::placeholder {
-      color:
-        #62665f;
+    .project-title {
+      font-size: 12px;
+      color: #e3e9ed;
+      font-weight: 500;
+      margin-bottom: 7px;
     }
 
-    .field input:focus,
-    .field textarea:focus {
-      border-color:
-        rgba(141, 188, 224, 0.55);
+    .project-description {
+      color: #8d9aa3;
+      font-size: 9px;
+      line-height: 1.65;
     }
 
-    .submit-button {
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 14px;
+    }
+
+    .tag {
+      border: 1px solid rgba(100, 134, 159, 0.32);
+      padding: 3px 5px;
+      font-size: 7px;
+      color: #8fa2b0;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, 0.01);
+    }
+
+    .project-github {
       display: inline-flex;
-
-      align-items: center;
-
-      gap: 9px;
-
-      padding:
-        13px 18px;
-
-      border:
-        none;
-
-      background:
-        var(--blue);
-
-      color:
-        #0c1114;
-
-      font-size:
-        11px;
-
-      font-weight:
-        800;
-
-      cursor:
-        pointer;
+      margin-top: 12px;
+      font-size: 9px;
+      color: #68b0f7;
     }
 
+    /* PROCESS */
 
-    /* =========================
-       FOOTER
-    ========================= */
+    .process-layout {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 22px;
+      align-items: start;
+    }
 
-    footer {
-      border-top:
-        1px solid
-        var(--border);
+    .process-heading h2 {
+      margin-top: 15px;
+      font-size: 30px;
+      line-height: 1.04;
+      font-weight: 500;
+      letter-spacing: -0.045em;
+    }
 
-      padding:
-        22px 0;
+    .process-heading h2 span {
+      color: #4ea9ff;
+    }
+
+    .process-track {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      position: relative;
+      padding-top: 5px;
+    }
+
+    .process-line {
+      position: absolute;
+      top: 31px;
+      left: 50px;
+      right: 50px;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        rgba(76, 158, 237, 0.2),
+        rgba(76, 158, 237, 0.8),
+        rgba(76, 158, 237, 0.2)
+      );
+    }
+
+    .process-step {
+      position: relative;
+      text-align: left;
+      padding-right: 10px;
+    }
+
+    .process-icon {
+      position: relative;
+      z-index: 2;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 1px solid rgba(94, 166, 229, 0.53);
+      display: grid;
+      place-items: center;
+      margin-bottom: 16px;
+      background:
+        radial-gradient(circle at center, rgba(57, 127, 201, 0.15), #071015 66%);
+      box-shadow: inset 0 0 15px rgba(73, 139, 205, 0.05);
+      color: #9ccdf4;
+      font-size: 19px;
+    }
+
+    .process-number {
+      color: #529fea;
+      font-size: 8px;
+      margin-bottom: 6px;
+    }
+
+    .process-title {
+      color: #dbe3e8;
+      font-size: 10px;
+      font-weight: 500;
+      max-width: 95px;
+      line-height: 1.4;
+    }
+
+    /* CTA */
+
+    .cta {
+      padding-top: 28px;
+      padding-bottom: 35px;
+    }
+
+    .cta-box {
+      min-height: 105px;
+      border: 1px solid rgba(80, 119, 151, 0.22);
+      background:
+        radial-gradient(circle at 17% 18%, rgba(28, 123, 223, 0.08), transparent 25%),
+        radial-gradient(circle at 87% 60%, rgba(36, 114, 200, 0.08), transparent 25%),
+        rgba(5, 12, 17, 0.85);
+      display: grid;
+      grid-template-columns: 1.05fr 1fr 0.8fr;
+      align-items: center;
+      padding: 20px 24px;
+      gap: 25px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-box::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 17% 20%, rgba(104, 181, 255, 0.55) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 89% 70%, rgba(104, 181, 255, 0.35) 0 1px, transparent 1.5px);
+      pointer-events: none;
+    }
+
+    .cta-title {
+      margin-top: 9px;
+      font-size: 27px;
+      line-height: 1.02;
+      letter-spacing: -0.045em;
+      font-weight: 500;
+    }
+
+    .cta-title span {
+      color: #56aaff;
+    }
+
+    .cta-text {
+      max-width: 290px;
+      color: #9aa7af;
+      font-size: 10px;
+      line-height: 1.75;
+    }
+
+    .cta-button {
+      justify-self: end;
+      min-width: 160px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* FOOTER */
+
+    .footer {
+      border-top: 1px solid rgba(102, 132, 154, 0.15);
+      padding: 17px 0 22px;
     }
 
     .footer-inner {
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
-
-      color:
-        var(--muted);
-
-      font-family:
-        "DM Mono",
-        monospace;
-
-      font-size:
-        9px;
+      color: #65717a;
+      font-size: 9px;
     }
 
-    .footer-link:hover {
-      color:
-        var(--blue);
+    .footer-right {
+      color: #6aaef0;
     }
 
+    /* REVEAL */
 
-    /* =========================
-       RESPONSIVE
-    ========================= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition:
+        opacity 0.65s ease,
+        transform 0.65s ease;
+    }
 
-    @media (max-width: 1100px) {
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
+    /* RESPONSIVE */
+
+    @media (max-width: 1000px) {
       .hero-grid {
-        grid-template-columns:
-          0.70fr
-          1.30fr;
-      }
-
-      .capability-layout {
-        grid-template-columns:
-          0.8fr
-          1.2fr;
-      }
-
-      .capability-layout > :last-child {
-        display: none;
-      }
-
-      .about-layout {
-        gap:
-          44px;
-      }
-
-      .how-layout {
-        gap:
-          38px;
-      }
-
-    }
-
-
-    @media (max-width: 900px) {
-
-      .container {
-        width:
-          min(
-            var(--max-width),
-            calc(100% - 42px)
-          );
-      }
-
-      .nav-links {
-        display:
-          none;
+        grid-template-columns: 1fr;
+        gap: 25px;
       }
 
       .hero {
-        padding:
-          70px 0
-          85px;
-      }
-
-      .hero-grid {
-        grid-template-columns:
-          1fr;
+        padding: 45px 0;
       }
 
       .hero-copy {
-        text-align:
-          center;
-      }
-
-      .hero-description {
-        margin-left:
-          auto;
-
-        margin-right:
-          auto;
-      }
-
-      .hero-actions {
-        justify-content:
-          center;
+        max-width: 700px;
       }
 
       .hero-visual {
-        min-height:
-          490px;
+        min-height: 300px;
       }
 
-      .workflow {
-        height:
-          490px;
+      .capabilities-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
       }
 
-      .capability-layout {
-        grid-template-columns:
-          1fr 1fr;
+      .capability-copy p {
+        max-width: 600px;
       }
 
-      .capability-layout > :last-child {
-        display:
-          none;
+      .about-grid {
+        grid-template-columns: 1fr;
       }
 
-      .about-layout {
-        grid-template-columns:
-          1fr;
+      .about-visual {
+        min-height: 380px;
       }
 
-      .portfolio-grid {
-        grid-template-columns:
-          repeat(2, 1fr);
+      .projects-layout,
+      .process-layout {
+        grid-template-columns: 1fr;
       }
 
-      .how-layout {
-        grid-template-columns:
-          1fr;
+      .projects-heading,
+      .process-heading {
+        margin-bottom: 10px;
       }
 
-      .steps {
-        grid-template-columns:
-          repeat(5, 1fr);
+      .project-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
 
-      .contact-box {
-        grid-template-columns:
-          1fr 1fr;
+      .process-track {
+        margin-top: 10px;
       }
 
-      .contact-right {
-        grid-column:
-          span 2;
+      .cta-box {
+        grid-template-columns: 1fr;
       }
 
+      .cta-button {
+        justify-self: start;
+      }
     }
 
-
-    @media (max-width: 650px) {
-
+    @media (max-width: 720px) {
       .container {
-        width:
-          calc(100% - 28px);
+        width: min(var(--max-width), calc(100% - 34px));
       }
 
-      .nav-inner {
-        min-height:
-          68px;
+      .nav-links {
+        display: none;
       }
 
       .hero {
-        padding:
-          68px 0
-          75px;
+        min-height: auto;
+        padding: 58px 0 55px;
       }
 
       .hero-title {
-        font-size:
-          clamp(
-            52px,
-            15.5vw,
-            85px
-          );
-
-        letter-spacing:
-          -0.048em;
-      }
-
-      .hero-workflow {
-        min-height:
-          420px;
-      }
-
-      .workflow {
-        height:
-          420px;
-      }
-
-      .workflow-node {
-        min-width:
-          88px;
-
-        padding:
-          9px 10px;
-      }
-
-      .workflow-node.main {
-        min-width:
-          132px;
-      }
-
-      .node-name {
-        font-size:
-          8px;
-      }
-
-      .node-description {
-        font-size:
-          6px;
-      }
-
-      .node-symbol {
-        font-size:
-          13px;
-      }
-
-      .tiny-human {
-        display:
-          none;
-      }
-
-      .section {
-        padding:
-          80px 0;
-      }
-
-      .section-header {
-        display:
-          block;
-
-        margin-bottom:
-          35px;
-      }
-
-      .section-description {
-        margin-top:
-          17px;
-      }
-
-      .capability-layout {
-        grid-template-columns:
-          1fr;
-      }
-
-      .capability-copy {
-        margin-top:
-          20px;
-      }
-
-      .about-visual {
-        min-height:
-          380px;
-      }
-
-      .about-title {
-        font-size:
-          34px;
-      }
-
-      .portfolio-grid {
-        grid-template-columns:
-          1fr;
-      }
-
-      .portfolio-card {
-        min-height:
-          400px;
-      }
-
-      .steps {
-        grid-template-columns:
-          1fr;
-        border-left:
-          none;
-      }
-
-      .step {
-        min-height:
-          auto;
-
-        padding:
-          18px 0;
-
-        border-right:
-          none;
-
-        border-bottom:
-          1px solid
-          var(--border);
-      }
-
-      .step:last-child {
-        border-bottom:
-          none;
-      }
-
-      .contact {
-        padding:
-          70px 0;
-      }
-
-      .contact-box {
-        grid-template-columns:
-          1fr;
-
-        gap:
-          24px;
-
-        padding:
-          27px 23px;
-      }
-
-      .contact-right {
-        grid-column:
-          auto;
-      }
-
-      .footer-inner {
-        flex-direction:
-          column;
-
-        align-items:
-          flex-start;
-
-        gap:
-          10px;
-      }
-
-    }
-
-
-    @media (max-width: 460px) {
-
-      .logo {
-        font-size:
-          15px;
-      }
-
-      .logo-mark {
-        width:
-          24px;
-
-        height:
-          24px;
-      }
-
-      .hero-topline {
-        font-size:
-          8px;
+        font-size: clamp(52px, 17vw, 82px);
       }
 
       .hero-description {
-        font-size:
-          12.5px;
+        font-size: 12px;
       }
 
-      .workflow-node {
-        min-width:
-          76px;
-
-        padding:
-          8px;
+      .workflow-stage {
+        height: 280px;
       }
 
-      .workflow-node.main {
-        min-width:
-          116px;
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .process-track {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      .process-line {
+        display: none;
+      }
+
+      .process-step {
+        display: grid;
+        grid-template-columns: 56px 1fr;
+        column-gap: 15px;
+        align-items: center;
+      }
+
+      .process-icon {
+        grid-row: span 2;
+        margin-bottom: 0;
+      }
+
+      .process-number {
+        margin: 0;
+      }
+
+      .process-title {
+        max-width: none;
+      }
+
+      .cta-box {
+        padding: 23px;
       }
 
       .about-visual {
-        min-height:
-          330px;
+        min-height: 300px;
       }
 
-      .about-board {
-        left:
-          16%;
-
-        width:
-          75%;
+      .board {
+        left: 21%;
+        right: 5%;
       }
-
-      .about-person {
-        width:
-          35%;
-      }
-
-      .modal-box {
-        padding:
-          28px 20px;
-      }
-
     }
 
+    @media (max-width: 460px) {
+      .nav-cta {
+        display: none;
+      }
+
+      .brand {
+        font-size: 13px;
+      }
+
+      .hero-actions {
+        flex-wrap: wrap;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .workflow-stage {
+        transform: scale(0.84);
+        transform-origin: center;
+        margin: -24px 0;
+      }
+
+      .about-visual {
+        min-height: 250px;
+      }
+
+      .board {
+        transform: scale(0.84);
+        transform-origin: center;
+        left: 15%;
+        right: 0;
+        top: 6%;
+        bottom: 5%;
+      }
+
+      .board-person {
+        transform: scale(0.8);
+        transform-origin: bottom left;
+      }
+
+      .cta-title {
+        font-size: 24px;
+      }
+
+      .section {
+        padding: 58px 0;
+      }
+    }
   </style>
 </head>
 
-
 <body>
 
-
-  <!-- =========================================
-       NAVIGATION
-  ========================================= -->
-
-  <nav>
-
+  <!-- NAVIGATION -->
+  <header class="navbar">
     <div class="container nav-inner">
 
-
-      <a
-        href="#"
-        class="logo"
-      >
-
-        <span class="logo-mark"></span>
-
-        <span>
-          Michelle Project
-        </span>
-
+      <a href="#top" class="brand">
+        <span class="brand-mark"></span>
+        <span>Michelle Project</span>
       </a>
 
+      <nav class="nav-links">
+        <a href="#capabilities">Capabilities</a>
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#process">How I Work</a>
+      </nav>
 
-      <ul class="nav-links">
-
-        <li>
-          <a href="#capabilities">
-            Capabilities
-          </a>
-        </li>
-
-        <li>
-          <a href="#about">
-            About
-          </a>
-        </li>
-
-        <li>
-          <a href="#portfolio">
-            Portfolio
-          </a>
-        </li>
-
-        <li>
-          <a href="#how-i-work">
-            How I Work
-          </a>
-        </li>
-
-      </ul>
-
-
-      <a
-        href="#contact"
-        class="nav-button"
-      >
+      <a href="#contact" class="nav-cta">
         Let's talk
         <span>↗</span>
       </a>
 
-
     </div>
-
-  </nav>
-
-
-  <!-- =========================================
-       HERO
-  ========================================= -->
-
-  <header class="hero">
-
-    <div class="container hero-grid">
-
-
-      <div class="hero-copy">
-
-
-        <div class="eyebrow mono">
-
-          <span class="eyebrow-dot"></span>
-
-          Workflow Automation
-
-        </div>
-
-
-        <h1 class="hero-title">
-
-          <span>
-            AUTOMATE
-          </span>
-
-          <span class="outline">
-            BETTER.
-          </span>
-
-          <span class="blue">
-            WORK.
-          </span>
-
-        </h1>
-
-
-        <p class="hero-description">
-          I turn repetitive business work into simple
-          automation that saves time, reduces manual effort,
-          and keeps important processes moving.
-        </p>
-
-
-        <div class="hero-actions">
-
-          <a
-            href="#portfolio"
-            class="button primary"
-          >
-            See my work
-            <span>↗</span>
-          </a>
-
-
-          <a
-            href="#about"
-            class="button secondary"
-          >
-            About Michelle
-          </a>
-
-        </div>
-
-
-      </div>
-
-
-      <!-- =======================================
-           WORKFLOW VISUAL
-      ======================================== -->
-
-      <div class="hero-visual">
-
-        <div class="workflow">
-
-
-          <div class="workflow-glow"></div>
-
-
-          <!-- Connections -->
-
-          <div class="workflow-connection connection-a"></div>
-          <div class="workflow-connection connection-b"></div>
-          <div class="workflow-connection connection-c"></div>
-          <div class="workflow-connection connection-d"></div>
-          <div class="workflow-connection connection-e"></div>
-          <div class="workflow-connection dashed connection-f"></div>
-          <div class="workflow-connection dashed connection-g"></div>
-          <div class="workflow-connection dashed connection-h"></div>
-          <div class="workflow-connection connection-i"></div>
-
-
-          <!-- Notes -->
-
-          <div class="workflow-note one">
-            too many<br>
-            manual steps
-          </div>
-
-
-          <div class="workflow-note two">
-            what should<br>
-            happen next?
-          </div>
-
-
-          <div class="workflow-note three">
-            keep humans<br>
-            in the loop
-          </div>
-
-
-          <!-- Trigger -->
-
-          <div class="workflow-node trigger">
-
-            <div class="node-symbol">
-              ⚡
-            </div>
-
-            <div class="node-name">
-              Trigger
-            </div>
-
-            <div class="node-description">
-              New request received
-            </div>
-
-          </div>
-
-
-          <!-- Collect -->
-
-          <div class="workflow-node collect">
-
-            <div class="node-symbol">
-              ▣
-            </div>
-
-            <div class="node-name">
-              Collect
-            </div>
-
-            <div class="node-description">
-              Gather the data
-            </div>
-
-          </div>
-
-
-          <!-- Understand -->
-
-          <div class="workflow-node understand">
-
-            <div class="node-symbol">
-              ◯
-            </div>
-
-            <div class="node-name">
-              Understand
-            </div>
-
-            <div class="node-description">
-              Understand the real process
-            </div>
-
-          </div>
-
-
-          <!-- AI Agent -->
-
-          <div class="workflow-node main agent">
-
-            <div class="node-symbol">
-              ◉
-            </div>
-
-            <div class="node-name">
-              AI Agent
-            </div>
-
-            <div class="node-description">
-              Decide what to do next
-            </div>
-
-          </div>
-
-
-          <!-- Integrate -->
-
-          <div class="workflow-node integrate">
-
-            <div class="node-symbol">
-              ⊕
-            </div>
-
-            <div class="node-name">
-              Integrate
-            </div>
-
-            <div class="node-description">
-              Connect the right systems
-            </div>
-
-          </div>
-
-
-          <!-- Act -->
-
-          <div class="workflow-node act">
-
-            <div class="node-symbol">
-              ▶
-            </div>
-
-            <div class="node-name">
-              Act
-            </div>
-
-            <div class="node-description">
-              Take action automatically
-            </div>
-
-          </div>
-
-
-          <!-- Review -->
-
-          <div class="workflow-node review">
-
-            <div class="node-symbol">
-              ◌
-            </div>
-
-            <div class="node-name">
-              Review
-            </div>
-
-            <div class="node-description">
-              Human review when needed
-            </div>
-
-          </div>
-
-
-          <!-- Notify -->
-
-          <div class="workflow-node notify">
-
-            <div class="node-symbol">
-              ♢
-            </div>
-
-            <div class="node-name">
-              Notify
-            </div>
-
-            <div class="node-description">
-              Send updates
-            </div>
-
-          </div>
-
-
-          <!-- Done -->
-
-          <div class="workflow-node done">
-
-            <div class="node-symbol">
-              ✓
-            </div>
-
-            <div class="node-name">
-              Done
-            </div>
-
-            <div class="node-description">
-              Log, store, and move on
-            </div>
-
-          </div>
-
-
-          <!-- Small human figure -->
-
-          <div class="tiny-human">
-
-            <svg
-              viewBox="0 0 180 220"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-
-              <circle
-                cx="90"
-                cy="42"
-                r="18"
-                stroke="currentColor"
-                stroke-width="2"
-              />
-
-              <path
-                d="M64 85C70 66 78 58 90 58C102 58 111 67 116 85"
-                stroke="currentColor"
-                stroke-width="2"
-              />
-
-              <path
-                d="M73 82L57 137"
-                stroke="currentColor"
-                stroke-width="2"
-              />
-
-              <path
-                d="M107 82L123 136"
-                stroke="currentColor"
-                stroke-width="2"
-              />
-
-              <path
-                d="M57 137L43 195"
-                stroke="currentColor"
-                stroke-width="2"
-              />
-
-              <path
-                d="M123 136L143 191"
-                stroke="currentColor"
-                stroke-width="2"
-              />
-
-              <path
-                d="M76 106L33 122"
-                stroke="currentColor"
-                stroke-width="2"
-              />
-
-              <path
-                d="M105 106L145 94"
-                stroke="currentColor"
-                stroke-width="2"
-              />
-
-              <path
-                d="M145 94L151 83"
-                stroke="currentColor"
-                stroke-width="2"
-              />
-
-            </svg>
-
-          </div>
-
-
-        </div>
-
-      </div>
-
-
-    </div>
-
   </header>
 
 
-  <main>
+  <main id="top">
 
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
 
-    <!-- =========================================
-         WHAT I DO
-    ========================================= -->
+        <div class="hero-copy reveal">
 
-    <section
-      class="section"
-      id="capabilities"
-    >
-
-      <div class="container">
-
-
-        <div class="section-header">
-
-          <div>
-
-            <div class="section-label">
-              What I Do
-            </div>
-
-            <h2 class="section-title">
-              Less manual.<br>
-              More done.
-            </h2>
-
+          <div class="eyebrow">
+            Workflow automation / open to opportunities
           </div>
 
+          <h1 class="hero-title">
+            <span>AUTOMATE</span>
+            <span class="outline">BETTER.</span>
+            <span class="blue">WORK.</span>
+          </h1>
 
-          <p class="section-description">
-            Practical automation built around the problem,
-            not around a particular tool.
+          <p class="hero-description">
+            I turn repetitive business work into simple automation that saves
+            time, reduces manual effort, and keeps important processes moving.
           </p>
+
+          <div class="hero-actions">
+            <a href="#work" class="button button-primary">
+              See my work
+              <span>↗</span>
+            </a>
+
+            <a href="#about" class="button button-secondary">
+              About Michelle
+            </a>
+          </div>
 
         </div>
 
 
-        <div class="capability-layout">
+        <div class="hero-visual reveal">
 
+          <div class="workflow-stage">
 
-          <div class="capability-list">
+            <svg
+              class="workflow-lines"
+              viewBox="0 0 530 340"
+              preserveAspectRatio="none"
+            >
+              <path d="M63 75 C110 75, 130 145, 215 145" />
+              <path d="M63 170 C110 170, 140 160, 215 160" />
+              <path d="M63 280 C120 280, 150 185, 215 175" />
 
+              <path d="M325 162 C365 162, 382 135, 420 135" />
+              <path d="M325 174 C368 176, 382 208, 420 208" />
 
-            <div class="capability-item">
+              <path
+                class="dashed"
+                d="M250 245 C250 205, 260 198, 264 197"
+              />
+              <path
+                class="dashed"
+                d="M310 245 C310 205, 298 198, 294 196"
+              />
+              <path
+                class="dashed"
+                d="M270 221 C275 207, 286 198, 286 191"
+              />
+            </svg>
 
-              <div class="tool">
-
-                <span class="capability-icon">
-                  ↯
-                </span>
-
-                <span>
-                  Workflow Automation
-                </span>
-
-              </div>
-
-              <span class="capability-number">
-                01
-              </span>
-
+            <div class="workflow-node small top-left">
+              <div class="node-icon green">◷</div>
             </div>
 
-
-            <div class="capability-item">
-
-              <div class="tool">
-
-                <span class="capability-icon">
-                  ◌
-                </span>
-
-                <span>
-                  AI Agent
-                </span>
-
-              </div>
-
-              <span class="capability-number">
-                02
-              </span>
-
+            <div class="workflow-node small mid-left">
+              <div class="node-icon green">▶</div>
             </div>
 
-
-            <div class="capability-item">
-
-              <div class="tool">
-
-                <span class="capability-icon">
-                  ↔
-                </span>
-
-                <span>
-                  API Integration
-                </span>
-
-              </div>
-
-              <span class="capability-number">
-                03
-              </span>
-
+            <div class="workflow-node small bottom-left">
+              <div class="node-icon green">▦</div>
             </div>
 
-
-            <div class="capability-item">
-
-              <div class="tool">
-
-                <span class="capability-icon">
-                  Py
-                </span>
-
-                <span>
-                  Python
-                </span>
-
-              </div>
-
-              <span class="capability-number">
-                04
-              </span>
-
+            <div class="workflow-node center">
+              <div class="robot"></div>
+              <div class="node-label">AI Agent</div>
             </div>
 
-
-            <div class="capability-item">
-
-              <div class="tool">
-
-                <span class="capability-icon">
-                  ⌁
-                </span>
-
-                <span>
-                  Process Mapping
-                </span>
-
-              </div>
-
-              <span class="capability-number">
-                05
-              </span>
-
+            <div class="workflow-node right right-top">
+              <div class="node-icon green">✣</div>
             </div>
 
+            <div class="workflow-node right right-bottom">
+              <div class="node-icon orange">✉</div>
+            </div>
+
+            <span class="particle p1"></span>
+            <span class="particle p2"></span>
+            <span class="particle p3"></span>
+            <span class="particle p4"></span>
+            <span class="particle p5"></span>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <div class="divider"></div>
+
+
+    <!-- CAPABILITIES -->
+    <section class="section" id="capabilities">
+      <div class="container capabilities-grid reveal">
+
+        <div>
+          <div class="eyebrow">What I do</div>
+
+          <h2 class="section-title">
+            Less manual.<br />
+            More done.
+          </h2>
+        </div>
+
+
+        <div class="capability-list">
+
+          <div class="capability-item">
+            <div class="capability-icon">ϟ</div>
+            <div class="capability-name">Workflow Automation</div>
+            <div class="capability-number">01</div>
+          </div>
+
+          <div class="capability-item">
+            <div class="capability-icon">◉</div>
+            <div class="capability-name">AI Agent</div>
+            <div class="capability-number">02</div>
+          </div>
+
+          <div class="capability-item">
+            <div class="capability-icon">↔</div>
+            <div class="capability-name">API Integration</div>
+            <div class="capability-number">03</div>
+          </div>
+
+          <div class="capability-item">
+            <div class="capability-icon">Py</div>
+            <div class="capability-name">Python</div>
+            <div class="capability-number">04</div>
+          </div>
+
+          <div class="capability-item">
+            <div class="capability-icon">◌</div>
+            <div class="capability-name">Process Mapping</div>
+            <div class="capability-number">05</div>
+          </div>
+
+        </div>
+
+
+        <div class="capability-copy">
+
+          <p>
+            I use the right combination of workflow automation,
+            AI, code, and integrations based on the problem being solved.
+          </p>
+
+          <div class="tech-stack">
+            <span>n8n</span>
+            <span>Python</span>
+            <span>Claude Code</span>
+            <span>Codex</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <div class="divider"></div>
+
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+
+      <div class="container about-grid reveal">
+
+        <div class="about-visual">
+
+          <div class="board">
+
+            <svg
+              class="board-lines"
+              viewBox="0 0 500 300"
+              preserveAspectRatio="none"
+            >
+              <path d="M95 70 H210" />
+              <path d="M285 70 H395" />
+
+              <path d="M250 90 V170" />
+
+              <path d="M110 205 H210" />
+              <path d="M285 205 H390" />
+
+              <path d="M250 215 V265" />
+
+              <path d="M95 78 C95 120, 120 160, 170 180" />
+              <path d="M395 78 C395 120, 375 160, 330 180" />
+            </svg>
+
+            <div class="board-node board-trigger">
+              ϟ <b>TRIGGER</b>
+            </div>
+
+            <div class="board-node board-agent">
+              ◉ <b>AI Agent</b>
+            </div>
+
+            <div class="board-node board-integrate">
+              ◇ <b>INTEGRATE</b>
+            </div>
+
+            <div class="board-node board-review">
+              ♙ <b>REVIEW</b>
+            </div>
+
+            <div class="board-node board-act">
+              ▶ <b>ACT</b>
+            </div>
+
+            <div class="board-node board-notify">
+              ♢ <b>NOTIFY</b>
+            </div>
+
+            <div class="board-node board-done">
+              ✓ <b>DONE</b>
+            </div>
 
           </div>
 
 
-          <div class="capability-copy">
-
-            <p>
-              The tools change depending on the process.
-              The goal stays the same: remove unnecessary
-              manual work and make the workflow easier to run.
-            </p>
-
-
-            <p>
-              I use the right combination of workflow automation,
-              AI, code, and integrations based on the problem
-              being solved.
-            </p>
-
-
-            <div class="stack">
-              n8n · Python · Claude Code · Codex
-            </div>
-
-
+          <div class="board-person">
+            <div class="head"></div>
+            <div class="body"></div>
+            <div class="arm"></div>
+            <div class="arm right"></div>
+            <div class="leg left"></div>
+            <div class="leg right"></div>
           </div>
 
+        </div>
 
-          <div></div>
 
+        <div class="about-copy">
+
+          <div class="eyebrow">About</div>
+
+          <h2>
+            Broken processes are rarely a
+            <span>tooling problem.</span>
+          </h2>
+
+          <p>
+            I work on the gap between people, processes, and technology.
+          </p>
+
+          <p>
+            I've spent years working around complex, process-heavy work.
+            Automation became the natural next step.
+          </p>
+
+          <p>
+            Now I turn repetitive work into practical workflows people can
+            actually use.
+          </p>
 
         </div>
 
@@ -3047,837 +1643,255 @@
     </section>
 
 
-    <!-- =========================================
-         ABOUT
-    ========================================= -->
-
-    <section
-      class="section"
-      id="about"
-    >
-
-      <div class="container">
+    <div class="divider"></div>
 
 
-        <div class="section-header">
+    <!-- PROJECTS -->
+    <section class="section" id="work">
 
-          <div>
+      <div class="container projects-layout reveal">
 
-            <div class="section-label">
-              About
-            </div>
-
-          </div>
-
-
-          <p class="section-description">
-            A process-first approach to automation.
-          </p>
-
+        <div class="projects-heading">
+          <div class="eyebrow">Selected work</div>
+          <h2>
+            Real work.<br />
+            Automated.
+          </h2>
         </div>
 
 
-        <div class="about-layout">
+        <div class="projects-main">
 
-
-          <!-- Illustration -->
-
-          <div class="about-visual">
-
-
-            <div class="about-board">
-
-              <div class="board-label">
-                Process map
-              </div>
-
-
-              <div class="about-node n1">
-                INPUT
-              </div>
-
-
-              <div class="about-node active n2">
-                AI
-              </div>
-
-
-              <div class="about-node n3">
-                SYSTEM
-              </div>
-
-
-              <div class="about-node active n4">
-                DECISION
-              </div>
-
-
-              <div class="about-node n5">
-                REVIEW
-              </div>
-
-
-              <div class="about-node n6">
-                OUTPUT
-              </div>
-
-
-              <div class="about-link l1"></div>
-              <div class="about-link l2"></div>
-              <div class="about-link l3"></div>
-              <div class="about-link l4"></div>
-
-
-            </div>
-
-
-            <!-- Person -->
-
-            <div class="about-person">
-
-              <svg
-                viewBox="0 0 240 300"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-
-                <circle
-                  cx="91"
-                  cy="49"
-                  r="27"
-                  stroke="currentColor"
-                  stroke-width="2.2"
-                />
-
-                <path
-                  d="M53 122C59 91 72 73 91 73C111 73 127 91 132 122"
-                  stroke="currentColor"
-                  stroke-width="2.2"
-                />
-
-                <path
-                  d="M67 110L39 194"
-                  stroke="currentColor"
-                  stroke-width="2.2"
-                />
-
-                <path
-                  d="M113 110L141 191"
-                  stroke="currentColor"
-                  stroke-width="2.2"
-                />
-
-                <path
-                  d="M39 194L26 281"
-                  stroke="currentColor"
-                  stroke-width="2.2"
-                />
-
-                <path
-                  d="M141 191L166 278"
-                  stroke="currentColor"
-                  stroke-width="2.2"
-                />
-
-                <path
-                  d="M69 137L14 165"
-                  stroke="currentColor"
-                  stroke-width="2.2"
-                />
-
-                <path
-                  d="M112 137L157 112"
-                  stroke="currentColor"
-                  stroke-width="2.2"
-                />
-
-                <path
-                  d="M157 112L173 95"
-                  stroke="currentColor"
-                  stroke-width="2.2"
-                />
-
-              </svg>
-
-            </div>
-
-
-          </div>
-
-
-          <!-- About copy -->
-
-          <div class="about-copy-column">
-
-
-            <h2 class="about-title">
-              Broken processes are rarely a
-              <span class="blue">
-                tooling problem.
-              </span>
-            </h2>
-
-
-            <p class="about-text">
-              I work on the gap between people,
-              process, and technology.
-            </p>
-
-
-            <p class="about-text">
-              I've spent years around complex,
-              process-heavy work. Automation became
-              the natural next step.
-            </p>
-
-
-            <p class="about-text">
-              Now I turn repetitive work into practical
-              workflows that people can actually use.
-            </p>
-
-
-          </div>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================================
-         PORTFOLIOS
-    ========================================= -->
-
-    <section
-      class="section"
-      id="portfolio"
-    >
-
-      <div class="container">
-
-
-        <div class="portfolio-header">
-
-
-          <div>
-
-            <div class="section-label">
-              Portfolios
-            </div>
-
-
-            <h2 class="section-title">
-              Real work.<br>
-              Automated.
-            </h2>
-
-          </div>
-
-
-          <a
-            href="https://github.com/michelleproject"
-            class="github-all"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View all on GitHub ↗
+          <a href="#" class="projects-link">
+            View all projects on GitHub ↗
           </a>
 
+          <div class="project-grid">
 
-        </div>
+            <article class="project-card">
 
-
-        <div class="portfolio-grid">
-
-
-          <!-- Budget -->
-
-          <article class="portfolio-card">
-
-
-            <div class="portfolio-meta">
-
-              <span class="number">
-                01 / Budget
-              </span>
-
-              <span>
-                Spending
-              </span>
-
-            </div>
-
-
-            <div class="portfolio-visual">
-
-
-              <div class="portfolio-icon">
-
-                <svg
-                  viewBox="0 0 48 48"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-
-                  <path
-                    d="M6 37H42"
-                    stroke="currentColor"
-                    stroke-width="1.6"
-                  />
-
-                  <path
-                    d="M9 31L18 24L25 27L39 12"
-                    stroke="currentColor"
-                    stroke-width="1.8"
-                  />
-
-                  <path
-                    d="M31 12H39V20"
-                    stroke="currentColor"
-                    stroke-width="1.8"
-                  />
-
-                </svg>
-
+              <div class="project-card-top">
+                <span>01</span>
+                <span>BUDGET</span>
               </div>
 
+              <div class="project-icon">↗</div>
 
-            </div>
+              <h3 class="project-title">Budget Monitor</h3>
 
-
-            <div class="portfolio-info">
-
-
-              <h3>
-                Budget Monitor
-              </h3>
-
-
-              <p>
-                Checks spending against budget limits every
-                week and sends an alert when something goes over.
+              <p class="project-description">
+                Checks spending against budget limits every week and
+                sends an alert when something goes over.
               </p>
 
-
-              <div class="tech-tags">
-
-                <span class="tech-tag">
-                  n8n
-                </span>
-
-                <span class="tech-tag">
-                  Google Sheets
-                </span>
-
-                <span class="tech-tag">
-                  Gmail
-                </span>
-
-                <span class="tech-tag">
-                  JavaScript
-                </span>
-
+              <div class="tags">
+                <span class="tag">n8n</span>
+                <span class="tag">Google Sheets</span>
+                <span class="tag">Gmail</span>
+                <span class="tag">JavaScript</span>
               </div>
 
-
-              <a
-                href="YOUR_BUDGET_REPOSITORY_URL"
-                class="portfolio-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href="#" class="project-github">
                 GitHub ↗
               </a>
 
-
-            </div>
-
-
-          </article>
+            </article>
 
 
-          <!-- Resume -->
+            <article class="project-card">
 
-          <article class="portfolio-card">
-
-
-            <div class="portfolio-meta">
-
-              <span class="number">
-                02 / Screening
-              </span>
-
-              <span>
-                Hiring
-              </span>
-
-            </div>
-
-
-            <div class="portfolio-visual">
-
-
-              <div class="portfolio-icon">
-
-                <svg
-                  viewBox="0 0 48 48"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-
-                  <rect
-                    x="7"
-                    y="6"
-                    width="24"
-                    height="34"
-                    stroke="currentColor"
-                    stroke-width="1.6"
-                  />
-
-                  <path
-                    d="M13 15H25"
-                    stroke="currentColor"
-                    stroke-width="1.6"
-                  />
-
-                  <path
-                    d="M13 21H25"
-                    stroke="currentColor"
-                    stroke-width="1.6"
-                  />
-
-                  <path
-                    d="M13 27H20"
-                    stroke="currentColor"
-                    stroke-width="1.6"
-                  />
-
-                  <circle
-                    cx="34"
-                    cy="31"
-                    r="7"
-                    stroke="currentColor"
-                    stroke-width="1.6"
-                  />
-
-                  <path
-                    d="M39 36L43 40"
-                    stroke="currentColor"
-                    stroke-width="1.6"
-                  />
-
-                </svg>
-
+              <div class="project-card-top">
+                <span>02</span>
+                <span>SCREENING</span>
               </div>
 
+              <div class="project-icon">⌕</div>
 
-            </div>
+              <h3 class="project-title">Resume Screening</h3>
 
-
-            <div class="portfolio-info">
-
-
-              <h3>
-                Resume Screening
-              </h3>
-
-
-              <p>
-                Reviews resumes against role requirements,
-                scores candidates, and sorts them into
-                clear next steps.
+              <p class="project-description">
+                Reviews resumes against role requirements, scores each
+                candidate, and sorts them into clear next steps.
               </p>
 
-
-              <div class="tech-tags">
-
-                <span class="tech-tag">
-                  n8n
-                </span>
-
-                <span class="tech-tag">
-                  Gemini
-                </span>
-
-                <span class="tech-tag">
-                  Gmail
-                </span>
-
-                <span class="tech-tag">
-                  Google Sheets
-                </span>
-
+              <div class="tags">
+                <span class="tag">n8n</span>
+                <span class="tag">Gemini</span>
+                <span class="tag">Gmail</span>
+                <span class="tag">Google Sheets</span>
               </div>
 
-
-              <a
-                href="YOUR_RESUME_REPOSITORY_URL"
-                class="portfolio-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href="#" class="project-github">
                 GitHub ↗
               </a>
 
-
-            </div>
-
-
-          </article>
+            </article>
 
 
-          <!-- Invoice -->
+            <article class="project-card">
 
-          <article class="portfolio-card">
-
-
-            <div class="portfolio-meta">
-
-              <span class="number">
-                03 / Invoices
-              </span>
-
-              <span>
-                Documents
-              </span>
-
-            </div>
-
-
-            <div class="portfolio-visual">
-
-
-              <div class="portfolio-icon">
-
-                <svg
-                  viewBox="0 0 48 48"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-
-                  <rect
-                    x="6"
-                    y="8"
-                    width="18"
-                    height="29"
-                    stroke="currentColor"
-                    stroke-width="1.6"
-                  />
-
-                  <path
-                    d="M11 15H19"
-                    stroke="currentColor"
-                    stroke-width="1.6"
-                  />
-
-                  <path
-                    d="M11 21H19"
-                    stroke="currentColor"
-                    stroke-width="1.6"
-                  />
-
-                  <path
-                    d="M11 27H17"
-                    stroke="currentColor"
-                    stroke-width="1.6"
-                  />
-
-                  <path
-                    d="M28 23H35"
-                    stroke="currentColor"
-                    stroke-width="1.6"
-                  />
-
-                  <path
-                    d="M32 19L36 23L32 27"
-                    stroke="currentColor"
-                    stroke-width="1.6"
-                  />
-
-                  <rect
-                    x="37"
-                    y="10"
-                    width="6"
-                    height="26"
-                    stroke="currentColor"
-                    stroke-width="1.6"
-                  />
-
-                </svg>
-
+              <div class="project-card-top">
+                <span>03</span>
+                <span>INVOICES</span>
               </div>
 
+              <div class="project-icon">→</div>
 
-            </div>
+              <h3 class="project-title">Invoice Processing</h3>
 
-
-            <div class="portfolio-info">
-
-
-              <h3>
-                Invoice Processing
-              </h3>
-
-
-              <p>
-                Turns emailed invoices into organized records
-                and separates successful, review, and
-                error cases.
+              <p class="project-description">
+                Turns emailed invoices into organized records and
+                separates successful, review, and error cases.
               </p>
 
-
-              <div class="tech-tags">
-
-                <span class="tech-tag">
-                  Python
-                </span>
-
-                <span class="tech-tag">
-                  FastAPI
-                </span>
-
-                <span class="tech-tag">
-                  n8n
-                </span>
-
-                <span class="tech-tag">
-                  Gemini
-                </span>
-
-                <span class="tech-tag">
-                  Sheets
-                </span>
-
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">n8n</span>
+                <span class="tag">Gemini</span>
+                <span class="tag">Sheets</span>
               </div>
 
-
-              <a
-                href="YOUR_INVOICE_REPOSITORY_URL"
-                class="portfolio-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href="#" class="project-github">
                 GitHub ↗
               </a>
 
+            </article>
 
-            </div>
-
-
-          </article>
-
+          </div>
 
         </div>
 
       </div>
-
     </section>
 
 
-    <!-- =========================================
-         HOW I WORK
-    ========================================= -->
-
-    <section
-      class="section"
-      id="how-i-work"
-    >
-
-      <div class="container">
+    <div class="divider"></div>
 
 
-        <div class="section-header">
+    <!-- PROCESS -->
+    <section class="section" id="process">
 
-          <div>
+      <div class="container process-layout reveal">
 
-            <div class="section-label">
-              How I Work
-            </div>
+        <div class="process-heading">
+          <div class="eyebrow">How I work</div>
 
-          </div>
-
-
-          <p class="section-description">
-            Understand the problem first.
-            Build only what actually helps.
-          </p>
-
-
+          <h2>
+            Think first.<br />
+            Automate<br />
+            <span>second.</span>
+          </h2>
         </div>
 
 
-        <div class="how-layout">
+        <div class="process-track">
 
+          <div class="process-line"></div>
 
-          <div>
+          <div class="process-step">
 
-            <h2 class="how-title">
+            <div class="process-icon">♧</div>
 
-              Think first.<br>
-
-              Automate
-              <span class="blue">
-                second.
-              </span>
-
-            </h2>
-
-          </div>
-
-
-          <div class="steps">
-
-
-            <div class="step">
-
-              <div class="step-icon">
-                01
-              </div>
-
-              <div class="step-number">
-                01
-              </div>
-
-              <h3>
+            <div>
+              <div class="process-number">01</div>
+              <div class="process-title">
                 Understand the process
-              </h3>
-
+              </div>
             </div>
-
-
-            <div class="step">
-
-              <div class="step-icon">
-                02
-              </div>
-
-              <div class="step-number">
-                02
-              </div>
-
-              <h3>
-                Find repetitive work
-              </h3>
-
-            </div>
-
-
-            <div class="step">
-
-              <div class="step-icon">
-                03
-              </div>
-
-              <div class="step-number">
-                03
-              </div>
-
-              <h3>
-                Build the right solution
-              </h3>
-
-            </div>
-
-
-            <div class="step">
-
-              <div class="step-icon">
-                04
-              </div>
-
-              <div class="step-number">
-                04
-              </div>
-
-              <h3>
-                Handle unexpected cases
-              </h3>
-
-            </div>
-
-
-            <div class="step">
-
-              <div class="step-icon">
-                05
-              </div>
-
-              <div class="step-number">
-                05
-              </div>
-
-              <h3>
-                Keep it practical
-              </h3>
-
-            </div>
-
 
           </div>
 
+
+          <div class="process-step">
+
+            <div class="process-icon">⌕</div>
+
+            <div>
+              <div class="process-number">02</div>
+              <div class="process-title">
+                Find repetitive work
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="process-step">
+
+            <div class="process-icon">&lt;/&gt;</div>
+
+            <div>
+              <div class="process-number">03</div>
+              <div class="process-title">
+                Build the right solution
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="process-step">
+
+            <div class="process-icon">♢</div>
+
+            <div>
+              <div class="process-number">04</div>
+              <div class="process-title">
+                Handle unexpected cases
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="process-step">
+
+            <div class="process-icon">✓</div>
+
+            <div>
+              <div class="process-number">05</div>
+              <div class="process-title">
+                Keep it practical
+              </div>
+            </div>
+
+          </div>
 
         </div>
 
       </div>
-
     </section>
 
 
-    <!-- =========================================
-         CONTACT
-    ========================================= -->
-
-    <section
-      class="contact"
-      id="contact"
-    >
+    <!-- CTA -->
+    <section class="cta" id="contact">
 
       <div class="container">
 
+        <div class="cta-box reveal">
 
-        <div class="contact-box">
+          <div>
+            <div class="eyebrow">Let's talk</div>
 
-
-          <div class="contact-left">
-
-            <div class="contact-label">
-              Let's talk
-            </div>
-
-
-            <h2 class="contact-title">
-              What's eating
-              your
-              <span class="blue">
-                team's time?
-              </span>
+            <h2 class="cta-title">
+              What's eating<br />
+              your team's <span>time?</span>
             </h2>
-
           </div>
 
-
-          <p class="contact-middle">
+          <p class="cta-text">
             Tell me what your team is still doing manually.
             I'll tell you honestly whether automation makes sense.
           </p>
 
-
-          <div class="contact-right">
-
-            <button
-              type="button"
-              class="contact-button"
-              onclick="openModal()"
-            >
-              Let's Discuss
-              <span>↗</span>
-            </button>
-
-          </div>
-
+          <a
+            href="mailto:hello@example.com"
+            class="button button-primary cta-button"
+          >
+            Start a conversation
+            <span>↗</span>
+          </a>
 
         </div>
 
@@ -3885,163 +1899,20 @@
 
     </section>
 
-
   </main>
 
 
-  <!-- =========================================
-       CONTACT MODAL
-  ========================================= -->
-
-  <div
-    class="modal"
-    id="contactModal"
-    aria-hidden="true"
-  >
-
-
-    <div
-      class="modal-backdrop"
-      onclick="closeModal()"
-    ></div>
-
-
-    <div
-      class="modal-box"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="modalTitle"
-    >
-
-
-      <button
-        type="button"
-        class="modal-close"
-        onclick="closeModal()"
-        aria-label="Close contact form"
-      >
-        ×
-      </button>
-
-
-      <div class="modal-label">
-        Let's discuss
-      </div>
-
-
-      <h2
-        class="modal-title"
-        id="modalTitle"
-      >
-        Tell me what is
-        slowing your team down.
-      </h2>
-
-
-      <!--
-        Replace YOUR_FORM_ID with your
-        Formspree form ID.
-
-        Your real email does not appear
-        anywhere in this HTML.
-      -->
-
-      <form
-        action="https://formspree.io/f/YOUR_FORM_ID"
-        method="POST"
-      >
-
-
-        <div class="field">
-
-          <label for="name">
-            Name
-          </label>
-
-          <input
-            id="name"
-            name="name"
-            type="text"
-            placeholder="Your name"
-            autocomplete="name"
-            required
-          >
-
-        </div>
-
-
-        <div class="field">
-
-          <label for="email">
-            Email
-          </label>
-
-          <input
-            id="email"
-            name="email"
-            type="email"
-            placeholder="you@example.com"
-            autocomplete="email"
-            required
-          >
-
-        </div>
-
-
-        <div class="field">
-
-          <label for="message">
-            What would you like to automate?
-          </label>
-
-          <textarea
-            id="message"
-            name="message"
-            rows="6"
-            placeholder="Tell me what your team is doing manually and what you would like to improve."
-            required
-          ></textarea>
-
-        </div>
-
-
-        <button
-          type="submit"
-          class="submit-button"
-        >
-          Send message
-          <span>↗</span>
-        </button>
-
-
-      </form>
-
-
-    </div>
-
-  </div>
-
-
-  <!-- =========================================
-       FOOTER
-  ========================================= -->
-
-  <footer>
+  <!-- FOOTER -->
+  <footer class="footer">
 
     <div class="container footer-inner">
 
-      <span>
+      <div>
         © 2026 Michelle Project
-      </span>
+      </div>
 
-
-      <a
-        href="https://github.com/michelleproject"
-        class="footer-link"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        GitHub
+      <a href="#" class="footer-right">
+        GitHub ↗
       </a>
 
     </div>
@@ -4049,80 +1920,99 @@
   </footer>
 
 
-  <!-- =========================================
-       JAVASCRIPT
-  ========================================= -->
-
   <script>
+    /*
+      Scroll reveal
+    */
 
-    const modal =
-      document.getElementById(
-        "contactModal"
-      );
+    const revealElements = document.querySelectorAll(".reveal");
 
-
-    function openModal() {
-
-      modal.classList.add(
-        "active"
-      );
-
-      modal.setAttribute(
-        "aria-hidden",
-        "false"
-      );
-
-      document.body.classList.add(
-        "modal-open"
-      );
-
-      setTimeout(() => {
-
-        const nameField =
-          document.getElementById(
-            "name"
-          );
-
-        if (nameField) {
-          nameField.focus();
-        }
-
-      }, 180);
-
-    }
-
-
-    function closeModal() {
-
-      modal.classList.remove(
-        "active"
-      );
-
-      modal.setAttribute(
-        "aria-hidden",
-        "true"
-      );
-
-      document.body.classList.remove(
-        "modal-open"
-      );
-
-    }
-
-
-    document.addEventListener(
-      "keydown",
-      function(event) {
-
-        if (event.key === "Escape") {
-          closeModal();
-        }
-
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.12
       }
     );
 
-  </script>
+    revealElements.forEach((element) => {
+      observer.observe(element);
+    });
 
+
+    /*
+      Small workflow animation
+    */
+
+    const particles = document.querySelectorAll(".particle");
+
+    particles.forEach((particle, index) => {
+      let direction = index % 2 === 0 ? 1 : -1;
+
+      let startX = particle.offsetLeft;
+      let startY = particle.offsetTop;
+
+      let x = startX;
+      let y = startY;
+
+      function animate() {
+        x += 0.08 * direction;
+        y += Math.sin(Date.now() / 850 + index) * 0.08;
+
+        particle.style.transform =
+          `translate(${x - startX}px, ${y - startY}px)`;
+
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    });
+
+
+    /*
+      Smooth navigation with sticky header offset
+    */
+
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+      link.addEventListener("click", (event) => {
+
+        const targetId = link.getAttribute("href");
+
+        if (!targetId || targetId === "#") {
+          return;
+        }
+
+        const target = document.querySelector(targetId);
+
+        if (!target) {
+          return;
+        }
+
+        event.preventDefault();
+
+        const headerHeight =
+          document.querySelector(".navbar").offsetHeight;
+
+        const top =
+          target.getBoundingClientRect().top +
+          window.scrollY -
+          headerHeight -
+          15;
+
+        window.scrollTo({
+          top,
+          behavior: "smooth"
+        });
+
+      });
+    });
+  </script>
 
 </body>
 </html>
