@@ -40,6 +40,11 @@
       --max-width: 1280px;
     }
 
+
+    /* =========================================
+       RESET
+    ========================================= */
+
     * {
       margin: 0;
       padding: 0;
@@ -53,15 +58,25 @@
     body {
       background: var(--bg);
       color: var(--text);
+
       font-family: "Manrope", sans-serif;
+      font-weight: 400;
+
       line-height: 1.6;
+
       overflow-x: hidden;
+    }
+
+    body.modal-open {
+      overflow: hidden;
     }
 
     body::before {
       content: "";
+
       position: fixed;
       inset: 0;
+
       pointer-events: none;
       z-index: -3;
 
@@ -88,6 +103,7 @@
 
     body::after {
       content: "";
+
       position: fixed;
 
       width: 650px;
@@ -106,12 +122,9 @@
         );
 
       filter: blur(45px);
+
       pointer-events: none;
       z-index: -2;
-    }
-
-    body.modal-open {
-      overflow: hidden;
     }
 
     a {
@@ -175,6 +188,7 @@
 
       font-size: 17px;
       font-weight: 800;
+
       letter-spacing: -0.04em;
     }
 
@@ -207,6 +221,7 @@
       list-style: none;
 
       color: var(--muted-light);
+
       font-size: 13px;
     }
 
@@ -237,7 +252,10 @@
 
     .nav-button:hover {
       background: var(--accent-soft);
-      border-color: rgba(143, 184, 216, 0.4);
+
+      border-color:
+        rgba(143, 184, 216, 0.4);
+
       color: var(--accent-strong);
     }
 
@@ -259,7 +277,9 @@
 
     .hero-content {
       width: 100%;
+
       position: relative;
+
       text-align: center;
     }
 
@@ -275,10 +295,13 @@
       color: var(--muted-light);
 
       font-size: 10px;
+
       text-transform: uppercase;
+
       letter-spacing: 0.09em;
 
-      background: rgba(255, 255, 255, 0.012);
+      background:
+        rgba(255, 255, 255, 0.012);
 
       margin-bottom: 30px;
     }
@@ -299,11 +322,16 @@
       position: relative;
       z-index: 2;
 
-      font-size: clamp(68px, 11vw, 155px);
+      font-size:
+        clamp(
+          62px,
+          9.5vw,
+          145px
+        );
 
-      line-height: 0.87;
+      line-height: 0.9;
 
-      letter-spacing: -0.078em;
+      letter-spacing: -0.055em;
 
       font-weight: 800;
     }
@@ -316,7 +344,7 @@
       color: transparent;
 
       -webkit-text-stroke:
-        1px rgba(240, 239, 233, 0.27);
+        1px rgba(240, 239, 233, 0.24);
     }
 
     .hero-title .accent {
@@ -331,12 +359,14 @@
       color: var(--muted-light);
 
       font-size: 15px;
+
       line-height: 1.85;
     }
 
     .hero-actions {
       display: flex;
       justify-content: center;
+
       gap: 12px;
 
       margin-top: 34px;
@@ -347,6 +377,7 @@
     .button {
       display: inline-flex;
       align-items: center;
+
       gap: 9px;
 
       padding: 13px 19px;
@@ -366,6 +397,7 @@
       color: #11110f;
 
       background: var(--accent);
+
       border-color: var(--accent);
 
       font-weight: 800;
@@ -373,7 +405,9 @@
 
     .button.primary:hover {
       background: var(--accent-strong);
-      border-color: var(--accent-strong);
+
+      border-color:
+        var(--accent-strong);
 
       transform: translateY(-2px);
     }
@@ -391,7 +425,7 @@
 
 
     /* =========================================
-       FLOATING HERO CARDS
+       HERO FLOATING CARDS
     ========================================= */
 
     .floating-card {
@@ -403,7 +437,8 @@
 
       border: 1px solid var(--border);
 
-      background: rgba(25, 26, 24, 0.78);
+      background:
+        rgba(25, 26, 24, 0.78);
 
       backdrop-filter: blur(14px);
 
@@ -425,6 +460,7 @@
 
     .card-label {
       display: flex;
+
       justify-content: space-between;
 
       margin-bottom: 15px;
@@ -434,6 +470,7 @@
       font-size: 9px;
 
       text-transform: uppercase;
+
       letter-spacing: 0.08em;
 
       font-family: "DM Mono", monospace;
@@ -441,7 +478,9 @@
 
     .card-title {
       font-size: 12px;
+
       line-height: 1.65;
+
       font-weight: 600;
     }
 
@@ -474,12 +513,15 @@
 
     .section {
       padding: 120px 0;
+
       border-top: 1px solid var(--border);
     }
 
     .section-header {
       display: flex;
+
       align-items: flex-end;
+
       justify-content: space-between;
 
       gap: 30px;
@@ -497,15 +539,23 @@
       font-size: 10px;
 
       text-transform: uppercase;
+
       letter-spacing: 0.1em;
     }
 
     .section-title {
-      font-size: clamp(42px, 6vw, 78px);
+      font-size:
+        clamp(
+          42px,
+          6vw,
+          78px
+        );
 
       line-height: 0.94;
 
-      letter-spacing: -0.06em;
+      letter-spacing: -0.045em;
+
+      font-weight: 700;
     }
 
     .section-description {
@@ -529,7 +579,9 @@
 
     .capability-item {
       display: flex;
+
       align-items: center;
+
       justify-content: space-between;
 
       min-height: 73px;
@@ -549,6 +601,7 @@
 
     .capability-item .tool {
       display: flex;
+
       align-items: center;
 
       gap: 12px;
@@ -559,13 +612,18 @@
       height: 28px;
 
       display: grid;
+
       place-items: center;
 
-      border: 1px solid var(--border-strong);
+      border:
+        1px solid
+        var(--border-strong);
 
       color: var(--accent);
 
-      font-family: "DM Mono", monospace;
+      font-family:
+        "DM Mono",
+        monospace;
 
       font-size: 10px;
     }
@@ -575,7 +633,9 @@
 
       color: var(--muted);
 
-      font-family: "DM Mono", monospace;
+      font-family:
+        "DM Mono",
+        monospace;
 
       font-size: 9px;
 
@@ -590,7 +650,8 @@
     .about-layout {
       display: grid;
 
-      grid-template-columns: 1.12fr 0.88fr;
+      grid-template-columns:
+        1.12fr 0.88fr;
 
       gap: 90px;
 
@@ -600,11 +661,22 @@
     .about-large {
       max-width: 760px;
 
-      font-size: clamp(30px, 4vw, 52px);
+      font-family:
+        "Manrope",
+        sans-serif;
 
-      line-height: 1.08;
+      font-size:
+        clamp(
+          32px,
+          4vw,
+          52px
+        );
 
-      letter-spacing: -0.055em;
+      font-weight: 600;
+
+      line-height: 1.02;
+
+      letter-spacing: -0.04em;
     }
 
     .about-large .highlight {
@@ -625,6 +697,7 @@
 
     .about-copy strong {
       color: var(--muted-light);
+
       font-weight: 600;
     }
 
@@ -678,12 +751,16 @@
 
     .project-meta {
       display: flex;
+
       align-items: center;
+
       justify-content: space-between;
 
       color: var(--muted);
 
-      font-family: "DM Mono", monospace;
+      font-family:
+        "DM Mono",
+        monospace;
 
       font-size: 9px;
 
@@ -772,6 +849,7 @@
       height: 122px;
 
       display: grid;
+
       place-items: center;
 
       color: var(--accent);
@@ -783,7 +861,8 @@
       background:
         rgba(17, 17, 15, 0.72);
 
-      backdrop-filter: blur(10px);
+      backdrop-filter:
+        blur(10px);
 
       box-shadow:
         0 0 55px
@@ -820,7 +899,9 @@
       bottom: 22px;
 
       display: flex;
+
       align-items: flex-end;
+
       justify-content: space-between;
 
       gap: 20px;
@@ -832,6 +913,8 @@
       line-height: 1.15;
 
       letter-spacing: -0.04em;
+
+      font-weight: 700;
     }
 
     .project-content p {
@@ -863,7 +946,9 @@
 
       color: var(--muted-light);
 
-      font-family: "DM Mono", monospace;
+      font-family:
+        "DM Mono",
+        monospace;
 
       font-size: 8px;
     }
@@ -879,11 +964,14 @@
 
       color: var(--accent);
 
-      font-family: "DM Mono", monospace;
+      font-family:
+        "DM Mono",
+        monospace;
 
       font-size: 10px;
 
-      transition: color 0.2s ease;
+      transition:
+        color 0.2s ease;
     }
 
     .project-link:hover {
@@ -892,7 +980,7 @@
 
 
     /* =========================================
-       PROCESS PHILOSOPHY
+       HOW I WORK
     ========================================= */
 
     .process-layout {
@@ -909,11 +997,22 @@
     .process-large {
       max-width: 760px;
 
-      font-size: clamp(30px, 4vw, 52px);
+      font-family:
+        "Manrope",
+        sans-serif;
 
-      line-height: 1.08;
+      font-size:
+        clamp(
+          32px,
+          4vw,
+          52px
+        );
 
-      letter-spacing: -0.055em;
+      font-weight: 600;
+
+      line-height: 1.02;
+
+      letter-spacing: -0.04em;
     }
 
     .process-large .highlight {
@@ -938,7 +1037,9 @@
 
       color: var(--accent);
 
-      font-family: "DM Mono", monospace;
+      font-family:
+        "DM Mono",
+        monospace;
 
       font-size: 10px;
 
@@ -953,11 +1054,17 @@
       margin: 0 auto;
 
       font-size:
-        clamp(55px, 9vw, 125px);
+        clamp(
+          55px,
+          9vw,
+          125px
+        );
 
       line-height: 0.86;
 
-      letter-spacing: -0.075em;
+      letter-spacing: -0.06em;
+
+      font-weight: 800;
     }
 
     .contact-title span {
@@ -1005,7 +1112,8 @@
     .contact-button:hover {
       background: var(--accent-strong);
 
-      transform: translateY(-3px);
+      transform:
+        translateY(-3px);
     }
 
 
@@ -1019,6 +1127,7 @@
       inset: 0;
 
       display: flex;
+
       align-items: center;
       justify-content: center;
 
@@ -1055,7 +1164,10 @@
 
       z-index: 2;
 
-      width: min(620px, 100%);
+      width: min(
+        620px,
+        100%
+      );
 
       max-height: 90vh;
 
@@ -1083,7 +1195,9 @@
       width: 35px;
       height: 35px;
 
-      border: 1px solid var(--border);
+      border:
+        1px solid
+        var(--border);
 
       background: transparent;
 
@@ -1103,7 +1217,8 @@
     .contact-modal-close:hover {
       color: var(--accent);
 
-      border-color: var(--accent);
+      border-color:
+        var(--accent);
     }
 
     .contact-form-title {
@@ -1112,11 +1227,17 @@
       margin-bottom: 35px;
 
       font-size:
-        clamp(34px, 6vw, 58px);
+        clamp(
+          34px,
+          6vw,
+          58px
+        );
 
       line-height: 0.95;
 
-      letter-spacing: -0.055em;
+      letter-spacing: -0.05em;
+
+      font-weight: 700;
     }
 
     .form-field {
@@ -1130,7 +1251,9 @@
 
       color: var(--muted-light);
 
-      font-family: "DM Mono", monospace;
+      font-family:
+        "DM Mono",
+        monospace;
 
       font-size: 10px;
 
@@ -1210,7 +1333,8 @@
     .form-submit:hover {
       background: var(--accent-strong);
 
-      transform: translateY(-2px);
+      transform:
+        translateY(-2px);
     }
 
 
@@ -1235,13 +1359,16 @@
 
       color: var(--muted);
 
-      font-family: "DM Mono", monospace;
+      font-family:
+        "DM Mono",
+        monospace;
 
       font-size: 9px;
     }
 
     .footer-link {
-      transition: color 0.2s ease;
+      transition:
+        color 0.2s ease;
     }
 
     .footer-link:hover {
@@ -1254,6 +1381,7 @@
     ========================================= */
 
     @media (max-width: 1050px) {
+
       .floating-card {
         display: none;
       }
@@ -1266,7 +1394,9 @@
       }
     }
 
+
     @media (max-width: 800px) {
+
       .container {
         width:
           min(
@@ -1286,7 +1416,9 @@
       .hero {
         min-height: auto;
 
-        padding: 105px 0 110px;
+        padding:
+          105px 0
+          110px;
       }
 
       .hero-title {
@@ -1347,7 +1479,9 @@
       }
     }
 
+
     @media (max-width: 600px) {
+
       .contact-modal-box {
         padding: 28px 20px;
       }
@@ -1376,7 +1510,9 @@
       }
     }
 
+
     @media (max-width: 500px) {
+
       .logo {
         font-size: 15px;
       }
@@ -1387,11 +1523,13 @@
       }
 
       .nav-button {
-        padding: 9px 11px;
+        padding:
+          9px 11px;
       }
 
       .hero-title {
-        letter-spacing: -0.065em;
+        letter-spacing:
+          -0.05em;
       }
 
       .about-large,
@@ -1445,11 +1583,13 @@
         class="logo"
         aria-label="Michelle Project home"
       >
+
         <span class="logo-mark"></span>
 
         <span>
           Michelle Project
         </span>
+
       </a>
 
 
@@ -1689,7 +1829,7 @@
               </span>
 
               <span>
-                AI Agents
+                AI Agent
               </span>
 
             </div>
@@ -1727,10 +1867,11 @@
             <div class="tool">
 
               <span class="capability-icon">
-                </span>
+                Py
+              </span>
 
               <span>
-                Python Automation
+                Python
               </span>
 
             </div>
@@ -1767,7 +1908,7 @@
 
 
         <p class="capability-note">
-          n8n · Python · Claude Code · Codex · AI · APIs · Gmail · Google Sheets
+          n8n · Python · Claude Code · Codex
         </p>
 
 
@@ -1984,7 +2125,6 @@
 
 
         <div class="section-header">
-
 
           <div>
 
@@ -2603,11 +2743,13 @@
 
 
         <h2 class="contact-title">
+
           WHAT'S EATING<br>
 
           <span>
             YOUR TEAM'S TIME?
           </span>
+
         </h2>
 
 
@@ -2686,7 +2828,7 @@
 
       <!--
         Replace YOUR_FORM_ID with your Formspree form ID.
-        Your real email does not appear anywhere in this page.
+        Your real email does not appear anywhere on this page.
       -->
 
       <form
@@ -2776,6 +2918,7 @@
         © 2026 Michelle Project
       </span>
 
+
       <a
         href="https://github.com/michelleproject"
         target="_blank"
@@ -2797,12 +2940,16 @@
   <script>
 
     const contactModal =
-      document.getElementById("contactModal");
+      document.getElementById(
+        "contactModal"
+      );
 
 
     function openContactForm() {
 
-      contactModal.classList.add("active");
+      contactModal.classList.add(
+        "active"
+      );
 
       contactModal.setAttribute(
         "aria-hidden",
@@ -2814,17 +2961,20 @@
       );
 
       setTimeout(() => {
+
         document
           .getElementById("name")
           .focus();
-      }, 200);
 
+      }, 200);
     }
 
 
     function closeContactForm() {
 
-      contactModal.classList.remove("active");
+      contactModal.classList.remove(
+        "active"
+      );
 
       contactModal.setAttribute(
         "aria-hidden",
@@ -2834,7 +2984,6 @@
       document.body.classList.remove(
         "modal-open"
       );
-
     }
 
 
