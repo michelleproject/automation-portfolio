@@ -2,19 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Michelle Project | Workflow Automation</title>
 
   <meta
     name="description"
-    content="Michelle Project builds practical automation systems that reduce repetitive work and improve business processes."
+    content="Michelle Project builds practical workflow automation that reduces repetitive work and improves business processes."
   >
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -25,34 +21,32 @@
 
   <style>
 
-    /* =========================================
-       VARIABLES
-    ========================================= */
-
     :root {
-      --bg: #0f1110;
-      --bg-soft: #131615;
-      --panel: #151918;
-      --panel-hover: #191d1b;
+      --bg: #0d0f0f;
+      --bg-soft: #111414;
+      --panel: #141818;
+      --panel-hover: #181d1d;
 
-      --text: #f2f1ec;
+      --text: #f1f1ec;
       --muted: #92968f;
-      --muted-light: #bdc1bb;
+      --muted-light: #c0c3bd;
 
-      --accent: #8fbde2;
-      --accent-bright: #a8d6f3;
-      --accent-soft: rgba(143, 189, 226, 0.10);
+      --blue: #8dbce0;
+      --blue-bright: #abd5f3;
+      --blue-soft: rgba(141, 188, 224, 0.10);
+      --blue-line: rgba(141, 188, 224, 0.34);
+      --blue-glow: rgba(69, 130, 180, 0.15);
 
-      --border: rgba(242, 241, 236, 0.11);
-      --border-strong: rgba(242, 241, 236, 0.21);
+      --border: rgba(241, 241, 236, 0.11);
+      --border-strong: rgba(241, 241, 236, 0.22);
 
       --max-width: 1320px;
     }
 
 
-    /* =========================================
+    /* =========================
        RESET
-    ========================================= */
+    ========================= */
 
     * {
       margin: 0;
@@ -65,8 +59,6 @@
     }
 
     body {
-      margin: 0;
-
       background: var(--bg);
       color: var(--text);
 
@@ -90,12 +82,16 @@
     button,
     input,
     textarea {
-      font-family: inherit;
+      font: inherit;
     }
 
     button,
     a {
       -webkit-tap-highlight-color: transparent;
+    }
+
+    section {
+      scroll-margin-top: 84px;
     }
 
     .container {
@@ -112,15 +108,14 @@
     }
 
 
-    /* =========================================
-       BACKGROUND GRID
-    ========================================= */
+    /* =========================
+       BACKGROUND
+    ========================= */
 
     body::before {
       content: "";
 
       position: fixed;
-
       inset: 0;
 
       z-index: -3;
@@ -129,12 +124,12 @@
 
       background:
         linear-gradient(
-          rgba(242, 241, 236, 0.022) 1px,
+          rgba(241, 241, 236, 0.021) 1px,
           transparent 1px
         ),
         linear-gradient(
           90deg,
-          rgba(242, 241, 236, 0.022) 1px,
+          rgba(241, 241, 236, 0.021) 1px,
           transparent 1px
         );
 
@@ -143,7 +138,7 @@
       mask-image:
         linear-gradient(
           to bottom,
-          black 0%,
+          black,
           transparent 92%
         );
     }
@@ -159,68 +154,57 @@
       left: 50%;
       top: 0;
 
-      transform:
-        translateX(-50%);
+      transform: translateX(-50%);
 
       background:
         radial-gradient(
           circle,
-          rgba(64, 120, 165, 0.10),
-          transparent 68%
+          rgba(61, 119, 165, 0.10),
+          transparent 69%
         );
 
-      filter: blur(70px);
-
-      pointer-events: none;
+      filter: blur(75px);
 
       z-index: -2;
+
+      pointer-events: none;
     }
 
 
-    /* =========================================
+    /* =========================
        NAVIGATION
-    ========================================= */
+    ========================= */
 
     nav {
       position: sticky;
-
       top: 0;
-
       z-index: 100;
 
-      border-bottom:
-        1px solid
-        var(--border);
+      border-bottom: 1px solid var(--border);
 
       background:
-        rgba(15, 17, 16, 0.90);
+        rgba(13, 15, 15, 0.88);
 
-      backdrop-filter:
-        blur(18px);
+      backdrop-filter: blur(18px);
     }
 
     .nav-inner {
-      min-height: 78px;
+      min-height: 76px;
 
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
     }
 
     .logo {
       display: flex;
-
       align-items: center;
-
       gap: 12px;
 
       font-size: 17px;
-
       font-weight: 800;
 
-      letter-spacing: -0.045em;
+      letter-spacing: -0.04em;
     }
 
     .logo-mark {
@@ -228,12 +212,9 @@
       height: 28px;
 
       display: grid;
-
       place-items: center;
 
-      border:
-        1.5px solid
-        var(--text);
+      border: 1.5px solid var(--text);
     }
 
     .logo-mark::after {
@@ -242,161 +223,134 @@
       width: 8px;
       height: 8px;
 
-      background:
-        var(--accent);
+      background: var(--blue);
+
+      box-shadow:
+        0 0 14px rgba(141, 188, 224, 0.25);
     }
 
     .nav-links {
       display: flex;
-
       align-items: center;
-
       gap: 34px;
 
       list-style: none;
 
-      color:
-        var(--muted-light);
+      color: var(--muted-light);
 
       font-size: 13px;
     }
 
     .nav-links a {
-      transition:
-        color 0.2s ease;
+      transition: color 0.2s ease;
     }
 
     .nav-links a:hover {
-      color:
-        var(--accent-bright);
+      color: var(--blue-bright);
     }
 
     .nav-button {
       display: inline-flex;
-
       align-items: center;
-
       gap: 9px;
 
-      padding:
-        10px 15px;
+      padding: 10px 15px;
 
-      border:
-        1px solid
-        var(--border-strong);
+      border: 1px solid var(--border-strong);
 
       font-size: 12px;
 
       transition:
         color 0.2s ease,
-        border-color 0.2s ease,
-        background 0.2s ease;
+        background 0.2s ease,
+        border-color 0.2s ease;
     }
 
     .nav-button:hover {
-      color:
-        var(--accent-bright);
+      color: var(--blue-bright);
 
-      background:
-        var(--accent-soft);
+      background: var(--blue-soft);
 
       border-color:
-        rgba(143, 189, 226, 0.45);
+        rgba(141, 188, 224, 0.42);
     }
 
 
-    /* =========================================
+    /* =========================
        HERO
-    ========================================= */
+    ========================= */
 
     .hero {
-      position: relative;
-
-      min-height:
-        calc(100vh - 78px);
+      min-height: calc(100vh - 76px);
 
       display: flex;
-
       align-items: center;
 
-      padding:
-        68px 0
-        82px;
+      padding: 54px 0 68px;
 
       overflow: hidden;
+
+      position: relative;
     }
 
     .hero-grid {
       display: grid;
 
       grid-template-columns:
-        minmax(350px, 0.72fr)
-        minmax(580px, 1.28fr);
+        0.72fr 1.28fr;
 
       align-items: center;
 
-      gap: 42px;
+      gap: 34px;
     }
 
     .hero-copy {
       position: relative;
-
       z-index: 5;
     }
 
-    .hero-topline {
+    .eyebrow {
       display: inline-flex;
-
       align-items: center;
-
       gap: 10px;
 
       margin-bottom: 24px;
 
-      color:
-        var(--accent);
+      color: var(--blue);
 
-      font-family:
-        "DM Mono",
-        monospace;
+      font-family: "DM Mono", monospace;
 
       font-size: 9px;
 
       text-transform: uppercase;
-
-      letter-spacing:
-        0.08em;
+      letter-spacing: 0.09em;
     }
 
-    .status-dot {
+    .eyebrow-dot {
       width: 7px;
       height: 7px;
 
       border-radius: 50%;
 
-      background:
-        var(--accent);
+      background: var(--blue);
 
       box-shadow:
-        0 0 14px
-        rgba(143, 189, 226, 0.65);
+        0 0 15px rgba(141, 188, 224, 0.7);
     }
 
     .hero-title {
-      max-width: 600px;
+      max-width: 570px;
 
       font-size:
         clamp(
           62px,
-          7vw,
+          6.7vw,
           100px
         );
 
-      line-height:
-        0.88;
+      line-height: 0.88;
 
-      letter-spacing:
-        -0.06em;
+      letter-spacing: -0.062em;
 
       font-weight: 800;
     }
@@ -410,30 +364,28 @@
 
       -webkit-text-stroke:
         1px
-        rgba(242, 241, 236, 0.28);
+        rgba(241, 241, 236, 0.30);
     }
 
-    .hero-title .accent {
-      color:
-        var(--accent);
+    .hero-title .blue {
+      color: var(--blue);
     }
 
     .hero-description {
-      max-width: 470px;
+      max-width: 455px;
 
-      margin-top: 29px;
+      margin-top: 28px;
 
-      color:
-        var(--muted-light);
+      color: var(--muted-light);
 
-      font-size: 14px;
+      font-size: 13px;
 
       line-height: 1.85;
     }
 
     .hero-actions {
       display: flex;
-
+      align-items: center;
       gap: 11px;
 
       margin-top: 29px;
@@ -443,372 +395,340 @@
 
     .button {
       display: inline-flex;
-
       align-items: center;
-
       gap: 8px;
 
-      padding:
-        12px 17px;
+      padding: 12px 17px;
 
-      border:
-        1px solid
-        var(--border-strong);
+      border: 1px solid var(--border-strong);
 
       font-size: 11px;
 
       transition:
         transform 0.2s ease,
-        background 0.2s ease,
         border-color 0.2s ease,
+        background 0.2s ease,
         color 0.2s ease;
     }
 
     .button.primary {
-      background:
-        var(--accent);
+      color: #0c1114;
 
-      border-color:
-        var(--accent);
+      background: var(--blue);
 
-      color:
-        #0d1113;
+      border-color: var(--blue);
 
       font-weight: 800;
     }
 
     .button.primary:hover {
-      background:
-        var(--accent-bright);
+      background: var(--blue-bright);
 
-      border-color:
-        var(--accent-bright);
+      border-color: var(--blue-bright);
 
-      transform:
-        translateY(-2px);
+      transform: translateY(-2px);
     }
 
     .button.secondary:hover {
-      color:
-        var(--accent-bright);
+      color: var(--blue-bright);
 
-      background:
-        var(--accent-soft);
+      background: var(--blue-soft);
 
       border-color:
-        rgba(143, 189, 226, 0.45);
+        rgba(141, 188, 224, 0.42);
 
-      transform:
-        translateY(-2px);
+      transform: translateY(-2px);
     }
 
 
-    /* =========================================
-       HERO WORKFLOW
-    ========================================= */
+    /* =========================
+       HERO WORKFLOW VISUAL
+    ========================= */
 
-    .hero-workflow {
+    .hero-visual {
       position: relative;
 
-      min-height: 595px;
+      min-height: 570px;
 
       display: flex;
-
       align-items: center;
-
       justify-content: center;
     }
 
-    .workflow-canvas {
+    .workflow {
       position: relative;
 
       width: 100%;
-
       max-width: 800px;
 
-      height: 570px;
+      height: 560px;
 
       overflow: hidden;
 
       border:
         1px solid
-        rgba(143, 189, 226, 0.10);
+        rgba(141, 188, 224, 0.09);
 
       background:
         linear-gradient(
-          140deg,
-          rgba(143, 189, 226, 0.035),
-          transparent 48%
+          145deg,
+          rgba(141, 188, 224, 0.035),
+          transparent 55%
         );
     }
 
-    .workflow-canvas::before {
+    .workflow::before {
       content: "";
 
       position: absolute;
-
       inset: 0;
 
       background:
         linear-gradient(
-          rgba(143, 189, 226, 0.028) 1px,
+          rgba(141, 188, 224, 0.026) 1px,
           transparent 1px
         ),
         linear-gradient(
           90deg,
-          rgba(143, 189, 226, 0.028) 1px,
+          rgba(141, 188, 224, 0.026) 1px,
           transparent 1px
         );
 
-      background-size: 43px 43px;
+      background-size: 44px 44px;
     }
 
     .workflow-glow {
       position: absolute;
 
-      width: 310px;
-      height: 310px;
+      width: 320px;
+      height: 320px;
 
+      top: 46%;
       left: 51%;
-      top: 50%;
 
-      transform:
-        translate(-50%, -50%);
+      transform: translate(-50%, -50%);
 
       border-radius: 50%;
 
       background:
         radial-gradient(
           circle,
-          rgba(63, 133, 190, 0.12),
-          transparent 68%
+          rgba(66, 135, 191, 0.13),
+          transparent 69%
         );
 
-      filter:
-        blur(25px);
+      filter: blur(22px);
     }
 
-    .workflow-line {
+    .workflow-connection {
       position: absolute;
 
       height: 1px;
 
-      transform-origin:
-        left center;
+      z-index: 1;
+
+      transform-origin: left center;
 
       background:
-        rgba(143, 189, 226, 0.34);
+        rgba(141, 188, 224, 0.34);
 
       box-shadow:
-        0 0 8px
-        rgba(143, 189, 226, 0.13);
+        0 0 8px rgba(141, 188, 224, 0.12);
     }
 
-    .workflow-line.dashed {
+    .workflow-connection.dashed {
       background:
         repeating-linear-gradient(
           90deg,
-          rgba(143, 189, 226, 0.35) 0 5px,
+          rgba(141, 188, 224, 0.36) 0 5px,
           transparent 5px 10px
         );
     }
 
-    .line-1 {
+    .connection-a {
       width: 150px;
-      left: 24%;
+      left: 23%;
+      top: 22%;
+
+      transform: rotate(24deg);
+    }
+
+    .connection-b {
+      width: 140px;
+      left: 49%;
+      top: 21%;
+    }
+
+    .connection-c {
+      width: 145px;
+      left: 69%;
       top: 23%;
 
-      transform:
-        rotate(24deg);
+      transform: rotate(27deg);
     }
 
-    .line-2 {
-      width: 135px;
-      left: 51%;
-      top: 22%;
-    }
-
-    .line-3 {
-      width: 145px;
-      left: 70%;
-      top: 24%;
-
-      transform:
-        rotate(27deg);
-    }
-
-    .line-4 {
-      width: 145px;
-      left: 27%;
+    .connection-d {
+      width: 140px;
+      left: 25%;
       top: 39%;
     }
 
-    .line-5 {
+    .connection-e {
       width: 140px;
       left: 51%;
-      top: 42%;
+      top: 41%;
     }
 
-    .line-6 {
+    .connection-f {
       width: 145px;
-      left: 28%;
+      left: 27%;
       top: 61%;
 
-      transform:
-        rotate(-24deg);
+      transform: rotate(-23deg);
     }
 
-    .line-7 {
+    .connection-g {
       width: 145px;
       left: 51%;
       top: 63%;
 
-      transform:
-        rotate(-2deg);
+      transform: rotate(-2deg);
     }
 
-    .line-8 {
+    .connection-h {
       width: 150px;
       left: 69%;
-      top: 62%;
+      top: 61%;
 
-      transform:
-        rotate(-23deg);
+      transform: rotate(-23deg);
     }
 
-    .line-9 {
+    .connection-i {
       width: 100px;
       left: 51%;
       top: 70%;
 
-      transform:
-        rotate(90deg);
+      transform: rotate(90deg);
     }
 
     .workflow-node {
       position: absolute;
 
-      min-width: 128px;
+      z-index: 3;
 
-      padding:
-        14px 15px;
+      min-width: 125px;
 
-      z-index: 4;
+      padding: 14px 15px;
 
       border:
         1px solid
-        rgba(143, 189, 226, 0.35);
+        rgba(141, 188, 224, 0.34);
 
       background:
-        rgba(12, 15, 15, 0.90);
+        rgba(11, 15, 15, 0.89);
 
       box-shadow:
         0 14px 35px
-        rgba(0, 0, 0, 0.22);
+        rgba(0, 0, 0, 0.24);
 
-      backdrop-filter:
-        blur(8px);
+      backdrop-filter: blur(8px);
     }
 
     .workflow-node.main {
-      min-width: 185px;
+      min-width: 190px;
 
       border-color:
-        rgba(143, 189, 226, 0.68);
+        rgba(141, 188, 224, 0.70);
 
       box-shadow:
-        0 0 42px
-        rgba(71, 140, 195, 0.12);
+        0 0 45px
+        rgba(63, 132, 190, 0.12);
     }
 
-    .node-icon {
-      color:
-        var(--accent);
+    .node-symbol {
+      margin-bottom: 8px;
 
-      font-size: 17px;
+      color: var(--blue);
+
+      font-size: 18px;
 
       line-height: 1;
-
-      margin-bottom: 8px;
     }
 
-    .node-label {
-      color:
-        var(--text);
+    .node-name {
+      color: var(--text);
 
       font-size: 11px;
 
       font-weight: 600;
     }
 
-    .node-sub {
+    .main .node-name {
+      color: var(--blue-bright);
+    }
+
+    .node-description {
       margin-top: 4px;
 
-      color:
-        var(--muted);
+      color: var(--muted);
 
       font-size: 8px;
 
       line-height: 1.45;
     }
 
-    .main .node-label {
-      color:
-        var(--accent-bright);
-    }
-
-    .node-trigger {
-      left: 11%;
+    .trigger {
+      left: 9%;
       top: 16%;
     }
 
-    .node-collect {
-      left: 39%;
+    .collect {
+      left: 38%;
       top: 14%;
     }
 
-    .node-understand {
-      left: 8%;
+    .understand {
+      left: 7%;
       top: 34%;
     }
 
-    .node-agent {
+    .agent {
       left: 38%;
       top: 34%;
     }
 
-    .node-integrate {
+    .integrate {
       left: 68%;
       top: 34%;
     }
 
-    .node-act {
-      left: 12%;
+    .act {
+      left: 10%;
       top: 56%;
     }
 
-    .node-review {
+    .review {
       left: 39%;
-      top: 58%;
+      top: 57%;
     }
 
-    .node-notify {
+    .notify {
       left: 69%;
       top: 56%;
     }
 
-    .node-done {
+    .done {
       left: 39%;
-      top: 78%;
+      top: 77%;
     }
 
     .workflow-note {
       position: absolute;
 
-      z-index: 3;
+      z-index: 2;
 
       color:
-        rgba(143, 189, 226, 0.42);
+        rgba(141, 188, 224, 0.42);
 
       font-family:
         "DM Mono",
@@ -816,48 +736,50 @@
 
       font-size: 8px;
 
-      line-height: 1.5;
+      line-height: 1.55;
     }
 
-    .note-one {
-      left: 4%;
+    .workflow-note.one {
       top: 7%;
-
-      transform:
-        rotate(-5deg);
-    }
-
-    .note-two {
-      right: 5%;
-      top: 10%;
-
-      transform:
-        rotate(3deg);
-    }
-
-    .note-three {
       left: 4%;
-      bottom: 9%;
 
-      transform:
-        rotate(-3deg);
+      transform: rotate(-5deg);
     }
 
-    .workflow-human {
+    .workflow-note.two {
+      top: 10%;
+      right: 4%;
+
+      transform: rotate(4deg);
+    }
+
+    .workflow-note.three {
+      bottom: 8%;
+      left: 4%;
+
+      transform: rotate(-4deg);
+    }
+
+
+    /* =========================
+       HUMAN LINE ART
+    ========================= */
+
+    .tiny-human {
       position: absolute;
 
-      left: 4%;
+      left: 3%;
       bottom: 2%;
 
-      width: 135px;
+      width: 125px;
 
       z-index: 3;
 
       color:
-        rgba(143, 189, 226, 0.28);
+        rgba(141, 188, 224, 0.28);
     }
 
-    .workflow-human svg {
+    .tiny-human svg {
       display: block;
 
       width: 100%;
@@ -865,13 +787,12 @@
     }
 
 
-    /* =========================================
-       GENERAL SECTION
-    ========================================= */
+    /* =========================
+       GENERIC SECTIONS
+    ========================= */
 
     .section {
-      padding:
-        105px 0;
+      padding: 104px 0;
 
       border-top:
         1px solid
@@ -887,14 +808,13 @@
 
       gap: 42px;
 
-      margin-bottom: 44px;
+      margin-bottom: 42px;
     }
 
-    .section-kicker {
-      margin-bottom: 11px;
+    .section-label {
+      margin-bottom: 10px;
 
-      color:
-        var(--accent);
+      color: var(--blue);
 
       font-family:
         "DM Mono",
@@ -902,55 +822,50 @@
 
       font-size: 9px;
 
-      text-transform:
-        uppercase;
+      text-transform: uppercase;
 
-      letter-spacing:
-        0.10em;
+      letter-spacing: 0.10em;
     }
 
     .section-title {
       font-size:
         clamp(
-          42px,
-          5.4vw,
-          70px
+          40px,
+          5vw,
+          67px
         );
 
-      line-height:
-        0.94;
+      line-height: 0.94;
 
-      letter-spacing:
-        -0.045em;
+      letter-spacing: -0.045em;
 
       font-weight: 700;
     }
 
     .section-description {
-      max-width: 420px;
+      max-width: 410px;
 
-      color:
-        var(--muted);
+      color: var(--muted);
 
       font-size: 12px;
 
-      line-height: 1.8;
+      line-height: 1.85;
     }
 
 
-    /* =========================================
-       CAPABILITIES
-    ========================================= */
+    /* =========================
+       WHAT I DO
+    ========================= */
 
-    .capabilities-layout {
+    .capability-layout {
       display: grid;
 
       grid-template-columns:
-        0.78fr
+        0.84fr
         1.15fr
-        0.82fr;
+        0.86fr;
 
-      gap: 58px;
+      gap: 52px;
 
       align-items: start;
     }
@@ -962,7 +877,7 @@
     }
 
     .capability-item {
-      min-height: 62px;
+      min-height: 61px;
 
       display: flex;
 
@@ -986,8 +901,8 @@
     }
 
     .capability-icon {
-      width: 29px;
-      height: 29px;
+      width: 28px;
+      height: 28px;
 
       display: grid;
 
@@ -998,7 +913,7 @@
         var(--border-strong);
 
       color:
-        var(--accent);
+        var(--blue);
 
       font-family:
         "DM Mono",
@@ -1007,9 +922,8 @@
       font-size: 9px;
     }
 
-    .capability-item .number {
-      color:
-        var(--muted);
+    .capability-number {
+      color: var(--muted);
 
       font-family:
         "DM Mono",
@@ -1018,46 +932,42 @@
       font-size: 9px;
     }
 
-    .capability-middle {
-      color:
-        var(--muted);
+    .capability-copy {
+      color: var(--muted);
 
       font-size: 12px;
 
-      line-height:
-        1.85;
+      line-height: 1.85;
     }
 
-    .capability-middle p + p {
-      margin-top: 23px;
+    .capability-copy p + p {
+      margin-top: 21px;
     }
 
-    .capability-stack {
+    .stack {
       margin-top: 18px;
 
       color:
-        var(--accent);
+        var(--blue);
 
       font-family:
         "DM Mono",
         monospace;
 
       font-size: 9px;
-
-      line-height: 1.8;
     }
 
 
-    /* =========================================
+    /* =========================
        ABOUT
-    ========================================= */
+    ========================= */
 
     .about-layout {
       display: grid;
 
       grid-template-columns:
-        1.08fr
-        0.92fr;
+        1.06fr
+        0.94fr;
 
       gap: 72px;
 
@@ -1067,7 +977,7 @@
     .about-visual {
       position: relative;
 
-      min-height: 475px;
+      min-height: 455px;
 
       overflow: hidden;
 
@@ -1078,8 +988,8 @@
       background:
         linear-gradient(
           145deg,
-          rgba(143, 189, 226, 0.045),
-          transparent 55%
+          rgba(141, 188, 224, 0.045),
+          transparent 56%
         );
     }
 
@@ -1087,22 +997,20 @@
       content: "";
 
       position: absolute;
-
       inset: 0;
 
       background:
         linear-gradient(
-          rgba(143, 189, 226, 0.026) 1px,
+          rgba(141, 188, 224, 0.026) 1px,
           transparent 1px
         ),
         linear-gradient(
           90deg,
-          rgba(143, 189, 226, 0.026) 1px,
+          rgba(141, 188, 224, 0.026) 1px,
           transparent 1px
         );
 
-      background-size:
-        43px 43px;
+      background-size: 43px 43px;
     }
 
     .about-board {
@@ -1111,49 +1019,46 @@
       left: 20%;
       top: 14%;
 
-      width: 68%;
+      width: 69%;
       height: 68%;
 
       border:
         1px solid
-        rgba(143, 189, 226, 0.32);
+        rgba(141, 188, 224, 0.30);
 
       background:
-        rgba(12, 15, 15, 0.78);
+        rgba(11, 15, 15, 0.74);
     }
 
     .about-board::before {
       content: "";
 
       position: absolute;
-
       inset: 0;
 
       background:
         linear-gradient(
-          rgba(143, 189, 226, 0.027) 1px,
+          rgba(141, 188, 224, 0.026) 1px,
           transparent 1px
         ),
         linear-gradient(
           90deg,
-          rgba(143, 189, 226, 0.027) 1px,
+          rgba(141, 188, 224, 0.026) 1px,
           transparent 1px
         );
 
-      background-size:
-        37px 37px;
+      background-size: 36px 36px;
     }
 
-    .about-board-title {
+    .board-label {
       position: absolute;
-
-      top: 16px;
-      left: 17px;
 
       z-index: 2;
 
-      color:
-        var(--accent);
+      top: 15px;
+      left: 16px;
+
+      color: var(--blue);
 
       font-family:
         "DM Mono",
@@ -1161,28 +1066,25 @@
 
       font-size: 8px;
 
-      text-transform:
-        uppercase;
+      text-transform: uppercase;
     }
 
-    .about-mini-node {
+    .about-node {
       position: absolute;
+
+      z-index: 2;
 
       min-width: 63px;
 
-      padding:
-        8px 7px;
-
-      z-index: 2;
+      padding: 8px 7px;
 
       text-align: center;
 
       border:
         1px solid
-        rgba(143, 189, 226, 0.31);
+        rgba(141, 188, 224, 0.30);
 
-      color:
-        var(--muted-light);
+      color: var(--muted-light);
 
       font-family:
         "DM Mono",
@@ -1191,15 +1093,14 @@
       font-size: 7px;
     }
 
-    .about-mini-node.active {
-      color:
-        var(--accent-bright);
+    .about-node.active {
+      color: var(--blue-bright);
 
       border-color:
-        rgba(143, 189, 226, 0.58);
+        rgba(141, 188, 224, 0.57);
     }
 
-    .about-mini-line {
+    .about-link {
       position: absolute;
 
       z-index: 1;
@@ -1207,76 +1108,68 @@
       height: 1px;
 
       background:
-        rgba(143, 189, 226, 0.32);
+        rgba(141, 188, 224, 0.31);
 
       transform-origin:
         left center;
     }
 
-    .mini-1 {
-      left: 9%;
-      top: 30%;
+    .about-node.n1 {
+      left: 8%;
+      top: 29%;
     }
 
-    .mini-2 {
-      left: 40%;
+    .about-node.n2 {
+      left: 39%;
       top: 23%;
     }
 
-    .mini-3 {
-      right: 9%;
-      top: 30%;
+    .about-node.n3 {
+      right: 8%;
+      top: 29%;
     }
 
-    .mini-4 {
-      left: 40%;
+    .about-node.n4 {
+      left: 39%;
       top: 49%;
     }
 
-    .mini-5 {
-      left: 13%;
-      top: 67%;
+    .about-node.n5 {
+      left: 12%;
+      top: 66%;
     }
 
-    .mini-6 {
-      right: 12%;
-      top: 67%;
+    .about-node.n6 {
+      right: 11%;
+      top: 66%;
     }
 
-    .mini-line-1 {
-      width: 94px;
+    .about-link.l1 {
+      width: 92px;
       left: 24%;
-      top: 33%;
-
-      transform:
-        rotate(-10deg);
+      top: 32%;
+      transform: rotate(-10deg);
     }
 
-    .mini-line-2 {
+    .about-link.l2 {
       width: 90px;
       left: 56%;
-      top: 33%;
-
-      transform:
-        rotate(10deg);
+      top: 32%;
+      transform: rotate(10deg);
     }
 
-    .mini-line-3 {
-      width: 92px;
-      left: 25%;
+    .about-link.l3 {
+      width: 90px;
+      left: 24%;
       top: 57%;
-
-      transform:
-        rotate(15deg);
+      transform: rotate(15deg);
     }
 
-    .mini-line-4 {
-      width: 91px;
+    .about-link.l4 {
+      width: 90px;
       left: 56%;
       top: 57%;
-
-      transform:
-        rotate(-14deg);
+      transform: rotate(-15deg);
     }
 
     .about-person {
@@ -1287,10 +1180,10 @@
 
       width: 39%;
 
-      z-index: 3;
+      z-index: 4;
 
       color:
-        rgba(143, 189, 226, 0.58);
+        rgba(141, 188, 224, 0.58);
     }
 
     .about-person svg {
@@ -1306,28 +1199,27 @@
       right: 4%;
       bottom: 3%;
 
-      width: 49px;
+      width: 48px;
 
       color:
-        rgba(143, 189, 226, 0.26);
+        rgba(141, 188, 224, 0.25);
     }
 
     .about-copy-column {
-      max-width: 640px;
+      max-width: 625px;
     }
 
-    .about-large {
-      max-width: 630px;
+    .about-title {
+      max-width: 620px;
 
       font-size:
         clamp(
           34px,
-          4.2vw,
-          56px
+          4vw,
+          54px
         );
 
-      line-height:
-        1.02;
+      line-height: 1.02;
 
       letter-spacing:
         -0.042em;
@@ -1335,42 +1227,32 @@
       font-weight: 600;
     }
 
-    .about-large .highlight {
-      color:
-        var(--accent);
+    .about-title .blue {
+      color: var(--blue);
     }
 
-    .about-copy {
-      max-width: 600px;
+    .about-text {
+      max-width: 590px;
 
-      margin-top: 25px;
+      margin-top: 28px;
 
-      color:
-        var(--muted);
+      color: var(--muted);
 
       font-size: 13px;
 
-      line-height:
-        1.9;
+      line-height: 1.9;
     }
 
-    .about-copy + .about-copy {
+    .about-text + .about-text {
       margin-top: 22px;
     }
 
-    .about-copy strong {
-      color:
-        var(--muted-light);
 
-      font-weight: 600;
-    }
+    /* =========================
+       PORTFOLIOS
+    ========================= */
 
-
-    /* =========================================
-       PROJECTS
-    ========================================= */
-
-    .work-header {
+    .portfolio-header {
       display: flex;
 
       align-items: flex-end;
@@ -1379,18 +1261,11 @@
 
       gap: 30px;
 
-      margin-bottom: 40px;
+      margin-bottom: 39px;
     }
 
-    .github-link {
-      display: inline-flex;
-
-      align-items: center;
-
-      gap: 8px;
-
-      color:
-        var(--accent);
+    .github-all {
+      color: var(--blue);
 
       font-family:
         "DM Mono",
@@ -1399,7 +1274,7 @@
       font-size: 9px;
     }
 
-    .projects-grid {
+    .portfolio-grid {
       display: grid;
 
       grid-template-columns:
@@ -1408,14 +1283,10 @@
       gap: 16px;
     }
 
-    .project {
-      min-height: 418px;
+    .portfolio-card {
+      min-height: 405px;
 
-      position: relative;
-
-      padding: 22px;
-
-      overflow: hidden;
+      padding: 21px;
 
       border:
         1px solid
@@ -1424,7 +1295,7 @@
       background:
         linear-gradient(
           145deg,
-          rgba(143, 189, 226, 0.026),
+          rgba(141, 188, 224, 0.025),
           transparent 55%
         ),
         var(--panel);
@@ -1435,26 +1306,24 @@
         background 0.25s ease;
     }
 
-    .project:hover {
-      transform:
-        translateY(-5px);
+    .portfolio-card:hover {
+      transform: translateY(-5px);
 
       border-color:
-        rgba(143, 189, 226, 0.30);
+        rgba(141, 188, 224, 0.31);
 
       background:
         var(--panel-hover);
     }
 
-    .project-meta {
+    .portfolio-meta {
       display: flex;
 
       align-items: center;
 
       justify-content: space-between;
 
-      color:
-        var(--muted);
+      color: var(--muted);
 
       font-family:
         "DM Mono",
@@ -1462,30 +1331,25 @@
 
       font-size: 8px;
 
-      text-transform:
-        uppercase;
-
-      letter-spacing:
-        0.06em;
+      text-transform: uppercase;
     }
 
-    .project-number {
-      color:
-        var(--accent);
+    .portfolio-meta .number {
+      color: var(--blue);
     }
 
-    .project-icon-area {
-      height: 170px;
+    .portfolio-visual {
+      height: 158px;
 
-      margin-top: 25px;
+      margin-top: 23px;
+
+      display: grid;
+
+      place-items: center;
 
       position: relative;
 
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
+      overflow: hidden;
 
       border:
         1px solid
@@ -1494,31 +1358,33 @@
       background:
         radial-gradient(
           circle,
-          rgba(143, 189, 226, 0.07),
-          transparent 66%
+          rgba(141, 188, 224, 0.065),
+          transparent 67%
         );
     }
 
-    .project-icon-area::before {
+    .portfolio-visual::before {
       content: "";
 
       position: absolute;
 
-      width: 155px;
-      height: 155px;
+      width: 145px;
+      height: 145px;
 
       border-radius: 50%;
 
       border:
         1px solid
-        rgba(143, 189, 226, 0.14);
+        rgba(141, 188, 224, 0.13);
     }
 
-    .project-icon {
+    .portfolio-icon {
       position: relative;
 
-      width: 94px;
-      height: 94px;
+      z-index: 2;
+
+      width: 88px;
+      height: 88px;
 
       display: grid;
 
@@ -1526,53 +1392,48 @@
 
       border:
         1px solid
-        rgba(143, 189, 226, 0.42);
+        rgba(141, 188, 224, 0.42);
 
       background:
-        rgba(10, 13, 13, 0.75);
+        rgba(10, 13, 13, 0.73);
 
-      color:
-        var(--accent);
+      color: var(--blue);
 
       box-shadow:
-        0 0 42px
-        rgba(143, 189, 226, 0.07);
+        0 0 40px
+        rgba(141, 188, 224, 0.07);
     }
 
-    .project-icon svg {
-      width: 56px;
-      height: 56px;
+    .portfolio-icon svg {
+      width: 53px;
+      height: 53px;
     }
 
-    .project-info {
-      margin-top: 23px;
+    .portfolio-info {
+      margin-top: 22px;
     }
 
-    .project-info h3 {
-      font-size: 20px;
+    .portfolio-info h3 {
+      font-size: 19px;
 
-      line-height:
-        1.15;
+      line-height: 1.15;
 
-      letter-spacing:
-        -0.04em;
+      letter-spacing: -0.035em;
 
       font-weight: 700;
     }
 
-    .project-info p {
+    .portfolio-info p {
       margin-top: 8px;
 
-      color:
-        var(--muted);
+      color: var(--muted);
 
-      font-size: 11px;
+      font-size: 10.5px;
 
-      line-height:
-        1.7;
+      line-height: 1.72;
     }
 
-    .project-tools {
+    .tech-tags {
       display: flex;
 
       flex-wrap: wrap;
@@ -1582,7 +1443,7 @@
       margin-top: 12px;
     }
 
-    .project-tool {
+    .tech-tag {
       padding:
         4px 7px;
 
@@ -1600,123 +1461,13 @@
       font-size: 7px;
     }
 
-    .project-link {
+    .portfolio-link {
       display: inline-flex;
 
-      align-items: center;
-
-      gap: 6px;
-
-      margin-top: 14px;
+      margin-top: 13px;
 
       color:
-        var(--accent);
-
-      font-family:
-        "DM Mono",
-        monospace;
-
-      font-size: 9px;
-    }
-
-
-    /* =========================================
-       HOW I WORK
-    ========================================= */
-
-    .process-layout {
-      display: grid;
-
-      grid-template-columns:
-        0.72fr
-        1.28fr;
-
-      gap: 60px;
-
-      align-items: start;
-    }
-
-    .process-title {
-      max-width: 400px;
-
-      font-size:
-        clamp(
-          42px,
-          5vw,
-          68px
-        );
-
-      line-height:
-        0.94;
-
-      letter-spacing:
-        -0.05em;
-
-      font-weight: 700;
-    }
-
-    .process-title .highlight {
-      color:
-        var(--accent);
-    }
-
-    .process-list {
-      display: grid;
-
-      grid-template-columns:
-        repeat(5, 1fr);
-
-      align-items: stretch;
-
-      border-left:
-        1px solid
-        var(--border);
-    }
-
-    .process-item {
-      min-height: 205px;
-
-      padding:
-        0 19px;
-
-      border-right:
-        1px solid
-        var(--border);
-    }
-
-    .process-item:last-child {
-      border-right: none;
-    }
-
-    .process-icon {
-      width: 46px;
-      height: 46px;
-
-      display: grid;
-
-      place-items: center;
-
-      margin-bottom: 23px;
-
-      border:
-        1px solid
-        rgba(143, 189, 226, 0.44);
-
-      border-radius: 50%;
-
-      color:
-        var(--accent);
-
-      font-family:
-        "DM Mono",
-        monospace;
-
-      font-size: 9px;
-    }
-
-    .process-index {
-      color:
-        var(--accent);
+        var(--blue);
 
       font-family:
         "DM Mono",
@@ -1725,27 +1476,130 @@
       font-size: 8px;
     }
 
-    .process-item h3 {
-      max-width: 120px;
 
-      margin-top: 8px;
+    /* =========================
+       HOW I WORK
+    ========================= */
 
-      font-size: 12px;
+    .how-layout {
+      display: grid;
+
+      grid-template-columns:
+        0.68fr 1.32fr;
+
+      gap: 58px;
+
+      align-items: start;
+    }
+
+    .how-title {
+      max-width: 400px;
+
+      font-size:
+        clamp(
+          42px,
+          5vw,
+          67px
+        );
 
       line-height:
-        1.42;
+        0.94;
+
+      letter-spacing:
+        -0.05em;
+
+      font-weight:
+        700;
+    }
+
+    .how-title .blue {
+      color:
+        var(--blue);
+    }
+
+    .steps {
+      display: grid;
+
+      grid-template-columns:
+        repeat(5, 1fr);
+
+      border-left:
+        1px solid
+        var(--border);
+    }
+
+    .step {
+      min-height: 186px;
+
+      padding:
+        0 17px;
+
+      border-right:
+        1px solid
+        var(--border);
+    }
+
+    .step:last-child {
+      border-right:
+        none;
+    }
+
+    .step-icon {
+      width: 45px;
+      height: 45px;
+
+      display: grid;
+
+      place-items: center;
+
+      margin-bottom: 20px;
+
+      border:
+        1px solid
+        rgba(141, 188, 224, 0.42);
+
+      border-radius: 50%;
+
+      color:
+        var(--blue);
+
+      font-family:
+        "DM Mono",
+        monospace;
+
+      font-size: 8px;
+    }
+
+    .step-number {
+      color:
+        var(--blue);
+
+      font-family:
+        "DM Mono",
+        monospace;
+
+      font-size: 8px;
+    }
+
+    .step h3 {
+      max-width: 120px;
+
+      margin-top: 7px;
+
+      font-size: 11px;
+
+      line-height: 1.45;
 
       font-weight: 600;
     }
 
 
-    /* =========================================
+    /* =========================
        CONTACT
-    ========================================= */
+    ========================= */
 
     .contact {
-      padding:
-        90px 0;
+      padding: 86px 0;
 
       border-top:
         1px solid
@@ -1758,8 +1612,8 @@
       display: grid;
 
       grid-template-columns:
-        1.05fr
-        0.90fr
+        1fr
+        0.75fr
         auto;
 
       align-items: center;
@@ -1767,7 +1621,7 @@
       gap: 42px;
 
       padding:
-        34px 40px;
+        34px 38px;
 
       overflow: hidden;
 
@@ -1778,8 +1632,8 @@
       background:
         linear-gradient(
           120deg,
-          rgba(143, 189, 226, 0.05),
-          transparent 58%
+          rgba(141, 188, 224, 0.045),
+          transparent 59%
         );
     }
 
@@ -1792,24 +1646,23 @@
 
       background:
         linear-gradient(
-          rgba(143, 189, 226, 0.022) 1px,
+          rgba(141, 188, 224, 0.022) 1px,
           transparent 1px
         ),
         linear-gradient(
           90deg,
-          rgba(143, 189, 226, 0.022) 1px,
+          rgba(141, 188, 224, 0.022) 1px,
           transparent 1px
         );
 
       background-size:
-        43px 43px;
+        42px 42px;
     }
 
-    .contact-content,
-    .contact-copy,
-    .contact-action {
+    .contact-left,
+    .contact-middle,
+    .contact-right {
       position: relative;
-
       z-index: 1;
     }
 
@@ -1817,26 +1670,25 @@
       margin-bottom: 8px;
 
       color:
-        var(--accent);
+        var(--blue);
 
       font-family:
         "DM Mono",
         monospace;
 
-      font-size: 9px;
+      font-size: 8px;
 
-      text-transform:
-        uppercase;
+      text-transform: uppercase;
     }
 
     .contact-title {
-      max-width: 440px;
+      max-width: 430px;
 
       font-size:
         clamp(
-          31px,
-          4vw,
-          51px
+          30px,
+          3.8vw,
+          49px
         );
 
       line-height:
@@ -1845,16 +1697,17 @@
       letter-spacing:
         -0.045em;
 
-      font-weight: 700;
+      font-weight:
+        700;
     }
 
-    .contact-title span {
+    .contact-title .blue {
       color:
-        var(--accent);
+        var(--blue);
     }
 
-    .contact-copy {
-      max-width: 330px;
+    .contact-middle {
+      max-width: 315px;
 
       color:
         var(--muted);
@@ -1875,19 +1728,23 @@
       padding:
         14px 18px;
 
-      border: none;
+      border:
+        none;
 
       background:
-        var(--accent);
+        var(--blue);
 
       color:
-        #0d1113;
+        #0c1114;
 
-      font-size: 11px;
+      font-size:
+        11px;
 
-      font-weight: 800;
+      font-weight:
+        800;
 
-      cursor: pointer;
+      cursor:
+        pointer;
 
       white-space:
         nowrap;
@@ -1899,33 +1756,33 @@
 
     .contact-button:hover {
       background:
-        var(--accent-bright);
+        var(--blue-bright);
 
       transform:
         translateY(-2px);
     }
 
 
-    /* =========================================
+    /* =========================
        CONTACT MODAL
-    ========================================= */
+    ========================= */
 
-    .contact-modal {
+    .modal {
       position: fixed;
 
       inset: 0;
 
+      z-index: 1000;
+
       display: flex;
 
       align-items: center;
+
       justify-content: center;
 
       padding: 22px;
 
-      z-index: 1000;
-
       opacity: 0;
-
       visibility: hidden;
 
       transition:
@@ -1933,32 +1790,31 @@
         visibility 0.25s ease;
     }
 
-    .contact-modal.active {
+    .modal.active {
       opacity: 1;
-
       visibility: visible;
     }
 
-    .contact-modal-backdrop {
+    .modal-backdrop {
       position: absolute;
 
       inset: 0;
 
       background:
-        rgba(0, 0, 0, 0.78);
+        rgba(0, 0, 0, 0.80);
 
       backdrop-filter:
         blur(9px);
     }
 
-    .contact-modal-box {
+    .modal-box {
       position: relative;
 
       z-index: 2;
 
       width:
         min(
-          610px,
+          600px,
           100%
         );
 
@@ -1974,14 +1830,14 @@
         var(--border-strong);
 
       background:
-        #151816;
+        #151918;
 
       box-shadow:
-        0 35px 100px
-        rgba(0, 0, 0, 0.52);
+        0 30px 100px
+        rgba(0, 0, 0, 0.50);
     }
 
-    .contact-modal-close {
+    .modal-close {
       position: absolute;
 
       top: 16px;
@@ -1989,6 +1845,10 @@
 
       width: 34px;
       height: 34px;
+
+      display: grid;
+
+      place-items: center;
 
       border:
         1px solid
@@ -2000,30 +1860,45 @@
       color:
         var(--muted-light);
 
-      font-size: 20px;
+      font-size:
+        19px;
 
       cursor:
         pointer;
     }
 
-    .contact-modal-close:hover {
+    .modal-close:hover {
       color:
-        var(--accent);
+        var(--blue);
 
       border-color:
-        var(--accent);
+        var(--blue);
     }
 
-    .contact-form-title {
-      margin-top: 3px;
+    .modal-label {
+      margin-bottom: 8px;
 
-      margin-bottom: 31px;
+      color:
+        var(--blue);
+
+      font-family:
+        "DM Mono",
+        monospace;
+
+      font-size: 9px;
+
+      text-transform:
+        uppercase;
+    }
+
+    .modal-title {
+      margin-bottom: 30px;
 
       font-size:
         clamp(
-          32px,
+          31px,
           5vw,
-          53px
+          52px
         );
 
       line-height:
@@ -2032,14 +1907,16 @@
       letter-spacing:
         -0.05em;
 
-      font-weight: 700;
+      font-weight:
+        700;
     }
 
-    .form-field {
-      margin-bottom: 20px;
+    .field {
+      margin-bottom:
+        19px;
     }
 
-    .form-field label {
+    .field label {
       display: block;
 
       margin-bottom: 7px;
@@ -2051,7 +1928,7 @@
         "DM Mono",
         monospace;
 
-      font-size: 9px;
+      font-size: 8px;
 
       text-transform:
         uppercase;
@@ -2060,8 +1937,8 @@
         0.08em;
     }
 
-    .form-field input,
-    .form-field textarea {
+    .field input,
+    .field textarea {
       width: 100%;
 
       padding:
@@ -2077,29 +1954,29 @@
       color:
         var(--text);
 
-      font-size: 12px;
+      font-size:
+        12px;
 
-      outline: none;
+      outline:
+        none;
 
-      resize: vertical;
+      resize:
+        vertical;
     }
 
-    .form-field input::placeholder,
-    .form-field textarea::placeholder {
+    .field input::placeholder,
+    .field textarea::placeholder {
       color:
         #62665f;
     }
 
-    .form-field input:focus,
-    .form-field textarea:focus {
+    .field input:focus,
+    .field textarea:focus {
       border-color:
-        rgba(143, 189, 226, 0.55);
-
-      background:
-        #111412;
+        rgba(141, 188, 224, 0.55);
     }
 
-    .form-submit {
+    .submit-button {
       display: inline-flex;
 
       align-items: center;
@@ -2113,28 +1990,25 @@
         none;
 
       background:
-        var(--accent);
+        var(--blue);
 
       color:
-        #0d1113;
+        #0c1114;
 
-      font-size: 11px;
+      font-size:
+        11px;
 
-      font-weight: 800;
+      font-weight:
+        800;
 
       cursor:
         pointer;
     }
 
-    .form-submit:hover {
-      background:
-        var(--accent-bright);
-    }
 
-
-    /* =========================================
+    /* =========================
        FOOTER
-    ========================================= */
+    ========================= */
 
     footer {
       border-top:
@@ -2142,7 +2016,7 @@
         var(--border);
 
       padding:
-        23px 0;
+        22px 0;
     }
 
     .footer-inner {
@@ -2159,57 +2033,44 @@
         "DM Mono",
         monospace;
 
-      font-size: 9px;
-    }
-
-    .footer-link {
-      transition:
-        color 0.2s ease;
+      font-size:
+        9px;
     }
 
     .footer-link:hover {
       color:
-        var(--accent);
+        var(--blue);
     }
 
 
-    /* =========================================
+    /* =========================
        RESPONSIVE
-    ========================================= */
+    ========================= */
 
-    @media (max-width: 1120px) {
+    @media (max-width: 1100px) {
 
       .hero-grid {
         grid-template-columns:
-          0.72fr
-          1.28fr;
+          0.70fr
+          1.30fr;
       }
 
-      .workflow-canvas {
-        transform:
-          scale(0.90);
-
-        transform-origin:
-          center;
-      }
-
-      .capabilities-layout {
+      .capability-layout {
         grid-template-columns:
-          0.75fr
-          1fr;
+          0.8fr
+          1.2fr;
       }
 
-      .capability-middle {
-        grid-column:
-          span 1;
+      .capability-layout > :last-child {
+        display: none;
       }
 
       .about-layout {
         gap:
-          48px;
+          44px;
       }
 
-      .process-layout {
+      .how-layout {
         gap:
           38px;
       }
@@ -2223,12 +2084,19 @@
         width:
           min(
             var(--max-width),
-            calc(100% - 40px)
+            calc(100% - 42px)
           );
       }
 
       .nav-links {
-        display: none;
+        display:
+          none;
+      }
+
+      .hero {
+        padding:
+          70px 0
+          85px;
       }
 
       .hero-grid {
@@ -2242,8 +2110,11 @@
       }
 
       .hero-description {
-        margin-left: auto;
-        margin-right: auto;
+        margin-left:
+          auto;
+
+        margin-right:
+          auto;
       }
 
       .hero-actions {
@@ -2251,24 +2122,24 @@
           center;
       }
 
-      .hero-workflow {
+      .hero-visual {
         min-height:
-          500px;
+          490px;
       }
 
-      .workflow-canvas {
-        transform:
-          none;
+      .workflow {
+        height:
+          490px;
       }
 
-      .capabilities-layout {
+      .capability-layout {
         grid-template-columns:
-          1fr;
+          1fr 1fr;
       }
 
-      .capability-middle {
-        grid-column:
-          auto;
+      .capability-layout > :last-child {
+        display:
+          none;
       }
 
       .about-layout {
@@ -2276,22 +2147,17 @@
           1fr;
       }
 
-      .about-copy-column {
-        max-width:
-          720px;
-      }
-
-      .projects-grid {
+      .portfolio-grid {
         grid-template-columns:
           repeat(2, 1fr);
       }
 
-      .process-layout {
+      .how-layout {
         grid-template-columns:
           1fr;
       }
 
-      .process-list {
+      .steps {
         grid-template-columns:
           repeat(5, 1fr);
       }
@@ -2299,12 +2165,9 @@
       .contact-box {
         grid-template-columns:
           1fr 1fr;
-
-        gap:
-          28px;
       }
 
-      .contact-action {
+      .contact-right {
         grid-column:
           span 2;
       }
@@ -2312,7 +2175,7 @@
     }
 
 
-    @media (max-width: 680px) {
+    @media (max-width: 650px) {
 
       .container {
         width:
@@ -2324,42 +2187,37 @@
           68px;
       }
 
-      .nav-button {
-        padding:
-          9px 12px;
-      }
-
       .hero {
         padding:
-          72px 0
-          82px;
+          68px 0
+          75px;
       }
 
       .hero-title {
         font-size:
           clamp(
-            54px,
-            15vw,
-            90px
+            52px,
+            15.5vw,
+            85px
           );
 
         letter-spacing:
-          -0.045em;
+          -0.048em;
       }
 
       .hero-workflow {
         min-height:
-          410px;
+          420px;
       }
 
-      .workflow-canvas {
+      .workflow {
         height:
-          410px;
+          420px;
       }
 
       .workflow-node {
         min-width:
-          86px;
+          88px;
 
         padding:
           9px 10px;
@@ -2367,32 +2225,32 @@
 
       .workflow-node.main {
         min-width:
-          130px;
+          132px;
       }
 
-      .node-label {
+      .node-name {
         font-size:
           8px;
       }
 
-      .node-sub {
+      .node-description {
         font-size:
           6px;
       }
 
-      .node-icon {
+      .node-symbol {
         font-size:
           13px;
       }
 
-      .workflow-human {
+      .tiny-human {
         display:
           none;
       }
 
       .section {
         padding:
-          82px 0;
+          80px 0;
       }
 
       .section-header {
@@ -2405,35 +2263,47 @@
 
       .section-description {
         margin-top:
-          18px;
+          17px;
+      }
+
+      .capability-layout {
+        grid-template-columns:
+          1fr;
+      }
+
+      .capability-copy {
+        margin-top:
+          20px;
       }
 
       .about-visual {
         min-height:
-          370px;
+          380px;
       }
 
-      .about-large {
+      .about-title {
         font-size:
           34px;
       }
 
-      .projects-grid {
+      .portfolio-grid {
         grid-template-columns:
           1fr;
       }
 
-      .project {
+      .portfolio-card {
         min-height:
-          405px;
+          400px;
       }
 
-      .process-list {
+      .steps {
         grid-template-columns:
           1fr;
+        border-left:
+          none;
       }
 
-      .process-item {
+      .step {
         min-height:
           auto;
 
@@ -2448,7 +2318,7 @@
           var(--border);
       }
 
-      .process-item:last-child {
+      .step:last-child {
         border-bottom:
           none;
       }
@@ -2462,11 +2332,14 @@
         grid-template-columns:
           1fr;
 
+        gap:
+          24px;
+
         padding:
-          28px 24px;
+          27px 23px;
       }
 
-      .contact-action {
+      .contact-right {
         grid-column:
           auto;
       }
@@ -2479,13 +2352,13 @@
           flex-start;
 
         gap:
-          12px;
+          10px;
       }
 
     }
 
 
-    @media (max-width: 470px) {
+    @media (max-width: 460px) {
 
       .logo {
         font-size:
@@ -2495,6 +2368,7 @@
       .logo-mark {
         width:
           24px;
+
         height:
           24px;
       }
@@ -2506,36 +2380,43 @@
 
       .hero-description {
         font-size:
-          13px;
+          12.5px;
       }
 
-      .about-large {
-        font-size:
-          31px;
+      .workflow-node {
+        min-width:
+          76px;
+
+        padding:
+          8px;
       }
 
-      .project-icon-area {
-        height:
-          155px;
+      .workflow-node.main {
+        min-width:
+          116px;
       }
 
-      .project-icon {
+      .about-visual {
+        min-height:
+          330px;
+      }
+
+      .about-board {
+        left:
+          16%;
+
         width:
-          88px;
-        height:
-          88px;
+          75%;
       }
 
-      .project-icon svg {
+      .about-person {
         width:
-          50px;
-        height:
-          50px;
+          35%;
       }
 
-      .contact-title {
-        font-size:
-          31px;
+      .modal-box {
+        padding:
+          28px 20px;
       }
 
     }
@@ -2548,7 +2429,7 @@
 
 
   <!-- =========================================
-       NAV
+       NAVIGATION
   ========================================= -->
 
   <nav>
@@ -2559,7 +2440,6 @@
       <a
         href="#"
         class="logo"
-        aria-label="Michelle Project"
       >
 
         <span class="logo-mark"></span>
@@ -2586,8 +2466,8 @@
         </li>
 
         <li>
-          <a href="#work">
-            Work
+          <a href="#portfolio">
+            Portfolio
           </a>
         </li>
 
@@ -2623,17 +2503,14 @@
     <div class="container hero-grid">
 
 
-      <!-- HERO COPY -->
-
       <div class="hero-copy">
 
 
-        <div class="hero-topline mono">
+        <div class="eyebrow mono">
 
-          <span class="status-dot"></span>
+          <span class="eyebrow-dot"></span>
 
-          Workflow automation /
-          open to opportunities
+          Workflow Automation
 
         </div>
 
@@ -2648,7 +2525,7 @@
             BETTER.
           </span>
 
-          <span class="accent">
+          <span class="blue">
             WORK.
           </span>
 
@@ -2664,9 +2541,8 @@
 
         <div class="hero-actions">
 
-
           <a
-            href="#work"
+            href="#portfolio"
             class="button primary"
           >
             See my work
@@ -2681,18 +2557,19 @@
             About Michelle
           </a>
 
-
         </div>
 
 
       </div>
 
 
-      <!-- HERO WORKFLOW -->
+      <!-- =======================================
+           WORKFLOW VISUAL
+      ======================================== -->
 
-      <div class="hero-workflow">
+      <div class="hero-visual">
 
-        <div class="workflow-canvas">
+        <div class="workflow">
 
 
           <div class="workflow-glow"></div>
@@ -2700,30 +2577,32 @@
 
           <!-- Connections -->
 
-          <div class="workflow-line line-1"></div>
-          <div class="workflow-line line-2"></div>
-          <div class="workflow-line line-3"></div>
-          <div class="workflow-line line-4"></div>
-          <div class="workflow-line line-5"></div>
-          <div class="workflow-line dashed line-6"></div>
-          <div class="workflow-line dashed line-7"></div>
-          <div class="workflow-line dashed line-8"></div>
-          <div class="workflow-line line-9"></div>
+          <div class="workflow-connection connection-a"></div>
+          <div class="workflow-connection connection-b"></div>
+          <div class="workflow-connection connection-c"></div>
+          <div class="workflow-connection connection-d"></div>
+          <div class="workflow-connection connection-e"></div>
+          <div class="workflow-connection dashed connection-f"></div>
+          <div class="workflow-connection dashed connection-g"></div>
+          <div class="workflow-connection dashed connection-h"></div>
+          <div class="workflow-connection connection-i"></div>
 
 
-          <!-- Small notes -->
+          <!-- Notes -->
 
-          <div class="workflow-note note-one">
+          <div class="workflow-note one">
             too many<br>
             manual steps
           </div>
 
-          <div class="workflow-note note-two">
+
+          <div class="workflow-note two">
             what should<br>
             happen next?
           </div>
 
-          <div class="workflow-note note-three">
+
+          <div class="workflow-note three">
             keep humans<br>
             in the loop
           </div>
@@ -2731,17 +2610,17 @@
 
           <!-- Trigger -->
 
-          <div class="workflow-node node-trigger">
+          <div class="workflow-node trigger">
 
-            <div class="node-icon">
+            <div class="node-symbol">
               ⚡
             </div>
 
-            <div class="node-label">
+            <div class="node-name">
               Trigger
             </div>
 
-            <div class="node-sub">
+            <div class="node-description">
               New request received
             </div>
 
@@ -2750,17 +2629,17 @@
 
           <!-- Collect -->
 
-          <div class="workflow-node node-collect">
+          <div class="workflow-node collect">
 
-            <div class="node-icon">
+            <div class="node-symbol">
               ▣
             </div>
 
-            <div class="node-label">
+            <div class="node-name">
               Collect
             </div>
 
-            <div class="node-sub">
+            <div class="node-description">
               Gather the data
             </div>
 
@@ -2769,18 +2648,18 @@
 
           <!-- Understand -->
 
-          <div class="workflow-node node-understand">
+          <div class="workflow-node understand">
 
-            <div class="node-icon">
+            <div class="node-symbol">
               ◯
             </div>
 
-            <div class="node-label">
+            <div class="node-name">
               Understand
             </div>
 
-            <div class="node-sub">
-              Understand the process
+            <div class="node-description">
+              Understand the real process
             </div>
 
           </div>
@@ -2788,17 +2667,17 @@
 
           <!-- AI Agent -->
 
-          <div class="workflow-node main node-agent">
+          <div class="workflow-node main agent">
 
-            <div class="node-icon">
+            <div class="node-symbol">
               ◉
             </div>
 
-            <div class="node-label">
+            <div class="node-name">
               AI Agent
             </div>
 
-            <div class="node-sub">
+            <div class="node-description">
               Decide what to do next
             </div>
 
@@ -2807,17 +2686,17 @@
 
           <!-- Integrate -->
 
-          <div class="workflow-node node-integrate">
+          <div class="workflow-node integrate">
 
-            <div class="node-icon">
+            <div class="node-symbol">
               ⊕
             </div>
 
-            <div class="node-label">
+            <div class="node-name">
               Integrate
             </div>
 
-            <div class="node-sub">
+            <div class="node-description">
               Connect the right systems
             </div>
 
@@ -2826,17 +2705,17 @@
 
           <!-- Act -->
 
-          <div class="workflow-node node-act">
+          <div class="workflow-node act">
 
-            <div class="node-icon">
+            <div class="node-symbol">
               ▶
             </div>
 
-            <div class="node-label">
+            <div class="node-name">
               Act
             </div>
 
-            <div class="node-sub">
+            <div class="node-description">
               Take action automatically
             </div>
 
@@ -2845,17 +2724,17 @@
 
           <!-- Review -->
 
-          <div class="workflow-node node-review">
+          <div class="workflow-node review">
 
-            <div class="node-icon">
+            <div class="node-symbol">
               ◌
             </div>
 
-            <div class="node-label">
+            <div class="node-name">
               Review
             </div>
 
-            <div class="node-sub">
+            <div class="node-description">
               Human review when needed
             </div>
 
@@ -2864,17 +2743,17 @@
 
           <!-- Notify -->
 
-          <div class="workflow-node node-notify">
+          <div class="workflow-node notify">
 
-            <div class="node-icon">
+            <div class="node-symbol">
               ♢
             </div>
 
-            <div class="node-label">
+            <div class="node-name">
               Notify
             </div>
 
-            <div class="node-sub">
+            <div class="node-description">
               Send updates
             </div>
 
@@ -2883,26 +2762,26 @@
 
           <!-- Done -->
 
-          <div class="workflow-node node-done">
+          <div class="workflow-node done">
 
-            <div class="node-icon">
+            <div class="node-symbol">
               ✓
             </div>
 
-            <div class="node-label">
+            <div class="node-name">
               Done
             </div>
 
-            <div class="node-sub">
+            <div class="node-description">
               Log, store, and move on
             </div>
 
           </div>
 
 
-          <!-- Small human line-art -->
+          <!-- Small human figure -->
 
-          <div class="workflow-human">
+          <div class="tiny-human">
 
             <svg
               viewBox="0 0 180 220"
@@ -2985,7 +2864,7 @@
 
 
     <!-- =========================================
-         CAPABILITIES
+         WHAT I DO
     ========================================= -->
 
     <section
@@ -2998,13 +2877,11 @@
 
         <div class="section-header">
 
-
           <div>
 
-            <div class="section-kicker">
-              What I do
+            <div class="section-label">
+              What I Do
             </div>
-
 
             <h2 class="section-title">
               Less manual.<br>
@@ -3019,14 +2896,11 @@
             not around a particular tool.
           </p>
 
-
         </div>
 
 
-        <div class="capabilities-layout">
+        <div class="capability-layout">
 
-
-          <!-- Capability list -->
 
           <div class="capability-list">
 
@@ -3045,7 +2919,7 @@
 
               </div>
 
-              <span class="number">
+              <span class="capability-number">
                 01
               </span>
 
@@ -3066,7 +2940,7 @@
 
               </div>
 
-              <span class="number">
+              <span class="capability-number">
                 02
               </span>
 
@@ -3087,7 +2961,7 @@
 
               </div>
 
-              <span class="number">
+              <span class="capability-number">
                 03
               </span>
 
@@ -3108,7 +2982,7 @@
 
               </div>
 
-              <span class="number">
+              <span class="capability-number">
                 04
               </span>
 
@@ -3129,7 +3003,7 @@
 
               </div>
 
-              <span class="number">
+              <span class="capability-number">
                 05
               </span>
 
@@ -3139,10 +3013,7 @@
           </div>
 
 
-          <!-- Explanation -->
-
-          <div class="capability-middle">
-
+          <div class="capability-copy">
 
             <p>
               The tools change depending on the process.
@@ -3158,15 +3029,13 @@
             </p>
 
 
-            <div class="capability-stack">
+            <div class="stack">
               n8n · Python · Claude Code · Codex
             </div>
 
 
           </div>
 
-
-          <!-- Empty balance column -->
 
           <div></div>
 
@@ -3192,10 +3061,9 @@
 
         <div class="section-header">
 
-
           <div>
 
-            <div class="section-kicker">
+            <div class="section-label">
               About
             </div>
 
@@ -3205,7 +3073,6 @@
           <p class="section-description">
             A process-first approach to automation.
           </p>
-
 
         </div>
 
@@ -3220,47 +3087,51 @@
 
             <div class="about-board">
 
-
-              <div class="about-board-title">
+              <div class="board-label">
                 Process map
               </div>
 
 
-              <div class="about-mini-node mini-1">
+              <div class="about-node n1">
                 INPUT
               </div>
 
-              <div class="about-mini-node mini-2 active">
+
+              <div class="about-node active n2">
                 AI
               </div>
 
-              <div class="about-mini-node mini-3">
+
+              <div class="about-node n3">
                 SYSTEM
               </div>
 
-              <div class="about-mini-node mini-4 active">
+
+              <div class="about-node active n4">
                 DECISION
               </div>
 
-              <div class="about-mini-node mini-5">
+
+              <div class="about-node n5">
                 REVIEW
               </div>
 
-              <div class="about-mini-node mini-6">
+
+              <div class="about-node n6">
                 OUTPUT
               </div>
 
 
-              <div class="about-mini-line mini-line-1"></div>
-              <div class="about-mini-line mini-line-2"></div>
-              <div class="about-mini-line mini-line-3"></div>
-              <div class="about-mini-line mini-line-4"></div>
+              <div class="about-link l1"></div>
+              <div class="about-link l2"></div>
+              <div class="about-link l3"></div>
+              <div class="about-link l4"></div>
 
 
             </div>
 
 
-            <!-- Human -->
+            <!-- Person -->
 
             <div class="about-person">
 
@@ -3331,51 +3202,6 @@
             </div>
 
 
-            <!-- Plant -->
-
-            <div class="about-plant">
-
-              <svg
-                viewBox="0 0 60 90"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-
-                <path
-                  d="M29 88V48"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                />
-
-                <path
-                  d="M29 64C17 60 10 51 9 42C20 42 29 48 29 64Z"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                />
-
-                <path
-                  d="M30 56C42 52 49 43 51 33C40 34 31 42 30 56Z"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                />
-
-                <path
-                  d="M29 49C22 40 21 29 25 21C32 27 34 38 29 49Z"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                />
-
-                <path
-                  d="M12 68H48L43 87H17L12 68Z"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                />
-
-              </svg>
-
-            </div>
-
-
           </div>
 
 
@@ -3384,28 +3210,28 @@
           <div class="about-copy-column">
 
 
-            <p class="about-large">
+            <h2 class="about-title">
               Broken processes are rarely a
-              <span class="highlight">
+              <span class="blue">
                 tooling problem.
               </span>
-            </p>
+            </h2>
 
 
-            <p class="about-copy">
+            <p class="about-text">
               I work on the gap between people,
               process, and technology.
             </p>
 
 
-            <p class="about-copy">
+            <p class="about-text">
               I've spent years around complex,
               process-heavy work. Automation became
               the natural next step.
             </p>
 
 
-            <p class="about-copy">
+            <p class="about-text">
               Now I turn repetitive work into practical
               workflows that people can actually use.
             </p>
@@ -3422,24 +3248,24 @@
 
 
     <!-- =========================================
-         SELECTED WORK
+         PORTFOLIOS
     ========================================= -->
 
     <section
       class="section"
-      id="work"
+      id="portfolio"
     >
 
       <div class="container">
 
 
-        <div class="work-header">
+        <div class="portfolio-header">
 
 
           <div>
 
-            <div class="section-kicker">
-              Selected work
+            <div class="section-label">
+              Portfolios
             </div>
 
 
@@ -3453,31 +3279,28 @@
 
           <a
             href="https://github.com/michelleproject"
-            class="github-link"
+            class="github-all"
             target="_blank"
             rel="noopener noreferrer"
           >
-            View all projects on GitHub
-            ↗
+            View all on GitHub ↗
           </a>
 
 
         </div>
 
 
-        <div class="projects-grid">
+        <div class="portfolio-grid">
 
 
-          <!-- =====================================
-               BUDGET
-          ====================================== -->
+          <!-- Budget -->
 
-          <article class="project">
+          <article class="portfolio-card">
 
 
-            <div class="project-meta">
+            <div class="portfolio-meta">
 
-              <span class="project-number">
+              <span class="number">
                 01 / Budget
               </span>
 
@@ -3488,9 +3311,10 @@
             </div>
 
 
-            <div class="project-icon-area">
+            <div class="portfolio-visual">
 
-              <div class="project-icon">
+
+              <div class="portfolio-icon">
 
                 <svg
                   viewBox="0 0 48 48"
@@ -3520,10 +3344,11 @@
 
               </div>
 
+
             </div>
 
 
-            <div class="project-info">
+            <div class="portfolio-info">
 
 
               <h3>
@@ -3537,21 +3362,21 @@
               </p>
 
 
-              <div class="project-tools">
+              <div class="tech-tags">
 
-                <span class="project-tool">
+                <span class="tech-tag">
                   n8n
                 </span>
 
-                <span class="project-tool">
+                <span class="tech-tag">
                   Google Sheets
                 </span>
 
-                <span class="project-tool">
+                <span class="tech-tag">
                   Gmail
                 </span>
 
-                <span class="project-tool">
+                <span class="tech-tag">
                   JavaScript
                 </span>
 
@@ -3560,7 +3385,7 @@
 
               <a
                 href="YOUR_BUDGET_REPOSITORY_URL"
-                class="project-link"
+                class="portfolio-link"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -3574,16 +3399,14 @@
           </article>
 
 
-          <!-- =====================================
-               RESUME
-          ====================================== -->
+          <!-- Resume -->
 
-          <article class="project">
+          <article class="portfolio-card">
 
 
-            <div class="project-meta">
+            <div class="portfolio-meta">
 
-              <span class="project-number">
+              <span class="number">
                 02 / Screening
               </span>
 
@@ -3594,9 +3417,10 @@
             </div>
 
 
-            <div class="project-icon-area">
+            <div class="portfolio-visual">
 
-              <div class="project-icon">
+
+              <div class="portfolio-icon">
 
                 <svg
                   viewBox="0 0 48 48"
@@ -3649,10 +3473,11 @@
 
               </div>
 
+
             </div>
 
 
-            <div class="project-info">
+            <div class="portfolio-info">
 
 
               <h3>
@@ -3667,21 +3492,21 @@
               </p>
 
 
-              <div class="project-tools">
+              <div class="tech-tags">
 
-                <span class="project-tool">
+                <span class="tech-tag">
                   n8n
                 </span>
 
-                <span class="project-tool">
+                <span class="tech-tag">
                   Gemini
                 </span>
 
-                <span class="project-tool">
+                <span class="tech-tag">
                   Gmail
                 </span>
 
-                <span class="project-tool">
+                <span class="tech-tag">
                   Google Sheets
                 </span>
 
@@ -3690,7 +3515,7 @@
 
               <a
                 href="YOUR_RESUME_REPOSITORY_URL"
-                class="project-link"
+                class="portfolio-link"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -3704,16 +3529,14 @@
           </article>
 
 
-          <!-- =====================================
-               INVOICE
-          ====================================== -->
+          <!-- Invoice -->
 
-          <article class="project">
+          <article class="portfolio-card">
 
 
-            <div class="project-meta">
+            <div class="portfolio-meta">
 
-              <span class="project-number">
+              <span class="number">
                 03 / Invoices
               </span>
 
@@ -3724,9 +3547,10 @@
             </div>
 
 
-            <div class="project-icon-area">
+            <div class="portfolio-visual">
 
-              <div class="project-icon">
+
+              <div class="portfolio-icon">
 
                 <svg
                   viewBox="0 0 48 48"
@@ -3786,10 +3610,11 @@
 
               </div>
 
+
             </div>
 
 
-            <div class="project-info">
+            <div class="portfolio-info">
 
 
               <h3>
@@ -3804,25 +3629,25 @@
               </p>
 
 
-              <div class="project-tools">
+              <div class="tech-tags">
 
-                <span class="project-tool">
+                <span class="tech-tag">
                   Python
                 </span>
 
-                <span class="project-tool">
+                <span class="tech-tag">
                   FastAPI
                 </span>
 
-                <span class="project-tool">
+                <span class="tech-tag">
                   n8n
                 </span>
 
-                <span class="project-tool">
+                <span class="tech-tag">
                   Gemini
                 </span>
 
-                <span class="project-tool">
+                <span class="tech-tag">
                   Sheets
                 </span>
 
@@ -3831,7 +3656,7 @@
 
               <a
                 href="YOUR_INVOICE_REPOSITORY_URL"
-                class="project-link"
+                class="portfolio-link"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -3868,8 +3693,8 @@
 
           <div>
 
-            <div class="section-kicker">
-              How I work
+            <div class="section-label">
+              How I Work
             </div>
 
           </div>
@@ -3884,32 +3709,35 @@
         </div>
 
 
-        <div class="process-layout">
+        <div class="how-layout">
 
 
           <div>
 
-            <h2 class="process-title">
+            <h2 class="how-title">
+
               Think first.<br>
+
               Automate
-              <span class="highlight">
+              <span class="blue">
                 second.
               </span>
+
             </h2>
 
           </div>
 
 
-          <div class="process-list">
+          <div class="steps">
 
 
-            <div class="process-item">
+            <div class="step">
 
-              <div class="process-icon">
+              <div class="step-icon">
                 01
               </div>
 
-              <div class="process-index">
+              <div class="step-number">
                 01
               </div>
 
@@ -3920,13 +3748,13 @@
             </div>
 
 
-            <div class="process-item">
+            <div class="step">
 
-              <div class="process-icon">
+              <div class="step-icon">
                 02
               </div>
 
-              <div class="process-index">
+              <div class="step-number">
                 02
               </div>
 
@@ -3937,13 +3765,13 @@
             </div>
 
 
-            <div class="process-item">
+            <div class="step">
 
-              <div class="process-icon">
+              <div class="step-icon">
                 03
               </div>
 
-              <div class="process-index">
+              <div class="step-number">
                 03
               </div>
 
@@ -3954,13 +3782,13 @@
             </div>
 
 
-            <div class="process-item">
+            <div class="step">
 
-              <div class="process-icon">
+              <div class="step-icon">
                 04
               </div>
 
-              <div class="process-index">
+              <div class="step-number">
                 04
               </div>
 
@@ -3971,13 +3799,13 @@
             </div>
 
 
-            <div class="process-item">
+            <div class="step">
 
-              <div class="process-icon">
+              <div class="step-icon">
                 05
               </div>
 
-              <div class="process-index">
+              <div class="step-number">
                 05
               </div>
 
@@ -4013,7 +3841,7 @@
         <div class="contact-box">
 
 
-          <div class="contact-content">
+          <div class="contact-left">
 
             <div class="contact-label">
               Let's talk
@@ -4023,7 +3851,7 @@
             <h2 class="contact-title">
               What's eating
               your
-              <span>
+              <span class="blue">
                 team's time?
               </span>
             </h2>
@@ -4031,20 +3859,20 @@
           </div>
 
 
-          <p class="contact-copy">
+          <p class="contact-middle">
             Tell me what your team is still doing manually.
             I'll tell you honestly whether automation makes sense.
           </p>
 
 
-          <div class="contact-action">
+          <div class="contact-right">
 
             <button
               type="button"
               class="contact-button"
-              onclick="openContactForm()"
+              onclick="openModal()"
             >
-              Start a conversation
+              Let's Discuss
               <span>↗</span>
             </button>
 
@@ -4066,53 +3894,56 @@
   ========================================= -->
 
   <div
-    class="contact-modal"
+    class="modal"
     id="contactModal"
     aria-hidden="true"
   >
 
 
     <div
-      class="contact-modal-backdrop"
-      onclick="closeContactForm()"
+      class="modal-backdrop"
+      onclick="closeModal()"
     ></div>
 
 
     <div
-      class="contact-modal-box"
+      class="modal-box"
       role="dialog"
       aria-modal="true"
-      aria-labelledby="contactFormTitle"
+      aria-labelledby="modalTitle"
     >
 
 
       <button
-        class="contact-modal-close"
         type="button"
-        onclick="closeContactForm()"
+        class="modal-close"
+        onclick="closeModal()"
         aria-label="Close contact form"
       >
         ×
       </button>
 
 
-      <div class="contact-label">
-        Start a conversation
+      <div class="modal-label">
+        Let's discuss
       </div>
 
 
-      <h3
-        class="contact-form-title"
-        id="contactFormTitle"
+      <h2
+        class="modal-title"
+        id="modalTitle"
       >
-        Tell me what is<br>
+        Tell me what is
         slowing your team down.
-      </h3>
+      </h2>
 
 
       <!--
-        Replace YOUR_FORM_ID with your Formspree ID.
-        Your real email does not appear in the HTML.
+        Replace YOUR_FORM_ID with your
+        Formspree form ID.
+
+        Your real email does not appear
+        anywhere in this HTML.
       -->
 
       <form
@@ -4121,16 +3952,16 @@
       >
 
 
-        <div class="form-field">
+        <div class="field">
 
           <label for="name">
             Name
           </label>
 
           <input
-            type="text"
             id="name"
             name="name"
+            type="text"
             placeholder="Your name"
             autocomplete="name"
             required
@@ -4139,16 +3970,16 @@
         </div>
 
 
-        <div class="form-field">
+        <div class="field">
 
           <label for="email">
             Email
           </label>
 
           <input
-            type="email"
             id="email"
             name="email"
+            type="email"
             placeholder="you@example.com"
             autocomplete="email"
             required
@@ -4157,7 +3988,7 @@
         </div>
 
 
-        <div class="form-field">
+        <div class="field">
 
           <label for="message">
             What would you like to automate?
@@ -4167,7 +3998,7 @@
             id="message"
             name="message"
             rows="6"
-            placeholder="Tell me what your team does manually and what you would like to improve."
+            placeholder="Tell me what your team is doing manually and what you would like to improve."
             required
           ></textarea>
 
@@ -4176,7 +4007,7 @@
 
         <button
           type="submit"
-          class="form-submit"
+          class="submit-button"
         >
           Send message
           <span>↗</span>
@@ -4199,7 +4030,6 @@
 
     <div class="container footer-inner">
 
-
       <span>
         © 2026 Michelle Project
       </span>
@@ -4211,9 +4041,8 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        GitHub ↗
+        GitHub
       </a>
-
 
     </div>
 
@@ -4226,19 +4055,19 @@
 
   <script>
 
-    const contactModal =
+    const modal =
       document.getElementById(
         "contactModal"
       );
 
 
-    function openContactForm() {
+    function openModal() {
 
-      contactModal.classList.add(
+      modal.classList.add(
         "active"
       );
 
-      contactModal.setAttribute(
+      modal.setAttribute(
         "aria-hidden",
         "false"
       );
@@ -4249,27 +4078,27 @@
 
       setTimeout(() => {
 
-        const input =
+        const nameField =
           document.getElementById(
             "name"
           );
 
-        if (input) {
-          input.focus();
+        if (nameField) {
+          nameField.focus();
         }
 
-      }, 200);
+      }, 180);
 
     }
 
 
-    function closeContactForm() {
+    function closeModal() {
 
-      contactModal.classList.remove(
+      modal.classList.remove(
         "active"
       );
 
-      contactModal.setAttribute(
+      modal.setAttribute(
         "aria-hidden",
         "true"
       );
@@ -4286,7 +4115,7 @@
       function(event) {
 
         if (event.key === "Escape") {
-          closeContactForm();
+          closeModal();
         }
 
       }
