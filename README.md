@@ -1,2 +1,2 @@
 # automation-portfolio
-I build AI tools, workflow automations, and document processing systems.
+I build reliable automations for lead management, reporting, customer support, and AI-assisted business processes.
