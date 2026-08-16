@@ -3,10 +3,314 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Website</title>
+
+  <!-- Added Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <title>Michelle | Automation Portfolio</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      /* Updated font family here */
+      font-family: 'Inter', sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      line-height: 1.6;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 8%;
+      background: rgba(15, 23, 42, 0.95);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      color: #38bdf8;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    nav a {
+      color: #e2e8f0;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      color: #38bdf8;
+    }
+
+    .hero {
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      padding: 70px 8%;
+      background:
+        radial-gradient(circle at top right, #1d4ed8 0%, transparent 35%),
+        #0f172a;
+    }
+
+    .hero-content {
+      max-width: 750px;
+    }
+
+    .eyebrow {
+      color: #38bdf8;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      font-size: clamp(44px, 8vw, 80px);
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    h1 span {
+      color: #38bdf8;
+    }
+
+    .hero-description {
+      max-width: 650px;
+      color: #cbd5e1;
+      font-size: 19px;
+      margin-bottom: 30px;
+    }
+
+    .button {
+      display: inline-block;
+      background: #38bdf8;
+      color: #082f49;
+      padding: 13px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: #38bdf8;
+      border: 1px solid #38bdf8;
+    }
+
+    section {
+      padding: 80px 8%;
+    }
+
+    section h2 {
+      font-size: 36px;
+      margin-bottom: 15px;
+    }
+
+    .section-intro {
+      max-width: 700px;
+      color: #94a3b8;
+      margin-bottom: 35px;
+    }
+
+    .about {
+      background: #111c31;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .skill {
+      background: #1e293b;
+      color: #7dd3fc;
+      padding: 9px 15px;
+      border-radius: 999px;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .project-card {
+      background: #1e293b;
+      padding: 28px;
+      border-radius: 14px;
+      border: 1px solid #334155;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: #38bdf8;
+    }
+
+    .project-card h3 {
+      color: #7dd3fc;
+      margin-bottom: 12px;
+    }
+
+    .project-card p {
+      color: #cbd5e1;
+      margin-bottom: 20px;
+    }
+
+    .project-card a {
+      color: #38bdf8;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .contact {
+      text-align: center;
+      background: #111c31;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #64748b;
+    }
+
+    @media (max-width: 650px) {
+      nav {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      nav ul {
+        gap: 14px;
+        font-size: 14px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Hello, world!</h1>
-  <p>Welcome to my website.</p>
+
+  <nav>
+    <div class="logo">Michelle.</div>
+
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-content">
+      <p class="eyebrow">Automation Portfolio</p>
+
+      <h1>Hello, I'm <span>Michelle.</span></h1>
+
+      <p class="hero-description">
+        I build practical automation solutions that simplify repetitive work,
+        improve efficiency, and help people save time.
+      </p>
+
+      <a class="button" href="#projects">View my projects</a>
+      <a class="button secondary" href="#contact">Contact me</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="about" id="about">
+      <h2>About Me</h2>
+
+      <p class="section-intro">
+        I'm interested in automation, technology, and creating reliable
+        workflows. This portfolio showcases the projects I'm building as I
+        develop my technical skills.
+      </p>
+
+      <div class="skills">
+        <span class="skill">Workflow Automation</span>
+        <span class="skill">PowerShell</span>
+        <span class="skill">GitHub</span>
+        <span class="skill">HTML & CSS</span>
+        <span class="skill">Problem Solving</span>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Featured Projects</h2>
+
+      <p class="section-intro">
+        Replace these examples with your real projects as you complete them.
+      </p>
+
+      <div class="project-grid">
+        <article class="project-card">
+          <h3>File Organization Automation</h3>
+          <p>
+            A script that automatically sorts files into folders according to
+            their file type, reducing repetitive manual work.
+          </p>
+          <a href="#">Project coming soon →</a>
+        </article>
+
+        <article class="project-card">
+          <h3>Automated Reporting</h3>
+          <p>
+            A workflow that collects information and generates a clear,
+            reusable report.
+          </p>
+          <a href="#">Project coming soon →</a>
+        </article>
+
+        <article class="project-card">
+          <h3>Task Management Workflow</h3>
+          <p>
+            An automation system designed to organize recurring tasks and
+            improve productivity.
+          </p>
+          <a href="#">Project coming soon →</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <h2>Let's Work Together</h2>
+
+      <p class="section-intro" style="margin-left:auto; margin-right:auto;">
+        Interested in automation or want to discuss a project? Send me an email.
+      </p>
+
+      <!-- Replace the email address below with your real email -->
+      <a class="button" href="mailto:your-email@example.com">Email Me</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Michelle. Built with HTML, CSS, and GitHub Pages.</p>
+  </footer>
+
 </body>
 </html>
