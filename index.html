@@ -4,25 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Michelle | Workflow Automation</title>
+  <title>Michelle Project | Workflow Automation</title>
 
+  <meta
+    name="description"
+    content="Michelle Project builds practical workflow automation systems for repetitive, process-heavy work."
+  >
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
 
   <style>
     :root {
       --bg: #11110f;
-      --bg-soft: #171714;
-      --panel: #1b1b17;
-      --panel-2: #20201b;
-      --text: #f1eee5;
-      --muted: #8f9087;
-      --muted-light: #b8b8ad;
-      --accent: #ff7957;
-      --accent-soft: rgba(255, 121, 87, 0.12);
-      --border: rgba(241, 238, 229, 0.13);
-      --border-strong: rgba(241, 238, 229, 0.23);
+      --bg-soft: #171715;
+      --panel: #191a18;
+      --panel-hover: #1d1f1d;
+
+      --text: #f0efe9;
+      --muted: #92948c;
+      --muted-light: #b8bab2;
+
+      /* Light blue accent */
+      --accent: #8fb8d8;
+      --accent-soft: rgba(143, 184, 216, 0.11);
+      --accent-strong: #a5cbe5;
+
+      --border: rgba(240, 239, 233, 0.12);
+      --border-strong: rgba(240, 239, 233, 0.22);
+
       --max-width: 1280px;
     }
 
@@ -49,41 +65,57 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
+      z-index: -3;
+
       background:
         linear-gradient(
-          rgba(255,255,255,0.025) 1px,
+          rgba(240, 239, 233, 0.025) 1px,
           transparent 1px
         ),
         linear-gradient(
           90deg,
-          rgba(255,255,255,0.025) 1px,
+          rgba(240, 239, 233, 0.025) 1px,
           transparent 1px
         );
+
       background-size: 70px 70px;
-      mask-image: linear-gradient(
-        to bottom,
-        black,
-        transparent 75%
-      );
-      z-index: -2;
+
+      mask-image:
+        linear-gradient(
+          to bottom,
+          black 0%,
+          transparent 80%
+        );
     }
 
     body::after {
       content: "";
       position: fixed;
-      width: 700px;
-      height: 700px;
-      top: 4%;
+
+      width: 650px;
+      height: 650px;
+
+      top: 3%;
       left: 50%;
+
       transform: translateX(-50%);
-      background: radial-gradient(
-        circle,
-        rgba(255,121,87,0.10),
-        transparent 65%
-      );
-      filter: blur(40px);
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(143, 184, 216, 0.08),
+          transparent 68%
+        );
+
+      filter: blur(45px);
+
       pointer-events: none;
-      z-index: -1;
+
+      z-index: -2;
+    }
+
+    body.modal-open {
+      overflow: hidden;
     }
 
     a {
@@ -91,13 +123,23 @@
       text-decoration: none;
     }
 
-    img {
-      max-width: 100%;
-      display: block;
+    button,
+    input,
+    textarea {
+      font-family: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
     }
 
     .container {
-      width: min(var(--max-width), calc(100% - 48px));
+      width: min(
+        var(--max-width),
+        calc(100% - 48px)
+      );
+
       margin: 0 auto;
     }
 
@@ -105,19 +147,26 @@
       font-family: "DM Mono", monospace;
     }
 
-    /* NAVIGATION */
+
+    /* =========================================
+       NAVIGATION
+    ========================================= */
 
     nav {
       position: sticky;
       top: 0;
       z-index: 100;
+
       border-bottom: 1px solid var(--border);
-      background: rgba(17,17,15,0.88);
+
+      background: rgba(17, 17, 15, 0.88);
+
       backdrop-filter: blur(18px);
     }
 
     .nav-inner {
       min-height: 76px;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -126,34 +175,45 @@
     .logo {
       display: flex;
       align-items: center;
-      gap: 11px;
+      gap: 12px;
+
+      font-size: 17px;
       font-weight: 800;
-      letter-spacing: -0.03em;
-      font-size: 18px;
+
+      letter-spacing: -0.04em;
     }
 
     .logo-mark {
-      width: 25px;
-      height: 25px;
-      border: 2px solid var(--text);
+      width: 27px;
+      height: 27px;
+
       display: grid;
       place-items: center;
-      position: relative;
+
+      border: 1.5px solid var(--text);
     }
 
     .logo-mark::after {
       content: "";
+
       width: 8px;
       height: 8px;
+
       background: var(--accent);
+
+      box-shadow:
+        0 0 15px rgba(143, 184, 216, 0.25);
     }
 
     .nav-links {
       display: flex;
-      gap: 30px;
+      gap: 32px;
+
       list-style: none;
-      font-size: 13px;
+
       color: var(--muted-light);
+
+      font-size: 13px;
     }
 
     .nav-links a {
@@ -161,70 +221,105 @@
     }
 
     .nav-links a:hover {
-      color: var(--text);
+      color: var(--accent);
     }
 
     .nav-button {
-      border: 1px solid var(--border-strong);
-      padding: 10px 15px;
-      font-size: 12px;
       display: flex;
-      gap: 9px;
       align-items: center;
-      transition: 0.2s ease;
+      gap: 10px;
+
+      padding: 10px 15px;
+
+      border: 1px solid var(--border-strong);
+
+      font-size: 12px;
+
+      transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
     }
 
     .nav-button:hover {
       background: var(--accent-soft);
-      border-color: rgba(255,121,87,0.4);
-      color: var(--accent);
+
+      border-color:
+        rgba(143, 184, 216, 0.4);
+
+      color: var(--accent-strong);
     }
 
-    /* HERO */
+
+    /* =========================================
+       HERO
+    ========================================= */
 
     .hero {
       min-height: calc(100vh - 76px);
+
       display: flex;
       align-items: center;
+
       position: relative;
+
       padding: 90px 0 120px;
     }
 
     .hero-content {
       width: 100%;
-      text-align: center;
+
       position: relative;
+
+      text-align: center;
     }
 
     .hero-topline {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      border: 1px solid var(--border);
+
       padding: 8px 13px;
+
+      border: 1px solid var(--border);
+
       color: var(--muted-light);
-      font-size: 11px;
-      letter-spacing: 0.08em;
+
+      font-size: 10px;
+
       text-transform: uppercase;
-      margin-bottom: 28px;
-      background: rgba(255,255,255,0.015);
+      letter-spacing: 0.09em;
+
+      background:
+        rgba(255, 255, 255, 0.012);
+
+      margin-bottom: 30px;
     }
 
     .status-dot {
       width: 7px;
       height: 7px;
+
       border-radius: 50%;
+
       background: var(--accent);
-      box-shadow: 0 0 12px rgba(255,121,87,0.8);
+
+      box-shadow:
+        0 0 14px rgba(143, 184, 216, 0.7);
     }
 
     .hero-title {
-      font-size: clamp(65px, 11vw, 155px);
-      line-height: 0.88;
-      letter-spacing: -0.075em;
-      font-weight: 800;
       position: relative;
       z-index: 2;
+
+      font-size:
+        clamp(65px, 11vw, 155px);
+
+      line-height: 0.87;
+
+      letter-spacing: -0.078em;
+
+      font-weight: 800;
     }
 
     .hero-title span {
@@ -233,7 +328,9 @@
 
     .hero-title .outline {
       color: transparent;
-      -webkit-text-stroke: 1px rgba(241,238,229,0.28);
+
+      -webkit-text-stroke:
+        1px rgba(240, 239, 233, 0.27);
     }
 
     .hero-title .accent {
@@ -241,107 +338,166 @@
     }
 
     .hero-description {
-      max-width: 620px;
+      max-width: 650px;
+
       margin: 34px auto 0;
+
       color: var(--muted-light);
-      font-size: 16px;
-      line-height: 1.8;
+
+      font-size: 15px;
+
+      line-height: 1.85;
     }
 
     .hero-actions {
       display: flex;
       justify-content: center;
+
       gap: 12px;
+
       margin-top: 34px;
+
       flex-wrap: wrap;
     }
 
     .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+
       padding: 13px 19px;
+
       border: 1px solid var(--border-strong);
+
       font-size: 12px;
-      letter-spacing: 0.02em;
-      transition: 0.25s ease;
+
+      transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
     }
 
     .button.primary {
-      background: var(--text);
-      color: var(--bg);
-      border-color: var(--text);
-      font-weight: 700;
+      color: #11110f;
+
+      background: var(--accent);
+
+      border-color: var(--accent);
+
+      font-weight: 800;
     }
 
     .button.primary:hover {
-      background: var(--accent);
-      border-color: var(--accent);
+      background: var(--accent-strong);
+
+      border-color:
+        var(--accent-strong);
+
+      transform: translateY(-2px);
     }
 
     .button.secondary:hover {
-      border-color: var(--accent);
       color: var(--accent);
+
+      border-color:
+        rgba(143, 184, 216, 0.45);
+
+      background: var(--accent-soft);
+
+      transform: translateY(-2px);
     }
 
-    /* FLOATING HERO PANELS */
+
+    /* =========================================
+       FLOATING HERO CARDS
+    ========================================= */
 
     .floating-card {
       position: absolute;
-      border: 1px solid var(--border);
-      background: rgba(27,27,23,0.82);
-      backdrop-filter: blur(14px);
-      padding: 16px;
-      text-align: left;
+
       width: 235px;
-      box-shadow: 0 25px 80px rgba(0,0,0,0.25);
+
+      padding: 16px;
+
+      border: 1px solid var(--border);
+
+      background:
+        rgba(25, 26, 24, 0.78);
+
+      backdrop-filter: blur(14px);
+
+      text-align: left;
+
+      box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.22);
     }
 
     .floating-card.left {
       left: 0;
-      top: 27%;
+      top: 29%;
     }
 
     .floating-card.right {
       right: 0;
-      top: 48%;
+      top: 49%;
     }
 
     .card-label {
       display: flex;
+
       justify-content: space-between;
-      align-items: center;
+
       margin-bottom: 15px;
+
       color: var(--muted);
-      font-size: 10px;
+
+      font-size: 9px;
+
       text-transform: uppercase;
       letter-spacing: 0.08em;
+
       font-family: "DM Mono", monospace;
     }
 
     .card-title {
-      font-size: 13px;
-      line-height: 1.5;
+      font-size: 12px;
+
+      line-height: 1.65;
+
       font-weight: 600;
     }
 
     .card-line {
-      margin-top: 16px;
-      height: 1px;
-      background: var(--border);
       position: relative;
+
+      height: 1px;
+
+      margin-top: 16px;
+
+      background: var(--border);
     }
 
     .card-line span {
       position: absolute;
-      width: 38%;
-      height: 1px;
-      background: var(--accent);
+
       left: 0;
       top: 0;
+
+      width: 42%;
+      height: 1px;
+
+      background: var(--accent);
     }
 
-    /* SECTION HEADER */
+
+    /* =========================================
+       GENERAL SECTIONS
+    ========================================= */
 
     .section {
       padding: 120px 0;
+
       border-top: 1px solid var(--border);
     }
 
@@ -349,268 +505,465 @@
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
+
       gap: 30px;
+
       margin-bottom: 50px;
     }
 
     .section-kicker {
-      font-family: "DM Mono", monospace;
+      margin-bottom: 13px;
+
       color: var(--accent);
-      font-size: 11px;
+
+      font-family: "DM Mono", monospace;
+
+      font-size: 10px;
+
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      margin-bottom: 13px;
     }
 
     .section-title {
-      font-size: clamp(42px, 6vw, 80px);
-      line-height: 0.95;
-      letter-spacing: -0.055em;
+      font-size:
+        clamp(42px, 6vw, 78px);
+
+      line-height: 0.94;
+
+      letter-spacing: -0.06em;
     }
 
     .section-description {
-      max-width: 420px;
+      max-width: 430px;
+
       color: var(--muted);
-      font-size: 14px;
+
+      font-size: 13px;
+
+      line-height: 1.8;
     }
 
-    /* SERVICES */
 
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+    /* =========================================
+       CAPABILITIES
+    ========================================= */
+
+    .capability-list {
       border-top: 1px solid var(--border);
-      border-left: 1px solid var(--border);
     }
 
-    .service-card {
-      min-height: 310px;
-      padding: 28px;
-      border-right: 1px solid var(--border);
+    .capability-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      min-height: 73px;
+
       border-bottom: 1px solid var(--border);
-      position: relative;
-      transition: background 0.3s ease;
+
+      font-size: 13px;
     }
 
-    .service-card:hover {
-      background: var(--panel);
-    }
-
-    .service-number {
-      font-family: "DM Mono", monospace;
-      font-size: 11px;
+    .capability-item .number {
       color: var(--muted);
+
+      font-family: "DM Mono", monospace;
+
+      font-size: 10px;
     }
 
-    .service-icon {
-      width: 48px;
-      height: 48px;
-      border: 1px solid var(--border-strong);
+    .capability-item .tool {
+      display: flex;
+      align-items: center;
+
+      gap: 12px;
+    }
+
+    .capability-icon {
+      width: 28px;
+      height: 28px;
+
       display: grid;
       place-items: center;
-      margin: 40px 0 28px;
+
+      border: 1px solid var(--border-strong);
+
       color: var(--accent);
+
       font-family: "DM Mono", monospace;
+
+      font-size: 10px;
     }
 
-    .service-card h3 {
-      font-size: 22px;
-      letter-spacing: -0.035em;
-      margin-bottom: 12px;
-    }
 
-    .service-card p {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.8;
-      max-width: 320px;
-    }
-
-    .service-arrow {
-      position: absolute;
-      right: 25px;
-      bottom: 24px;
-      color: var(--muted);
-      font-size: 18px;
-    }
-
-    /* ABOUT */
+    /* =========================================
+       ABOUT
+    ========================================= */
 
     .about-layout {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
+
+      grid-template-columns:
+        1.12fr 0.88fr;
+
       gap: 90px;
+
       align-items: start;
     }
 
     .about-large {
-      font-size: clamp(30px, 4vw, 52px);
-      letter-spacing: -0.05em;
+      max-width: 760px;
+
+      font-size:
+        clamp(30px, 4vw, 52px);
+
       line-height: 1.08;
-      max-width: 750px;
+
+      letter-spacing: -0.055em;
     }
 
-    .about-large span {
+    .about-large .highlight {
       color: var(--accent);
     }
 
     .about-copy {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.9;
+      max-width: 700px;
+
       margin-top: 30px;
-      max-width: 670px;
-    }
 
-    .skill-list {
-      border-top: 1px solid var(--border);
-      margin-top: 40px;
-    }
-
-    .skill-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 13px;
-    }
-
-    .skill-item span:last-child {
-      font-family: "DM Mono", monospace;
       color: var(--muted);
-      font-size: 11px;
+
+      font-size: 14px;
+
+      line-height: 1.9;
     }
 
-    /* PROJECTS */
+    .about-copy strong {
+      color: var(--muted-light);
+
+      font-weight: 600;
+    }
+
+
+    /* =========================================
+       PROJECTS
+    ========================================= */
 
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
       gap: 18px;
     }
 
     .project {
-      min-height: 440px;
-      border: 1px solid var(--border);
-      background: var(--panel);
-      padding: 25px;
+      min-height: 455px;
+
       position: relative;
+
       overflow: hidden;
-      transition: transform 0.3s ease, border-color 0.3s ease;
+
+      padding: 25px;
+
+      border: 1px solid var(--border);
+
+      background: var(--panel);
+
+      transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease;
     }
 
     .project:hover {
       transform: translateY(-6px);
-      border-color: var(--border-strong);
+
+      border-color:
+        rgba(240, 239, 233, 0.22);
+
+      background: var(--panel-hover);
     }
 
     .project:nth-child(3) {
       grid-column: span 2;
-      min-height: 350px;
+
+      min-height: 375px;
     }
 
     .project-meta {
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      font-family: "DM Mono", monospace;
+
       color: var(--muted);
-      font-size: 10px;
+
+      font-family: "DM Mono", monospace;
+
+      font-size: 9px;
+
       text-transform: uppercase;
+      letter-spacing: 0.06em;
     }
+
+    .project-number {
+      color: var(--accent);
+    }
+
+
+    /* Project visual area */
 
     .project-visual {
       position: absolute;
-      inset: 75px 25px 95px;
+
+      inset: 74px 25px 104px;
+
+      overflow: hidden;
+
       border: 1px solid var(--border);
+
       background:
         linear-gradient(
-          120deg,
-          rgba(255,121,87,0.08),
+          135deg,
+          rgba(143, 184, 216, 0.07),
           transparent 45%
         ),
         var(--bg-soft);
-      overflow: hidden;
     }
 
     .project-visual::before {
       content: "";
+
       position: absolute;
+
       width: 280px;
       height: 280px;
-      border: 1px solid rgba(255,121,87,0.25);
-      border-radius: 50%;
-      top: 50%;
+
       left: 50%;
-      transform: translate(-50%, -50%);
+      top: 50%;
+
+      transform:
+        translate(-50%, -50%);
+
+      border:
+        1px solid
+        rgba(143, 184, 216, 0.2);
+
+      border-radius: 50%;
     }
 
     .project-visual::after {
       content: "";
+
       position: absolute;
+
+      left: 0;
+      top: 50%;
+
       width: 100%;
       height: 1px;
-      background: rgba(241,238,229,0.12);
-      top: 50%;
-      left: 0;
+
+      background:
+        rgba(240, 239, 233, 0.08);
+
       box-shadow:
-        0 -70px 0 rgba(241,238,229,0.06),
-        0 70px 0 rgba(241,238,229,0.06);
+        0 -70px 0
+        rgba(240, 239, 233, 0.04),
+
+        0 70px 0
+        rgba(240, 239, 233, 0.04);
     }
+
+
+    /* Project symbol */
+
+    .project-symbol {
+      position: absolute;
+
+      left: 50%;
+      top: 50%;
+
+      z-index: 2;
+
+      transform:
+        translate(-50%, -50%);
+
+      width: 85px;
+      height: 85px;
+
+      display: grid;
+      place-items: center;
+
+      color: var(--accent);
+
+      border:
+        1px solid
+        rgba(143, 184, 216, 0.28);
+
+      background:
+        rgba(17, 17, 15, 0.68);
+
+      backdrop-filter: blur(8px);
+
+      box-shadow:
+        0 0 40px
+        rgba(143, 184, 216, 0.07);
+    }
+
+    .project-symbol svg {
+      width: 38px;
+      height: 38px;
+    }
+
+
+    /* Project content */
 
     .project-content {
       position: absolute;
+
       left: 25px;
       right: 25px;
       bottom: 23px;
+
       display: flex;
-      justify-content: space-between;
       align-items: flex-end;
+      justify-content: space-between;
+
       gap: 20px;
     }
 
     .project-content h3 {
-      font-size: 24px;
+      font-size: 23px;
+
+      line-height: 1.15;
+
       letter-spacing: -0.04em;
     }
 
     .project-content p {
+      max-width: 550px;
+
+      margin-top: 7px;
+
       color: var(--muted);
+
       font-size: 12px;
-      margin-top: 6px;
-      max-width: 500px;
+
+      line-height: 1.65;
     }
 
     .project-link {
-      font-family: "DM Mono", monospace;
-      font-size: 11px;
-      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+
       white-space: nowrap;
+
+      color: var(--accent);
+
+      font-family: "DM Mono", monospace;
+
+      font-size: 10px;
+
+      transition: color 0.2s ease;
     }
 
-    /* CONTACT */
+    .project-link:hover {
+      color: var(--accent-strong);
+    }
+
+    .project-tools {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 7px;
+
+      margin-top: 12px;
+    }
+
+    .project-tool {
+      padding: 4px 8px;
+
+      border: 1px solid var(--border);
+
+      color: var(--muted-light);
+
+      font-family: "DM Mono", monospace;
+
+      font-size: 8px;
+    }
+
+
+    /* =========================================
+       PROCESS PHILOSOPHY
+    ========================================= */
+
+    .process-layout {
+      display: grid;
+
+      grid-template-columns:
+        1.12fr 0.88fr;
+
+      gap: 90px;
+
+      align-items: start;
+    }
+
+    .process-large {
+      max-width: 760px;
+
+      font-size:
+        clamp(30px, 4vw, 52px);
+
+      line-height: 1.08;
+
+      letter-spacing: -0.055em;
+    }
+
+    .process-large .highlight {
+      color: var(--accent);
+    }
+
+
+    /* =========================================
+       CONTACT
+    ========================================= */
 
     .contact {
-      padding: 140px 0;
+      padding: 145px 0;
+
       text-align: center;
+
       border-top: 1px solid var(--border);
     }
 
     .contact-label {
-      color: var(--accent);
-      font-family: "DM Mono", monospace;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
       margin-bottom: 20px;
+
+      color: var(--accent);
+
+      font-family: "DM Mono", monospace;
+
+      font-size: 10px;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.1em;
     }
 
     .contact-title {
-      font-size: clamp(55px, 9vw, 125px);
-      line-height: 0.88;
-      letter-spacing: -0.07em;
-      max-width: 950px;
+      max-width: 1000px;
+
       margin: 0 auto;
+
+      font-size:
+        clamp(55px, 9vw, 125px);
+
+      line-height: 0.86;
+
+      letter-spacing: -0.075em;
     }
 
     .contact-title span {
@@ -618,64 +971,312 @@
     }
 
     .contact-copy {
-      color: var(--muted);
-      max-width: 520px;
+      max-width: 550px;
+
       margin: 30px auto;
+
+      color: var(--muted);
+
       font-size: 14px;
+
+      line-height: 1.8;
     }
 
     .contact-button {
       display: inline-flex;
       align-items: center;
+
       gap: 10px;
-      background: var(--accent);
-      color: #17100d;
+
       padding: 15px 21px;
-      font-weight: 800;
+
+      border: none;
+
+      background: var(--accent);
+
+      color: #11110f;
+
       font-size: 12px;
-      transition: transform 0.2s ease;
+
+      font-weight: 800;
+
+      cursor: pointer;
+
+      transition:
+        background 0.2s ease,
+        transform 0.2s ease;
     }
 
     .contact-button:hover {
+      background: var(--accent-strong);
+
       transform: translateY(-3px);
     }
 
-    /* FOOTER */
+
+    /* =========================================
+       CONTACT MODAL
+    ========================================= */
+
+    .contact-modal {
+      position: fixed;
+
+      inset: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 24px;
+
+      opacity: 0;
+      visibility: hidden;
+
+      transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+
+      z-index: 1000;
+    }
+
+    .contact-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .contact-modal-backdrop {
+      position: absolute;
+
+      inset: 0;
+
+      background:
+        rgba(0, 0, 0, 0.72);
+
+      backdrop-filter: blur(8px);
+    }
+
+    .contact-modal-box {
+      position: relative;
+
+      z-index: 2;
+
+      width: min(620px, 100%);
+
+      max-height: 90vh;
+
+      overflow-y: auto;
+
+      padding: 38px;
+
+      background: #171715;
+
+      border:
+        1px solid
+        var(--border-strong);
+
+      box-shadow:
+        0 30px 100px
+        rgba(0, 0, 0, 0.5);
+    }
+
+    .contact-modal-close {
+      position: absolute;
+
+      top: 18px;
+      right: 18px;
+
+      width: 35px;
+      height: 35px;
+
+      border: 1px solid var(--border);
+
+      background: transparent;
+
+      color: var(--muted-light);
+
+      font-size: 22px;
+
+      line-height: 1;
+
+      cursor: pointer;
+
+      transition:
+        color 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .contact-modal-close:hover {
+      color: var(--accent);
+
+      border-color: var(--accent);
+    }
+
+    .contact-form-title {
+      margin-top: 4px;
+
+      margin-bottom: 35px;
+
+      font-size:
+        clamp(34px, 6vw, 58px);
+
+      line-height: 0.95;
+
+      letter-spacing: -0.055em;
+    }
+
+    .form-field {
+      margin-bottom: 22px;
+    }
+
+    .form-field label {
+      display: block;
+
+      margin-bottom: 8px;
+
+      color: var(--muted-light);
+
+      font-family: "DM Mono", monospace;
+
+      font-size: 10px;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.08em;
+    }
+
+    .form-field input,
+    .form-field textarea {
+      width: 100%;
+
+      border:
+        1px solid
+        var(--border);
+
+      background: #11110f;
+
+      color: var(--text);
+
+      padding: 14px 15px;
+
+      font-family: inherit;
+
+      font-size: 13px;
+
+      outline: none;
+
+      resize: vertical;
+
+      transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .form-field input::placeholder,
+    .form-field textarea::placeholder {
+      color: #63655f;
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus {
+      border-color:
+        rgba(143, 184, 216, 0.55);
+
+      background: #141513;
+    }
+
+    .form-submit {
+      display: inline-flex;
+      align-items: center;
+
+      gap: 10px;
+
+      border: none;
+
+      background: var(--accent);
+
+      color: #11110f;
+
+      padding: 14px 19px;
+
+      font-family: inherit;
+
+      font-size: 12px;
+
+      font-weight: 800;
+
+      cursor: pointer;
+
+      transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .form-submit:hover {
+      background: var(--accent-strong);
+
+      transform: translateY(-2px);
+    }
+
+
+    /* =========================================
+       FOOTER
+    ========================================= */
 
     footer {
       border-top: 1px solid var(--border);
+
       padding: 25px 0;
     }
 
     .footer-inner {
       display: flex;
+      align-items: center;
       justify-content: space-between;
+
       gap: 20px;
+
       color: var(--muted);
-      font-size: 11px;
+
       font-family: "DM Mono", monospace;
+
+      font-size: 9px;
     }
 
-    /* MOBILE */
+    .footer-link {
+      transition: color 0.2s ease;
+    }
 
-    @media (max-width: 1000px) {
+    .footer-link:hover {
+      color: var(--accent);
+    }
+
+
+    /* =========================================
+       RESPONSIVE
+    ========================================= */
+
+    @media (max-width: 1050px) {
+
       .floating-card {
         display: none;
       }
 
-      .service-grid {
+      .about-layout,
+      .process-layout {
         grid-template-columns: 1fr;
-      }
 
-      .about-layout {
-        grid-template-columns: 1fr;
-        gap: 50px;
+        gap: 55px;
       }
     }
 
-    @media (max-width: 760px) {
+    @media (max-width: 800px) {
+
       .container {
-        width: min(100% - 32px, var(--max-width));
+        width:
+          min(
+            var(--max-width),
+            calc(100% - 32px)
+          );
       }
 
       .nav-links {
@@ -688,11 +1289,17 @@
 
       .hero {
         min-height: auto;
-        padding: 100px 0 100px;
+
+        padding: 105px 0 110px;
       }
 
       .hero-title {
-        font-size: clamp(58px, 17vw, 100px);
+        font-size:
+          clamp(
+            58px,
+            16vw,
+            105px
+          );
       }
 
       .hero-description {
@@ -705,6 +1312,8 @@
 
       .section-header {
         display: block;
+
+        margin-bottom: 38px;
       }
 
       .section-description {
@@ -720,7 +1329,7 @@
       }
 
       .project {
-        min-height: 380px;
+        min-height: 400px;
       }
 
       .project-content {
@@ -728,93 +1337,237 @@
       }
 
       .project-link {
-        display: inline-block;
-        margin-top: 12px;
+        margin-top: 14px;
       }
 
       .contact {
-        padding: 100px 0;
+        padding: 105px 0;
       }
 
       .footer-inner {
+        align-items: flex-start;
+
         flex-direction: column;
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      .contact-modal-box {
+        padding: 28px 20px;
+      }
+
+      .contact-title {
+        font-size:
+          clamp(
+            48px,
+            14vw,
+            80px
+          );
+      }
+    }
+
+    @media (max-width: 500px) {
+
+      .logo {
+        font-size: 15px;
+      }
+
+      .logo-mark {
+        width: 24px;
+        height: 24px;
+      }
+
+      .nav-button {
+        padding: 9px 11px;
+      }
+
+      .hero-title {
+        letter-spacing: -0.065em;
+      }
+
+      .about-large,
+      .process-large {
+        font-size: 31px;
+      }
+
+      .project {
+        min-height: 380px;
+      }
+
+      .project-visual {
+        inset:
+          70px
+          18px
+          125px;
+      }
+
+      .project-content {
+        left: 18px;
+        right: 18px;
+      }
+
+      .project-symbol {
+        width: 72px;
+        height: 72px;
+      }
+
+      .project-symbol svg {
+        width: 32px;
+        height: 32px;
       }
     }
   </style>
 </head>
 
+
 <body>
 
-  <!-- NAV -->
+
+  <!-- =========================================
+       NAVIGATION
+  ========================================= -->
 
   <nav>
+
     <div class="container nav-inner">
 
-      <a href="#" class="logo">
+      <a
+        href="#"
+        class="logo"
+        aria-label="Michelle Project home"
+      >
         <span class="logo-mark"></span>
-        Michelle.
+
+        <span>
+          Michelle Project
+        </span>
       </a>
 
+
       <ul class="nav-links">
-        <li><a href="#services">Capabilities</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Work</a></li>
+
+        <li>
+          <a href="#capabilities">
+            Capabilities
+          </a>
+        </li>
+
+        <li>
+          <a href="#about">
+            About
+          </a>
+        </li>
+
+        <li>
+          <a href="#work">
+            Work
+          </a>
+        </li>
+
       </ul>
 
-      <a href="#contact" class="nav-button">
+
+      <a
+        href="#contact"
+        class="nav-button"
+      >
         Let's talk
         <span>↗</span>
       </a>
 
     </div>
+
   </nav>
 
 
-  <!-- HERO -->
+  <!-- =========================================
+       HERO
+  ========================================= -->
 
   <header class="hero">
 
     <div class="container hero-content">
 
+
       <div class="hero-topline mono">
+
         <span class="status-dot"></span>
-        Workflow systems / available for projects
+
+        Workflow automation /
+        open to opportunities
+
       </div>
+
 
       <h1 class="hero-title">
-        <span>MAKE WORK</span>
-        <span class="outline">FLOW</span>
-        <span class="accent">BETTER.</span>
+
+        <span>
+          MAKE WORK
+        </span>
+
+        <span class="outline">
+          FLOW
+        </span>
+
+        <span class="accent">
+          BETTER.
+        </span>
+
       </h1>
 
+
       <p class="hero-description">
-        I design practical automation systems that remove repetitive work,
-        connect tools, and turn manual processes into reliable workflows.
+        I map messy processes and turn repetitive digital work
+        into practical workflows that connect people, tools,
+        data, and AI.
       </p>
 
+
       <div class="hero-actions">
-        <a href="#projects" class="button primary">
-          Explore my work
+
+        <a
+          href="#work"
+          class="button primary"
+        >
+          Explore the work
+          <span>↗</span>
         </a>
 
-        <a href="#contact" class="button secondary">
-          Start a conversation
+
+        <a
+          href="#about"
+          class="button secondary"
+        >
+          About Michelle
         </a>
+
       </div>
 
 
-      <!-- FLOATING CARDS -->
+      <!-- Left floating card -->
 
       <div class="floating-card left">
 
         <div class="card-label">
-          <span>01 / Input</span>
-          <span>READY</span>
+
+          <span>
+            01 / Process
+          </span>
+
+          <span>
+            MAP
+          </span>
+
         </div>
 
+
         <div class="card-title">
-          Repetitive tasks identified and mapped into a clear workflow.
+          Find the manual handoffs, unclear ownership,
+          and steps that no longer match how the work
+          actually happens.
         </div>
+
 
         <div class="card-line">
           <span></span>
@@ -823,16 +1576,29 @@
       </div>
 
 
+      <!-- Right floating card -->
+
       <div class="floating-card right">
 
         <div class="card-label">
-          <span>02 / System</span>
-          <span>ACTIVE</span>
+
+          <span>
+            02 / Workflow
+          </span>
+
+          <span>
+            BUILD
+          </span>
+
         </div>
 
+
         <div class="card-title">
-          Tools connected. Actions triggered automatically. Output delivered.
+          Connect the tools, automate the decisions,
+          and design the workflow around real-world
+          failure cases.
         </div>
+
 
         <div class="card-line">
           <span></span>
@@ -848,86 +1614,153 @@
   <main>
 
 
-    <!-- SERVICES -->
+    <!-- =========================================
+         CAPABILITIES
+    ========================================= -->
 
-    <section class="section" id="services">
+    <section
+      class="section"
+      id="capabilities"
+    >
 
       <div class="container">
 
+
         <div class="section-header">
 
+
           <div>
-            <div class="section-kicker">What I build</div>
+
+            <div class="section-kicker">
+              What I work with
+            </div>
+
 
             <h2 class="section-title">
-              Systems that<br>
-              save time.
+              Practical tools.<br>
+              Clear workflows.
             </h2>
+
           </div>
 
+
           <p class="section-description">
-            I focus on workflow automation rather than complicated
-            infrastructure. The goal is simple: fewer repetitive steps,
-            clearer processes, and dependable results.
+            The tools change depending on the process.
+            The goal stays the same: make repetitive work
+            easier to run, easier to review, and easier
+            to maintain.
           </p>
 
         </div>
 
 
-        <div class="service-grid">
-
-          <article class="service-card">
-
-            <div class="service-number">01</div>
-
-            <div class="service-icon">↯</div>
-
-            <h3>Workflow Automation</h3>
-
-            <p>
-              Connect everyday tools and automate repetitive processes from
-              trigger to final output.
-            </p>
-
-            <div class="service-arrow">↗</div>
-
-          </article>
+        <div class="capability-list">
 
 
-          <article class="service-card">
+          <div class="capability-item">
 
-            <div class="service-number">02</div>
+            <div class="tool">
 
-            <div class="service-icon">◌</div>
+              <span class="capability-icon">
+                ↯
+              </span>
 
-            <h3>Process Design</h3>
+              <span>
+                n8n Workflow Design
+              </span>
 
-            <p>
-              Break down manual processes and turn them into structured,
-              reusable workflows.
-            </p>
+            </div>
 
-            <div class="service-arrow">↗</div>
+            <span class="number">
+              01
+            </span>
 
-          </article>
+          </div>
 
 
-          <article class="service-card">
+          <div class="capability-item">
 
-            <div class="service-number">03</div>
+            <div class="tool">
 
-            <div class="service-icon">+</div>
+              <span class="capability-icon">
+                ◌
+              </span>
 
-            <h3>Automation Scripts</h3>
+              <span>
+                AI &amp; LLM Integration
+              </span>
 
-            <p>
-              Build lightweight scripts for repetitive tasks involving files,
-              data, reporting, and internal operations.
-            </p>
+            </div>
 
-            <div class="service-arrow">↗</div>
+            <span class="number">
+              02
+            </span>
 
-          </article>
+          </div>
+
+
+          <div class="capability-item">
+
+            <div class="tool">
+
+              <span class="capability-icon">
+                ↔
+              </span>
+
+              <span>
+                API &amp; Document Processing
+              </span>
+
+            </div>
+
+            <span class="number">
+              03
+            </span>
+
+          </div>
+
+
+          <div class="capability-item">
+
+            <div class="tool">
+
+              <span class="capability-icon">
+                ▤
+              </span>
+
+              <span>
+                Google Workspace Automation
+              </span>
+
+            </div>
+
+            <span class="number">
+              04
+            </span>
+
+          </div>
+
+
+          <div class="capability-item">
+
+            <div class="tool">
+
+              <span class="capability-icon">
+                ⌁
+              </span>
+
+              <span>
+                Process Mapping
+              </span>
+
+            </div>
+
+            <span class="number">
+              05
+            </span>
+
+          </div>
+
 
         </div>
 
@@ -936,21 +1769,34 @@
     </section>
 
 
-    <!-- ABOUT -->
+    <!-- =========================================
+         ABOUT
+    ========================================= -->
 
-    <section class="section" id="about">
+    <section
+      class="section"
+      id="about"
+    >
 
       <div class="container">
 
+
         <div class="section-header">
 
+
           <div>
-            <div class="section-kicker">About</div>
+
+            <div class="section-kicker">
+              About
+            </div>
+
           </div>
 
+
           <p class="section-description">
-            A practical approach to automation, focused on solving real
-            problems instead of adding unnecessary complexity.
+            A process-first approach to automation,
+            with the technical build following the
+            problem rather than the other way around.
           </p>
 
         </div>
@@ -958,50 +1804,161 @@
 
         <div class="about-layout">
 
+
           <div>
 
+
             <p class="about-large">
-              I turn repetitive digital work into
-              <span>clear systems</span> that are easier
-              to run, maintain, and improve.
+              Broken processes are rarely a
+              <span class="highlight">
+                tooling problem.
+              </span>
             </p>
 
+
             <p class="about-copy">
-              My interest is in workflow automation, scripting, and building
-              practical tools that make everyday work more efficient.
-              I enjoy taking messy manual processes and reducing them into
-              simple, repeatable steps.
+              They break because nobody mapped what happens
+              between teams, and the documented process
+              stopped matching reality.
             </p>
+
+
+            <p class="about-copy">
+              I spent my career in process-heavy work,
+              dealing with partner onboarding,
+              proof-of-concept cycles, programs with
+              multiple stakeholders, and situations where
+              ownership was not always clear.
+            </p>
+
+
+            <p class="about-copy">
+              Moving into automation was not a change
+              of direction.
+              <strong>
+                It was the next step.
+              </strong>
+            </p>
+
+
+            <p class="about-copy">
+              Today I build workflow systems that connect
+              business processes with tools, APIs,
+              spreadsheets, email, and AI.
+            </p>
+
 
           </div>
 
 
-          <div class="skill-list">
+          <div class="capability-list">
 
-            <div class="skill-item">
-              <span>Workflow Automation</span>
-              <span>01</span>
+
+            <div class="capability-item">
+
+              <div class="tool">
+
+                <span class="capability-icon">
+                  01
+                </span>
+
+                <span>
+                  Map undocumented processes
+                </span>
+
+              </div>
+
+              <span class="number">
+                01
+              </span>
+
             </div>
 
-            <div class="skill-item">
-              <span>PowerShell</span>
-              <span>02</span>
+
+            <div class="capability-item">
+
+              <div class="tool">
+
+                <span class="capability-icon">
+                  02
+                </span>
+
+                <span>
+                  Design practical workflows
+                </span>
+
+              </div>
+
+              <span class="number">
+                02
+              </span>
+
             </div>
 
-            <div class="skill-item">
-              <span>GitHub</span>
-              <span>03</span>
+
+            <div class="capability-item">
+
+              <div class="tool">
+
+                <span class="capability-icon">
+                  03
+                </span>
+
+                <span>
+                  Implement with n8n
+                </span>
+
+              </div>
+
+              <span class="number">
+                03
+              </span>
+
             </div>
 
-            <div class="skill-item">
-              <span>HTML / CSS</span>
-              <span>04</span>
+
+            <div class="capability-item">
+
+              <div class="tool">
+
+                <span class="capability-icon">
+                  04
+                </span>
+
+                <span>
+                  Translate operations into systems
+                </span>
+
+              </div>
+
+              <span class="number">
+                04
+              </span>
+
             </div>
 
-            <div class="skill-item">
-              <span>Process Thinking</span>
-              <span>05</span>
+
+            <div class="capability-item">
+
+              <div class="tool">
+
+                <span class="capability-icon">
+                  05
+                </span>
+
+                <span>
+                  Design for failure,
+                  not just success
+                </span>
+
+              </div>
+
+              <span class="number">
+                05
+              </span>
+
             </div>
+
 
           </div>
 
@@ -1012,27 +1969,40 @@
     </section>
 
 
-    <!-- PROJECTS -->
+    <!-- =========================================
+         SELECTED WORK
+    ========================================= -->
 
-    <section class="section" id="projects">
+    <section
+      class="section"
+      id="work"
+    >
 
       <div class="container">
 
+
         <div class="section-header">
 
+
           <div>
-            <div class="section-kicker">Selected work</div>
+
+            <div class="section-kicker">
+              Selected systems
+            </div>
+
 
             <h2 class="section-title">
-              Built to<br>
-              reduce friction.
+              Three processes.<br>
+              Three workflows.
             </h2>
+
           </div>
 
+
           <p class="section-description">
-            A collection of automation projects and experiments.
-            Replace these examples with your live GitHub projects as they
-            become available.
+            Three recent automation projects,
+            built around different kinds of
+            repetitive work.
           </p>
 
         </div>
@@ -1041,28 +2011,120 @@
         <div class="projects-grid">
 
 
+          <!-- =====================================
+               PROJECT 01: BUDGET
+          ====================================== -->
+
           <article class="project">
 
+
             <div class="project-meta">
-              <span>Automation / 001</span>
-              <span>Prototype</span>
+
+              <span class="project-number">
+                01 / Automation
+              </span>
+
+              <span>
+                Budget monitoring
+              </span>
+
             </div>
 
-            <div class="project-visual"></div>
+
+            <div class="project-visual">
+
+
+              <div class="project-symbol">
+
+                <svg
+                  viewBox="0 0 48 48"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+
+                  <path
+                    d="M7 36.5H41"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+
+                  <path
+                    d="M9 32L18 25L25 28L39 13"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="square"
+                    stroke-linejoin="miter"
+                  />
+
+                  <path
+                    d="M31 13H39V21"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                  />
+
+                  <path
+                    d="M10 18H25"
+                    stroke="currentColor"
+                    stroke-width="1"
+                    opacity="0.4"
+                  />
+
+                </svg>
+
+              </div>
+
+            </div>
+
 
             <div class="project-content">
 
+
               <div>
-                <h3>File Organization System</h3>
+
+                <h3>
+                  Budget Monitoring System
+                </h3>
+
 
                 <p>
-                  Automatically sorts files into structured folders based
-                  on file type and rules.
+                  Turns transaction data into a recurring
+                  spending check, compares categories against
+                  budget limits, and sends an email when spending
+                  crosses a threshold.
                 </p>
+
+
+                <div class="project-tools">
+
+                  <span class="project-tool">
+                    n8n
+                  </span>
+
+                  <span class="project-tool">
+                    Google Sheets
+                  </span>
+
+                  <span class="project-tool">
+                    Gmail
+                  </span>
+
+                  <span class="project-tool">
+                    JavaScript
+                  </span>
+
+                </div>
+
               </div>
 
-              <a href="#" class="project-link">
-                View project ↗
+
+              <a
+                href="https://github.com/michelleproject"
+                class="project-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub ↗
               </a>
 
             </div>
@@ -1070,28 +2132,134 @@
           </article>
 
 
+          <!-- =====================================
+               PROJECT 02: RESUME
+          ====================================== -->
+
           <article class="project">
 
+
             <div class="project-meta">
-              <span>Workflow / 002</span>
-              <span>Prototype</span>
+
+              <span class="project-number">
+                02 / AI Workflow
+              </span>
+
+              <span>
+                Resume screening
+              </span>
+
             </div>
 
-            <div class="project-visual"></div>
+
+            <div class="project-visual">
+
+
+              <div class="project-symbol">
+
+                <svg
+                  viewBox="0 0 48 48"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+
+                  <rect
+                    x="8"
+                    y="6"
+                    width="23"
+                    height="35"
+                    rx="1"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+
+                  <path
+                    d="M14 15H25"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+
+                  <path
+                    d="M14 21H25"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+
+                  <path
+                    d="M14 27H21"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+
+                  <circle
+                    cx="35"
+                    cy="30"
+                    r="7"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+
+                  <path
+                    d="M40 35L44 39"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+
+                </svg>
+
+              </div>
+
+            </div>
+
 
             <div class="project-content">
 
+
               <div>
-                <h3>Automated Reporting</h3>
+
+                <h3>
+                  AI Resume Screening
+                </h3>
+
 
                 <p>
-                  Collects information from multiple sources and turns it
-                  into a reusable report.
+                  Reads incoming PDF resumes, evaluates candidates
+                  against defined role criteria, assigns a score
+                  and verdict, and logs every result for review.
                 </p>
+
+
+                <div class="project-tools">
+
+                  <span class="project-tool">
+                    n8n
+                  </span>
+
+                  <span class="project-tool">
+                    Gemini
+                  </span>
+
+                  <span class="project-tool">
+                    Gmail
+                  </span>
+
+                  <span class="project-tool">
+                    Google Sheets
+                  </span>
+
+                </div>
+
               </div>
 
-              <a href="#" class="project-link">
-                View project ↗
+
+              <a
+                href="https://github.com/michelleproject"
+                class="project-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub ↗
               </a>
 
             </div>
@@ -1099,28 +2267,165 @@
           </article>
 
 
+          <!-- =====================================
+               PROJECT 03: DOCUMENT PIPELINE
+          ====================================== -->
+
           <article class="project">
 
+
             <div class="project-meta">
-              <span>Systems / 003</span>
-              <span>In progress</span>
+
+              <span class="project-number">
+                03 / Document Pipeline
+              </span>
+
+              <span>
+                Invoice processing
+              </span>
+
             </div>
 
-            <div class="project-visual"></div>
+
+            <div class="project-visual">
+
+
+              <div class="project-symbol">
+
+                <svg
+                  viewBox="0 0 48 48"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+
+                  <rect
+                    x="6"
+                    y="8"
+                    width="17"
+                    height="28"
+                    rx="1"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+
+                  <path
+                    d="M11 15H18"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+
+                  <path
+                    d="M11 21H18"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+
+                  <path
+                    d="M11 27H16"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+
+                  <path
+                    d="M28 22H34"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+
+                  <path
+                    d="M31 19L34 22L31 25"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+
+                  <rect
+                    x="36"
+                    y="10"
+                    width="7"
+                    height="25"
+                    rx="1"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+
+                  <path
+                    d="M38.5 16H41"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  />
+
+                  <path
+                    d="M38.5 21H41"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  />
+
+                  <path
+                    d="M38.5 26H41"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  />
+
+                </svg>
+
+              </div>
+
+            </div>
+
 
             <div class="project-content">
 
+
               <div>
-                <h3>Task Management Workflow</h3>
+
+                <h3>
+                  Document Processing Pipeline
+                </h3>
+
 
                 <p>
-                  A workflow designed to organize recurring tasks,
-                  reduce manual updates, and improve visibility.
+                  Processes incoming invoice documents through
+                  an API and AI extraction pipeline, validates
+                  the result, and routes successful, review,
+                  and error cases into separate records.
                 </p>
+
+
+                <div class="project-tools">
+
+                  <span class="project-tool">
+                    FastAPI
+                  </span>
+
+                  <span class="project-tool">
+                    n8n
+                  </span>
+
+                  <span class="project-tool">
+                    Gemini
+                  </span>
+
+                  <span class="project-tool">
+                    Gmail
+                  </span>
+
+                  <span class="project-tool">
+                    Google Sheets
+                  </span>
+
+                </div>
+
               </div>
 
-              <a href="#" class="project-link">
-                View project ↗
+
+              <a
+                href="https://github.com/michelleproject"
+                class="project-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub ↗
               </a>
 
             </div>
@@ -1135,62 +2440,451 @@
     </section>
 
 
-    <!-- CONTACT -->
+    <!-- =========================================
+         PROCESS PHILOSOPHY
+    ========================================= -->
 
-    <section class="contact" id="contact">
+    <section class="section">
 
       <div class="container">
 
-        <div class="contact-label">
-          Have a process that needs fixing?
+
+        <div class="section-header">
+
+
+          <div>
+
+            <div class="section-kicker">
+              How I think about automation
+            </div>
+
+
+            <h2 class="section-title">
+              The build is<br>
+              not the hard part.
+            </h2>
+
+          </div>
+
+
+          <p class="section-description">
+            Choosing the right process to automate matters
+            more than adding another tool to the stack.
+          </p>
+
         </div>
 
-        <h2 class="contact-title">
-          LET'S BUILD<br>
-          <span>BETTER FLOWS.</span>
-        </h2>
 
-        <p class="contact-copy">
-          Tell me what currently takes too many clicks, too many steps,
-          or too much manual work.
-        </p>
+        <div class="process-layout">
 
-        <a
-          href="mailto:your-email@example.com"
-          class="contact-button"
-        >
-          Email Michelle
-          <span>↗</span>
-        </a>
+
+          <div>
+
+            <p class="process-large">
+              The difficult part is deciding
+              <span class="highlight">
+                what deserves automation
+              </span>,
+              then designing the workflow around
+              how people actually work.
+            </p>
+
+          </div>
+
+
+          <div class="capability-list">
+
+
+            <div class="capability-item">
+
+              <div class="tool">
+
+                <span class="capability-icon">
+                  →
+                </span>
+
+                <span>
+                  Understand the current process
+                </span>
+
+              </div>
+
+              <span class="number">
+                01
+              </span>
+
+            </div>
+
+
+            <div class="capability-item">
+
+              <div class="tool">
+
+                <span class="capability-icon">
+                  →
+                </span>
+
+                <span>
+                  Identify repetitive decisions
+                </span>
+
+              </div>
+
+              <span class="number">
+                02
+              </span>
+
+            </div>
+
+
+            <div class="capability-item">
+
+              <div class="tool">
+
+                <span class="capability-icon">
+                  →
+                </span>
+
+                <span>
+                  Automate the useful parts
+                </span>
+
+              </div>
+
+              <span class="number">
+                03
+              </span>
+
+            </div>
+
+
+            <div class="capability-item">
+
+              <div class="tool">
+
+                <span class="capability-icon">
+                  →
+                </span>
+
+                <span>
+                  Plan for unexpected inputs
+                </span>
+
+              </div>
+
+              <span class="number">
+                04
+              </span>
+
+            </div>
+
+
+            <div class="capability-item">
+
+              <div class="tool">
+
+                <span class="capability-icon">
+                  →
+                </span>
+
+                <span>
+                  Keep the system understandable
+                </span>
+
+              </div>
+
+              <span class="number">
+                05
+              </span>
+
+            </div>
+
+
+          </div>
+
+        </div>
 
       </div>
 
     </section>
+
+
+    <!-- =========================================
+         CONTACT
+    ========================================= -->
+
+    <section
+      class="contact"
+      id="contact"
+    >
+
+      <div class="container">
+
+
+        <div class="contact-label">
+          Looking for automation work?
+        </div>
+
+
+        <h2 class="contact-title">
+
+          BRING ME THE<br>
+
+          <span>
+            MESSY PROCESS.
+          </span>
+
+        </h2>
+
+
+        <p class="contact-copy">
+          Describe the process eating your team's week.
+          I will tell you honestly whether automation is
+          worth doing, including when the answer is no.
+        </p>
+
+
+        <button
+          type="button"
+          class="contact-button"
+          onclick="openContactForm()"
+        >
+          Start a conversation
+          <span>↗</span>
+        </button>
+
+
+      </div>
+
+    </section>
+
 
   </main>
 
 
-  <!-- FOOTER -->
+  <!-- =========================================
+       CONTACT FORM MODAL
+  ========================================= -->
+
+  <div
+    class="contact-modal"
+    id="contactModal"
+    aria-hidden="true"
+  >
+
+
+    <div
+      class="contact-modal-backdrop"
+      onclick="closeContactForm()"
+    ></div>
+
+
+    <div
+      class="contact-modal-box"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="contactFormTitle"
+    >
+
+
+      <button
+        class="contact-modal-close"
+        type="button"
+        onclick="closeContactForm()"
+        aria-label="Close contact form"
+      >
+        ×
+      </button>
+
+
+      <div class="contact-label">
+        Start a conversation
+      </div>
+
+
+      <h3
+        class="contact-form-title"
+        id="contactFormTitle"
+      >
+        Tell me what is<br>
+        slowing your team down.
+      </h3>
+
+
+      <!--
+        IMPORTANT:
+        Replace YOUR_FORM_ID with your actual Formspree form ID.
+      -->
+
+      <form
+        action="https://formspree.io/f/YOUR_FORM_ID"
+        method="POST"
+      >
+
+
+        <div class="form-field">
+
+          <label for="name">
+            Name
+          </label>
+
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Your name"
+            autocomplete="name"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label for="email">
+            Email
+          </label>
+
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="you@example.com"
+            autocomplete="email"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label for="message">
+            What would you like to automate?
+          </label>
+
+          <textarea
+            id="message"
+            name="message"
+            rows="6"
+            placeholder="Tell me about the process, the tools involved, and what currently takes too much manual work."
+            required
+          ></textarea>
+
+        </div>
+
+
+        <button
+          type="submit"
+          class="form-submit"
+        >
+          Send message
+          <span>↗</span>
+        </button>
+
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================================
+       FOOTER
+  ========================================= -->
 
   <footer>
 
     <div class="container footer-inner">
 
-      <span>
-        © 2026 Michelle
-      </span>
 
       <span>
-        Built with HTML, CSS & GitHub Pages
+        © 2026 Michelle Project
       </span>
 
+
+      <a
+        href="https://github.com/michelleproject"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="footer-link"
+      >
+        GitHub ↗
+      </a>
+
+
       <span>
-        Automation / Workflow / Systems
+        Workflow Automation / n8n / AI
       </span>
+
 
     </div>
 
   </footer>
+
+
+  <!-- =========================================
+       JAVASCRIPT
+  ========================================= -->
+
+  <script>
+
+    const contactModal =
+      document.getElementById("contactModal");
+
+
+    function openContactForm() {
+
+      contactModal.classList.add("active");
+
+      contactModal.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+      document.body.classList.add(
+        "modal-open"
+      );
+
+      const firstInput =
+        document.getElementById("name");
+
+      setTimeout(() => {
+        firstInput.focus();
+      }, 200);
+    }
+
+
+    function closeContactForm() {
+
+      contactModal.classList.remove("active");
+
+      contactModal.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+      document.body.classList.remove(
+        "modal-open"
+      );
+    }
+
+
+    document.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (event.key === "Escape") {
+          closeContactForm();
+        }
+
+      }
+    );
+
+
+  </script>
 
 </body>
 </html>
