@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>Michelle Project | Workflow Automation</title>
 
@@ -11,6 +14,7 @@
     content="Michelle Project builds practical automation systems that reduce repetitive work and improve business processes."
   >
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -20,26 +24,35 @@
   >
 
   <style>
-    :root {
-      --bg: #0e100f;
-      --bg-soft: #121615;
-      --panel: #151917;
-      --panel-hover: #1a1e1b;
 
-      --text: #f1f1ec;
+    /* =========================================
+       VARIABLES
+    ========================================= */
+
+    :root {
+      --bg: #0f1110;
+      --bg-soft: #131615;
+      --panel: #151918;
+      --panel-hover: #191d1b;
+
+      --text: #f2f1ec;
       --muted: #92968f;
-      --muted-light: #c0c3bc;
+      --muted-light: #bdc1bb;
 
       --accent: #8fbde2;
-      --accent-bright: #a9d6f4;
-      --accent-soft: rgba(143, 189, 226, 0.11);
-      --accent-glow: rgba(143, 189, 226, 0.18);
+      --accent-bright: #a8d6f3;
+      --accent-soft: rgba(143, 189, 226, 0.10);
 
-      --border: rgba(241, 241, 236, 0.11);
-      --border-strong: rgba(241, 241, 236, 0.21);
+      --border: rgba(242, 241, 236, 0.11);
+      --border-strong: rgba(242, 241, 236, 0.21);
 
-      --max-width: 1340px;
+      --max-width: 1320px;
     }
+
+
+    /* =========================================
+       RESET
+    ========================================= */
 
     * {
       margin: 0;
@@ -52,69 +65,21 @@
     }
 
     body {
+      margin: 0;
+
       background: var(--bg);
       color: var(--text);
+
       font-family: "Manrope", sans-serif;
       font-weight: 400;
+
       line-height: 1.6;
+
       overflow-x: hidden;
     }
 
     body.modal-open {
       overflow: hidden;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -3;
-      pointer-events: none;
-
-      background:
-        linear-gradient(
-          rgba(241, 241, 236, 0.022) 1px,
-          transparent 1px
-        ),
-        linear-gradient(
-          90deg,
-          rgba(241, 241, 236, 0.022) 1px,
-          transparent 1px
-        );
-
-      background-size: 72px 72px;
-
-      mask-image:
-        linear-gradient(
-          to bottom,
-          black,
-          transparent 88%
-        );
-    }
-
-    body::after {
-      content: "";
-      position: fixed;
-
-      width: 760px;
-      height: 760px;
-
-      top: 2%;
-      left: 50%;
-
-      transform: translateX(-50%);
-
-      background:
-        radial-gradient(
-          circle,
-          rgba(60, 120, 170, 0.11),
-          transparent 68%
-        );
-
-      filter: blur(65px);
-
-      z-index: -2;
-      pointer-events: none;
     }
 
     a {
@@ -136,7 +101,7 @@
     .container {
       width: min(
         var(--max-width),
-        calc(100% - 56px)
+        calc(100% - 72px)
       );
 
       margin: 0 auto;
@@ -148,39 +113,114 @@
 
 
     /* =========================================
+       BACKGROUND GRID
+    ========================================= */
+
+    body::before {
+      content: "";
+
+      position: fixed;
+
+      inset: 0;
+
+      z-index: -3;
+
+      pointer-events: none;
+
+      background:
+        linear-gradient(
+          rgba(242, 241, 236, 0.022) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(242, 241, 236, 0.022) 1px,
+          transparent 1px
+        );
+
+      background-size: 72px 72px;
+
+      mask-image:
+        linear-gradient(
+          to bottom,
+          black 0%,
+          transparent 92%
+        );
+    }
+
+    body::after {
+      content: "";
+
+      position: fixed;
+
+      width: 850px;
+      height: 850px;
+
+      left: 50%;
+      top: 0;
+
+      transform:
+        translateX(-50%);
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(64, 120, 165, 0.10),
+          transparent 68%
+        );
+
+      filter: blur(70px);
+
+      pointer-events: none;
+
+      z-index: -2;
+    }
+
+
+    /* =========================================
        NAVIGATION
     ========================================= */
 
     nav {
       position: sticky;
+
       top: 0;
+
       z-index: 100;
 
-      border-bottom: 1px solid var(--border);
+      border-bottom:
+        1px solid
+        var(--border);
 
       background:
-        rgba(14, 16, 15, 0.87);
+        rgba(15, 17, 16, 0.90);
 
-      backdrop-filter: blur(18px);
+      backdrop-filter:
+        blur(18px);
     }
 
     .nav-inner {
-      min-height: 76px;
+      min-height: 78px;
 
       display: flex;
+
       align-items: center;
+
       justify-content: space-between;
     }
 
     .logo {
       display: flex;
+
       align-items: center;
+
       gap: 12px;
 
       font-size: 17px;
+
       font-weight: 800;
 
-      letter-spacing: -0.04em;
+      letter-spacing: -0.045em;
     }
 
     .logo-mark {
@@ -188,9 +228,12 @@
       height: 28px;
 
       display: grid;
+
       place-items: center;
 
-      border: 1.5px solid var(--text);
+      border:
+        1.5px solid
+        var(--text);
     }
 
     .logo-mark::after {
@@ -199,21 +242,21 @@
       width: 8px;
       height: 8px;
 
-      background: var(--accent);
-
-      box-shadow:
-        0 0 16px var(--accent-glow);
+      background:
+        var(--accent);
     }
 
     .nav-links {
       display: flex;
+
       align-items: center;
 
       gap: 34px;
 
       list-style: none;
 
-      color: var(--muted-light);
+      color:
+        var(--muted-light);
 
       font-size: 13px;
     }
@@ -224,16 +267,19 @@
     }
 
     .nav-links a:hover {
-      color: var(--accent-bright);
+      color:
+        var(--accent-bright);
     }
 
     .nav-button {
       display: inline-flex;
+
       align-items: center;
 
       gap: 9px;
 
-      padding: 10px 15px;
+      padding:
+        10px 15px;
 
       border:
         1px solid
@@ -248,7 +294,8 @@
     }
 
     .nav-button:hover {
-      color: var(--accent-bright);
+      color:
+        var(--accent-bright);
 
       background:
         var(--accent-soft);
@@ -263,14 +310,18 @@
     ========================================= */
 
     .hero {
-      min-height: calc(100vh - 76px);
-
       position: relative;
 
+      min-height:
+        calc(100vh - 78px);
+
       display: flex;
+
       align-items: center;
 
-      padding: 55px 0 70px;
+      padding:
+        68px 0
+        82px;
 
       overflow: hidden;
     }
@@ -279,28 +330,31 @@
       display: grid;
 
       grid-template-columns:
-        minmax(320px, 0.8fr)
-        minmax(560px, 1.2fr);
+        minmax(350px, 0.72fr)
+        minmax(580px, 1.28fr);
 
       align-items: center;
 
-      gap: 30px;
+      gap: 42px;
     }
 
     .hero-copy {
       position: relative;
+
       z-index: 5;
     }
 
     .hero-topline {
       display: inline-flex;
+
       align-items: center;
 
       gap: 10px;
 
-      margin-bottom: 26px;
+      margin-bottom: 24px;
 
-      color: var(--accent);
+      color:
+        var(--accent);
 
       font-family:
         "DM Mono",
@@ -310,7 +364,8 @@
 
       text-transform: uppercase;
 
-      letter-spacing: 0.08em;
+      letter-spacing:
+        0.08em;
     }
 
     .status-dot {
@@ -319,25 +374,29 @@
 
       border-radius: 50%;
 
-      background: var(--accent);
+      background:
+        var(--accent);
 
       box-shadow:
-        0 0 16px rgba(143, 189, 226, 0.75);
+        0 0 14px
+        rgba(143, 189, 226, 0.65);
     }
 
     .hero-title {
-      max-width: 620px;
+      max-width: 600px;
 
       font-size:
         clamp(
           62px,
           7vw,
-          104px
+          100px
         );
 
-      line-height: 0.88;
+      line-height:
+        0.88;
 
-      letter-spacing: -0.06em;
+      letter-spacing:
+        -0.06em;
 
       font-weight: 800;
     }
@@ -351,19 +410,21 @@
 
       -webkit-text-stroke:
         1px
-        rgba(241, 241, 236, 0.30);
+        rgba(242, 241, 236, 0.28);
     }
 
     .hero-title .accent {
-      color: var(--accent);
+      color:
+        var(--accent);
     }
 
     .hero-description {
-      max-width: 480px;
+      max-width: 470px;
 
       margin-top: 29px;
 
-      color: var(--muted-light);
+      color:
+        var(--muted-light);
 
       font-size: 14px;
 
@@ -375,18 +436,20 @@
 
       gap: 11px;
 
-      margin-top: 30px;
+      margin-top: 29px;
 
       flex-wrap: wrap;
     }
 
     .button {
       display: inline-flex;
+
       align-items: center;
 
       gap: 8px;
 
-      padding: 12px 17px;
+      padding:
+        12px 17px;
 
       border:
         1px solid
@@ -396,38 +459,44 @@
 
       transition:
         transform 0.2s ease,
-        color 0.2s ease,
         background 0.2s ease,
-        border-color 0.2s ease;
+        border-color 0.2s ease,
+        color 0.2s ease;
     }
 
     .button.primary {
-      background: var(--accent);
+      background:
+        var(--accent);
 
-      border-color: var(--accent);
+      border-color:
+        var(--accent);
 
-      color: #0d1113;
+      color:
+        #0d1113;
 
       font-weight: 800;
     }
 
     .button.primary:hover {
-      background: var(--accent-bright);
+      background:
+        var(--accent-bright);
 
-      border-color: var(--accent-bright);
+      border-color:
+        var(--accent-bright);
 
       transform:
         translateY(-2px);
     }
 
     .button.secondary:hover {
-      color: var(--accent-bright);
-
-      border-color:
-        rgba(143, 189, 226, 0.45);
+      color:
+        var(--accent-bright);
 
       background:
         var(--accent-soft);
+
+      border-color:
+        rgba(143, 189, 226, 0.45);
 
       transform:
         translateY(-2px);
@@ -435,16 +504,18 @@
 
 
     /* =========================================
-       HERO WORKFLOW VISUAL
+       HERO WORKFLOW
     ========================================= */
 
     .hero-workflow {
       position: relative;
 
-      min-height: 610px;
+      min-height: 595px;
 
       display: flex;
+
       align-items: center;
+
       justify-content: center;
     }
 
@@ -452,9 +523,12 @@
       position: relative;
 
       width: 100%;
-      max-width: 780px;
 
-      height: 590px;
+      max-width: 800px;
+
+      height: 570px;
+
+      overflow: hidden;
 
       border:
         1px solid
@@ -462,18 +536,17 @@
 
       background:
         linear-gradient(
-          135deg,
+          140deg,
           rgba(143, 189, 226, 0.035),
-          transparent 42%
+          transparent 48%
         );
-
-      overflow: hidden;
     }
 
     .workflow-canvas::before {
       content: "";
 
       position: absolute;
+
       inset: 0;
 
       background:
@@ -487,19 +560,17 @@
           transparent 1px
         );
 
-      background-size: 44px 44px;
-
-      pointer-events: none;
+      background-size: 43px 43px;
     }
 
     .workflow-glow {
       position: absolute;
 
-      left: 45%;
-      top: 47%;
+      width: 310px;
+      height: 310px;
 
-      width: 280px;
-      height: 280px;
+      left: 51%;
+      top: 50%;
 
       transform:
         translate(-50%, -50%);
@@ -509,11 +580,12 @@
       background:
         radial-gradient(
           circle,
-          rgba(75, 145, 205, 0.12),
+          rgba(63, 133, 190, 0.12),
           transparent 68%
         );
 
-      filter: blur(20px);
+      filter:
+        blur(25px);
     }
 
     .workflow-line {
@@ -521,13 +593,14 @@
 
       height: 1px;
 
-      background:
-        rgba(143, 189, 226, 0.35);
+      transform-origin:
+        left center;
 
-      transform-origin: left center;
+      background:
+        rgba(143, 189, 226, 0.34);
 
       box-shadow:
-        0 0 9px
+        0 0 8px
         rgba(143, 189, 226, 0.13);
     }
 
@@ -541,73 +614,73 @@
     }
 
     .line-1 {
-      width: 145px;
-      left: 25%;
-      top: 22%;
+      width: 150px;
+      left: 24%;
+      top: 23%;
+
       transform:
         rotate(24deg);
     }
 
     .line-2 {
-      width: 140px;
-      left: 52%;
-      top: 21%;
-      transform:
-        rotate(0deg);
+      width: 135px;
+      left: 51%;
+      top: 22%;
     }
 
     .line-3 {
       width: 145px;
-      left: 69%;
-      top: 23%;
+      left: 70%;
+      top: 24%;
+
       transform:
-        rotate(26deg);
+        rotate(27deg);
     }
 
     .line-4 {
       width: 145px;
-      left: 28%;
+      left: 27%;
       top: 39%;
-      transform:
-        rotate(0deg);
     }
 
     .line-5 {
-      width: 135px;
-      left: 50%;
+      width: 140px;
+      left: 51%;
       top: 42%;
-      transform:
-        rotate(0deg);
     }
 
     .line-6 {
       width: 145px;
-      left: 29%;
+      left: 28%;
       top: 61%;
+
       transform:
         rotate(-24deg);
     }
 
     .line-7 {
-      width: 140px;
-      left: 52%;
+      width: 145px;
+      left: 51%;
       top: 63%;
+
       transform:
-        rotate(-3deg);
+        rotate(-2deg);
     }
 
     .line-8 {
       width: 150px;
       left: 69%;
       top: 62%;
+
       transform:
-        rotate(-22deg);
+        rotate(-23deg);
     }
 
     .line-9 {
-      width: 105px;
-      left: 49%;
+      width: 100px;
+      left: 51%;
       top: 70%;
+
       transform:
         rotate(90deg);
     }
@@ -617,82 +690,90 @@
 
       min-width: 128px;
 
-      padding: 15px 16px;
+      padding:
+        14px 15px;
+
+      z-index: 4;
 
       border:
         1px solid
-        rgba(143, 189, 226, 0.34);
+        rgba(143, 189, 226, 0.35);
 
       background:
-        rgba(13, 17, 17, 0.88);
+        rgba(12, 15, 15, 0.90);
 
       box-shadow:
-        0 14px 40px
+        0 14px 35px
         rgba(0, 0, 0, 0.22);
 
-      backdrop-filter: blur(8px);
-
-      z-index: 3;
+      backdrop-filter:
+        blur(8px);
     }
 
-    .workflow-node .node-label {
-      color: var(--text);
+    .workflow-node.main {
+      min-width: 185px;
+
+      border-color:
+        rgba(143, 189, 226, 0.68);
+
+      box-shadow:
+        0 0 42px
+        rgba(71, 140, 195, 0.12);
+    }
+
+    .node-icon {
+      color:
+        var(--accent);
+
+      font-size: 17px;
+
+      line-height: 1;
+
+      margin-bottom: 8px;
+    }
+
+    .node-label {
+      color:
+        var(--text);
 
       font-size: 11px;
 
       font-weight: 600;
     }
 
-    .workflow-node .node-sub {
+    .node-sub {
       margin-top: 4px;
 
-      color: var(--muted);
+      color:
+        var(--muted);
 
       font-size: 8px;
 
-      line-height: 1.5;
+      line-height: 1.45;
     }
 
-    .workflow-node .node-icon {
-      margin-bottom: 8px;
-
-      color: var(--accent);
-
-      font-size: 18px;
-    }
-
-    .workflow-node.main {
-      min-width: 190px;
-
-      border-color:
-        rgba(143, 189, 226, 0.70);
-
-      box-shadow:
-        0 0 45px
-        rgba(60, 130, 190, 0.11);
-    }
-
-    .workflow-node.main .node-label {
-      color: var(--accent-bright);
+    .main .node-label {
+      color:
+        var(--accent-bright);
     }
 
     .node-trigger {
-      left: 12%;
-      top: 15%;
+      left: 11%;
+      top: 16%;
     }
 
     .node-collect {
-      left: 40%;
-      top: 13%;
+      left: 39%;
+      top: 14%;
     }
 
     .node-understand {
-      left: 9%;
+      left: 8%;
       top: 34%;
     }
 
     .node-agent {
-      left: 39%;
+      left: 38%;
       top: 34%;
     }
 
@@ -702,86 +783,95 @@
     }
 
     .node-act {
-      left: 13%;
-      top: 55%;
+      left: 12%;
+      top: 56%;
     }
 
     .node-review {
-      left: 41%;
-      top: 57%;
+      left: 39%;
+      top: 58%;
     }
 
     .node-notify {
       left: 69%;
-      top: 55%;
+      top: 56%;
     }
 
     .node-done {
-      left: 40%;
-      top: 77%;
+      left: 39%;
+      top: 78%;
     }
 
     .workflow-note {
       position: absolute;
 
+      z-index: 3;
+
       color:
-        rgba(143, 189, 226, 0.46);
+        rgba(143, 189, 226, 0.42);
 
       font-family:
         "DM Mono",
         monospace;
 
-      font-size: 9px;
+      font-size: 8px;
 
       line-height: 1.5;
-
-      z-index: 2;
     }
 
     .note-one {
-      left: 5%;
-      top: 6%;
-      transform: rotate(-5deg);
+      left: 4%;
+      top: 7%;
+
+      transform:
+        rotate(-5deg);
     }
 
     .note-two {
       right: 5%;
-      top: 13%;
-      transform: rotate(4deg);
+      top: 10%;
+
+      transform:
+        rotate(3deg);
     }
 
     .note-three {
-      left: 7%;
-      bottom: 11%;
-      transform: rotate(-3deg);
+      left: 4%;
+      bottom: 9%;
+
+      transform:
+        rotate(-3deg);
     }
 
     .workflow-human {
       position: absolute;
 
       left: 4%;
-      bottom: 4%;
+      bottom: 2%;
 
-      width: 145px;
+      width: 135px;
+
+      z-index: 3;
 
       color:
-        rgba(143, 189, 226, 0.25);
-
-      z-index: 2;
+        rgba(143, 189, 226, 0.28);
     }
 
     .workflow-human svg {
+      display: block;
+
       width: 100%;
       height: auto;
     }
 
 
     /* =========================================
-       CAPABILITIES
+       GENERAL SECTION
     ========================================= */
 
     .section {
-      padding: 115px 0;
+      padding:
+        105px 0;
 
       border-top:
         1px solid
@@ -795,15 +885,16 @@
 
       justify-content: space-between;
 
-      gap: 45px;
+      gap: 42px;
 
-      margin-bottom: 45px;
+      margin-bottom: 44px;
     }
 
     .section-kicker {
-      margin-bottom: 12px;
+      margin-bottom: 11px;
 
-      color: var(--accent);
+      color:
+        var(--accent);
 
       font-family:
         "DM Mono",
@@ -811,45 +902,57 @@
 
       font-size: 9px;
 
-      text-transform: uppercase;
+      text-transform:
+        uppercase;
 
-      letter-spacing: 0.1em;
+      letter-spacing:
+        0.10em;
     }
 
     .section-title {
       font-size:
         clamp(
-          40px,
-          5vw,
-          68px
+          42px,
+          5.4vw,
+          70px
         );
 
-      line-height: 0.94;
+      line-height:
+        0.94;
 
-      letter-spacing: -0.045em;
+      letter-spacing:
+        -0.045em;
 
       font-weight: 700;
     }
 
     .section-description {
-      max-width: 400px;
+      max-width: 420px;
 
-      color: var(--muted);
+      color:
+        var(--muted);
 
       font-size: 12px;
 
       line-height: 1.8;
     }
 
+
+    /* =========================================
+       CAPABILITIES
+    ========================================= */
+
     .capabilities-layout {
       display: grid;
 
       grid-template-columns:
-        0.8fr 1.25fr 0.85fr;
+        0.78fr
+        1.15fr
+        0.82fr;
+
+      gap: 58px;
 
       align-items: start;
-
-      gap: 45px;
     }
 
     .capability-list {
@@ -859,10 +962,12 @@
     }
 
     .capability-item {
-      min-height: 61px;
+      min-height: 62px;
 
       display: flex;
+
       align-items: center;
+
       justify-content: space-between;
 
       border-bottom:
@@ -874,33 +979,26 @@
 
     .capability-item .tool {
       display: flex;
+
       align-items: center;
 
       gap: 12px;
     }
 
-    .capability-item .number {
-      color: var(--muted);
-
-      font-family:
-        "DM Mono",
-        monospace;
-
-      font-size: 9px;
-    }
-
     .capability-icon {
-      width: 28px;
-      height: 28px;
+      width: 29px;
+      height: 29px;
 
       display: grid;
+
       place-items: center;
 
       border:
         1px solid
         var(--border-strong);
 
-      color: var(--accent);
+      color:
+        var(--accent);
 
       font-family:
         "DM Mono",
@@ -909,18 +1007,36 @@
       font-size: 9px;
     }
 
-    .capability-side {
-      color: var(--muted);
+    .capability-item .number {
+      color:
+        var(--muted);
+
+      font-family:
+        "DM Mono",
+        monospace;
+
+      font-size: 9px;
+    }
+
+    .capability-middle {
+      color:
+        var(--muted);
 
       font-size: 12px;
 
-      line-height: 1.85;
+      line-height:
+        1.85;
+    }
+
+    .capability-middle p + p {
+      margin-top: 23px;
     }
 
     .capability-stack {
-      margin-top: 22px;
+      margin-top: 18px;
 
-      color: var(--accent);
+      color:
+        var(--accent);
 
       font-family:
         "DM Mono",
@@ -940,29 +1056,30 @@
       display: grid;
 
       grid-template-columns:
-        1.05fr 0.95fr;
+        1.08fr
+        0.92fr;
+
+      gap: 72px;
 
       align-items: center;
-
-      gap: 75px;
     }
 
     .about-visual {
       position: relative;
 
-      min-height: 485px;
+      min-height: 475px;
+
+      overflow: hidden;
 
       border:
         1px solid
         var(--border);
 
-      overflow: hidden;
-
       background:
         linear-gradient(
           145deg,
-          rgba(143, 189, 226, 0.055),
-          transparent 53%
+          rgba(143, 189, 226, 0.045),
+          transparent 55%
         );
     }
 
@@ -970,6 +1087,7 @@
       content: "";
 
       position: absolute;
+
       inset: 0;
 
       background:
@@ -983,57 +1101,59 @@
           transparent 1px
         );
 
-      background-size: 42px 42px;
+      background-size:
+        43px 43px;
     }
 
     .about-board {
       position: absolute;
 
-      left: 21%;
-      top: 15%;
+      left: 20%;
+      top: 14%;
 
-      width: 66%;
-      height: 67%;
+      width: 68%;
+      height: 68%;
 
       border:
         1px solid
         rgba(143, 189, 226, 0.32);
 
       background:
-        rgba(14, 17, 17, 0.72);
-
-      box-shadow:
-        0 20px 65px
-        rgba(0, 0, 0, 0.24);
+        rgba(12, 15, 15, 0.78);
     }
 
     .about-board::before {
       content: "";
 
       position: absolute;
+
       inset: 0;
 
       background:
         linear-gradient(
-          rgba(143, 189, 226, 0.028) 1px,
+          rgba(143, 189, 226, 0.027) 1px,
           transparent 1px
         ),
         linear-gradient(
           90deg,
-          rgba(143, 189, 226, 0.028) 1px,
+          rgba(143, 189, 226, 0.027) 1px,
           transparent 1px
         );
 
-      background-size: 38px 38px;
+      background-size:
+        37px 37px;
     }
 
     .about-board-title {
       position: absolute;
 
-      top: 17px;
-      left: 18px;
+      top: 16px;
+      left: 17px;
 
-      color: var(--accent);
+      z-index: 2;
+
+      color:
+        var(--accent);
 
       font-family:
         "DM Mono",
@@ -1041,109 +1161,122 @@
 
       font-size: 8px;
 
-      text-transform: uppercase;
+      text-transform:
+        uppercase;
     }
 
     .about-mini-node {
       position: absolute;
 
-      min-width: 65px;
+      min-width: 63px;
 
-      padding: 8px;
+      padding:
+        8px 7px;
+
+      z-index: 2;
+
+      text-align: center;
 
       border:
         1px solid
-        rgba(143, 189, 226, 0.30);
+        rgba(143, 189, 226, 0.31);
 
-      color: var(--muted-light);
+      color:
+        var(--muted-light);
 
       font-family:
         "DM Mono",
         monospace;
 
       font-size: 7px;
+    }
 
-      text-align: center;
+    .about-mini-node.active {
+      color:
+        var(--accent-bright);
+
+      border-color:
+        rgba(143, 189, 226, 0.58);
     }
 
     .about-mini-line {
       position: absolute;
 
+      z-index: 1;
+
       height: 1px;
 
       background:
-        rgba(143, 189, 226, 0.31);
+        rgba(143, 189, 226, 0.32);
+
+      transform-origin:
+        left center;
     }
 
     .mini-1 {
-      left: 11%;
-      top: 32%;
+      left: 9%;
+      top: 30%;
     }
 
     .mini-2 {
       left: 40%;
-      top: 25%;
+      top: 23%;
     }
 
     .mini-3 {
-      right: 10%;
-      top: 31%;
+      right: 9%;
+      top: 30%;
     }
 
     .mini-4 {
-      left: 39%;
+      left: 40%;
       top: 49%;
-
-      border-color:
-        rgba(143, 189, 226, 0.60);
-
-      color: var(--accent);
     }
 
     .mini-5 {
-      left: 15%;
-      top: 65%;
+      left: 13%;
+      top: 67%;
     }
 
     .mini-6 {
-      right: 14%;
-      top: 65%;
+      right: 12%;
+      top: 67%;
     }
 
     .mini-line-1 {
-      width: 90px;
+      width: 94px;
       left: 24%;
-      top: 32%;
+      top: 33%;
 
       transform:
-        rotate(-11deg);
+        rotate(-10deg);
     }
 
     .mini-line-2 {
-      width: 85px;
-      left: 57%;
-      top: 32%;
+      width: 90px;
+      left: 56%;
+      top: 33%;
 
       transform:
-        rotate(13deg);
+        rotate(10deg);
     }
 
     .mini-line-3 {
-      width: 90px;
-      left: 24%;
-      top: 56%;
+      width: 92px;
+      left: 25%;
+      top: 57%;
 
       transform:
-        rotate(17deg);
+        rotate(15deg);
     }
 
     .mini-line-4 {
-      width: 85px;
-      left: 57%;
-      top: 56%;
+      width: 91px;
+      left: 56%;
+      top: 57%;
 
       transform:
-        rotate(-15deg);
+        rotate(-14deg);
     }
 
     .about-person {
@@ -1152,33 +1285,19 @@
       left: 3%;
       bottom: 2%;
 
-      width: 43%;
-
-      color:
-        rgba(143, 189, 226, 0.62);
+      width: 39%;
 
       z-index: 3;
+
+      color:
+        rgba(143, 189, 226, 0.58);
     }
 
     .about-person svg {
+      display: block;
+
       width: 100%;
       height: auto;
-    }
-
-    .about-desk {
-      position: absolute;
-
-      left: 2%;
-      bottom: 2%;
-
-      width: 43%;
-      height: 6px;
-
-      border-top:
-        1px solid
-        rgba(143, 189, 226, 0.26);
-
-      z-index: 2;
     }
 
     .about-plant {
@@ -1187,14 +1306,14 @@
       right: 4%;
       bottom: 3%;
 
-      width: 54px;
+      width: 49px;
 
       color:
-        rgba(143, 189, 226, 0.28);
+        rgba(143, 189, 226, 0.26);
     }
 
     .about-copy-column {
-      max-width: 630px;
+      max-width: 640px;
     }
 
     .about-large {
@@ -1203,42 +1322,52 @@
       font-size:
         clamp(
           34px,
-          4vw,
-          54px
+          4.2vw,
+          56px
         );
 
-      line-height: 1.02;
+      line-height:
+        1.02;
 
-      letter-spacing: -0.04em;
+      letter-spacing:
+        -0.042em;
 
       font-weight: 600;
     }
 
     .about-large .highlight {
-      color: var(--accent);
+      color:
+        var(--accent);
     }
 
     .about-copy {
       max-width: 600px;
 
-      margin-top: 27px;
+      margin-top: 25px;
 
-      color: var(--muted);
+      color:
+        var(--muted);
 
       font-size: 13px;
 
-      line-height: 1.85;
+      line-height:
+        1.9;
+    }
+
+    .about-copy + .about-copy {
+      margin-top: 22px;
     }
 
     .about-copy strong {
-      color: var(--muted-light);
+      color:
+        var(--muted-light);
 
       font-weight: 600;
     }
 
 
     /* =========================================
-       WORK
+       PROJECTS
     ========================================= */
 
     .work-header {
@@ -1250,7 +1379,7 @@
 
       gap: 30px;
 
-      margin-bottom: 42px;
+      margin-bottom: 40px;
     }
 
     .github-link {
@@ -1260,7 +1389,8 @@
 
       gap: 8px;
 
-      color: var(--accent);
+      color:
+        var(--accent);
 
       font-family:
         "DM Mono",
@@ -1279,11 +1409,13 @@
     }
 
     .project {
+      min-height: 418px;
+
       position: relative;
 
-      min-height: 420px;
-
       padding: 22px;
+
+      overflow: hidden;
 
       border:
         1px solid
@@ -1292,12 +1424,10 @@
       background:
         linear-gradient(
           145deg,
-          rgba(143, 189, 226, 0.028),
-          transparent 50%
+          rgba(143, 189, 226, 0.026),
+          transparent 55%
         ),
         var(--panel);
-
-      overflow: hidden;
 
       transition:
         transform 0.25s ease,
@@ -1323,7 +1453,8 @@
 
       justify-content: space-between;
 
-      color: var(--muted);
+      color:
+        var(--muted);
 
       font-family:
         "DM Mono",
@@ -1331,27 +1462,30 @@
 
       font-size: 8px;
 
-      text-transform: uppercase;
+      text-transform:
+        uppercase;
 
-      letter-spacing: 0.06em;
+      letter-spacing:
+        0.06em;
     }
 
     .project-number {
-      color: var(--accent);
+      color:
+        var(--accent);
     }
 
     .project-icon-area {
       height: 170px;
 
-      margin-top: 26px;
+      margin-top: 25px;
+
+      position: relative;
 
       display: flex;
 
       align-items: center;
 
       justify-content: center;
-
-      position: relative;
 
       border:
         1px solid
@@ -1361,7 +1495,7 @@
         radial-gradient(
           circle,
           rgba(143, 189, 226, 0.07),
-          transparent 62%
+          transparent 66%
         );
     }
 
@@ -1370,8 +1504,8 @@
 
       position: absolute;
 
-      width: 160px;
-      height: 160px;
+      width: 155px;
+      height: 155px;
 
       border-radius: 50%;
 
@@ -1397,11 +1531,12 @@
       background:
         rgba(10, 13, 13, 0.75);
 
-      color: var(--accent);
+      color:
+        var(--accent);
 
       box-shadow:
-        0 0 45px
-        rgba(143, 189, 226, 0.08);
+        0 0 42px
+        rgba(143, 189, 226, 0.07);
     }
 
     .project-icon svg {
@@ -1410,15 +1545,17 @@
     }
 
     .project-info {
-      margin-top: 24px;
+      margin-top: 23px;
     }
 
     .project-info h3 {
       font-size: 20px;
 
-      line-height: 1.15;
+      line-height:
+        1.15;
 
-      letter-spacing: -0.04em;
+      letter-spacing:
+        -0.04em;
 
       font-weight: 700;
     }
@@ -1426,11 +1563,13 @@
     .project-info p {
       margin-top: 8px;
 
-      color: var(--muted);
+      color:
+        var(--muted);
 
       font-size: 11px;
 
-      line-height: 1.7;
+      line-height:
+        1.7;
     }
 
     .project-tools {
@@ -1440,7 +1579,7 @@
 
       gap: 6px;
 
-      margin-top: 13px;
+      margin-top: 12px;
     }
 
     .project-tool {
@@ -1451,7 +1590,8 @@
         1px solid
         var(--border);
 
-      color: var(--muted-light);
+      color:
+        var(--muted-light);
 
       font-family:
         "DM Mono",
@@ -1467,9 +1607,10 @@
 
       gap: 6px;
 
-      margin-top: 15px;
+      margin-top: 14px;
 
-      color: var(--accent);
+      color:
+        var(--accent);
 
       font-family:
         "DM Mono",
@@ -1487,32 +1628,36 @@
       display: grid;
 
       grid-template-columns:
-        0.75fr 1.25fr;
+        0.72fr
+        1.28fr;
 
-      gap: 70px;
+      gap: 60px;
 
       align-items: start;
     }
 
-    .process-large {
-      max-width: 530px;
+    .process-title {
+      max-width: 400px;
 
       font-size:
         clamp(
-          37px,
-          4.5vw,
-          60px
+          42px,
+          5vw,
+          68px
         );
 
-      line-height: 0.95;
+      line-height:
+        0.94;
 
-      letter-spacing: -0.045em;
+      letter-spacing:
+        -0.05em;
 
       font-weight: 700;
     }
 
-    .process-large .highlight {
-      color: var(--accent);
+    .process-title .highlight {
+      color:
+        var(--accent);
     }
 
     .process-list {
@@ -1521,22 +1666,26 @@
       grid-template-columns:
         repeat(5, 1fr);
 
-      gap: 0;
-    }
-
-    .process-item {
-      min-height: 180px;
-
-      padding:
-        0 18px 0 18px;
+      align-items: stretch;
 
       border-left:
         1px solid
         var(--border);
     }
 
-    .process-item:first-child {
-      border-left: none;
+    .process-item {
+      min-height: 205px;
+
+      padding:
+        0 19px;
+
+      border-right:
+        1px solid
+        var(--border);
+    }
+
+    .process-item:last-child {
+      border-right: none;
     }
 
     .process-icon {
@@ -1547,25 +1696,27 @@
 
       place-items: center;
 
+      margin-bottom: 23px;
+
       border:
         1px solid
-        rgba(143, 189, 226, 0.42);
+        rgba(143, 189, 226, 0.44);
 
       border-radius: 50%;
 
-      color: var(--accent);
+      color:
+        var(--accent);
 
       font-family:
         "DM Mono",
         monospace;
 
-      font-size: 13px;
-
-      margin-bottom: 22px;
+      font-size: 9px;
     }
 
     .process-index {
-      color: var(--accent);
+      color:
+        var(--accent);
 
       font-family:
         "DM Mono",
@@ -1575,11 +1726,14 @@
     }
 
     .process-item h3 {
-      margin-top: 7px;
+      max-width: 120px;
+
+      margin-top: 8px;
 
       font-size: 12px;
 
-      line-height: 1.35;
+      line-height:
+        1.42;
 
       font-weight: 600;
     }
@@ -1590,7 +1744,8 @@
     ========================================= */
 
     .contact {
-      padding: 95px 0;
+      padding:
+        90px 0;
 
       border-top:
         1px solid
@@ -1598,17 +1753,23 @@
     }
 
     .contact-box {
+      position: relative;
+
       display: grid;
 
       grid-template-columns:
-        1fr 1fr auto;
+        1.05fr
+        0.90fr
+        auto;
 
       align-items: center;
 
-      gap: 45px;
+      gap: 42px;
 
       padding:
-        38px 42px;
+        34px 40px;
+
+      overflow: hidden;
 
       border:
         1px solid
@@ -1617,13 +1778,9 @@
       background:
         linear-gradient(
           120deg,
-          rgba(143, 189, 226, 0.055),
-          transparent 50%
+          rgba(143, 189, 226, 0.05),
+          transparent 58%
         );
-
-      position: relative;
-
-      overflow: hidden;
     }
 
     .contact-box::before {
@@ -1635,29 +1792,32 @@
 
       background:
         linear-gradient(
-          rgba(143, 189, 226, 0.024) 1px,
+          rgba(143, 189, 226, 0.022) 1px,
           transparent 1px
         ),
         linear-gradient(
           90deg,
-          rgba(143, 189, 226, 0.024) 1px,
+          rgba(143, 189, 226, 0.022) 1px,
           transparent 1px
         );
 
-      background-size: 42px 42px;
+      background-size:
+        43px 43px;
     }
 
     .contact-content,
     .contact-copy,
     .contact-action {
       position: relative;
+
       z-index: 1;
     }
 
     .contact-label {
-      margin-bottom: 9px;
+      margin-bottom: 8px;
 
-      color: var(--accent);
+      color:
+        var(--accent);
 
       font-family:
         "DM Mono",
@@ -1665,36 +1825,44 @@
 
       font-size: 9px;
 
-      text-transform: uppercase;
+      text-transform:
+        uppercase;
     }
 
     .contact-title {
+      max-width: 440px;
+
       font-size:
         clamp(
-          30px,
+          31px,
           4vw,
-          48px
+          51px
         );
 
-      line-height: 0.96;
+      line-height:
+        0.95;
 
-      letter-spacing: -0.045em;
+      letter-spacing:
+        -0.045em;
 
       font-weight: 700;
     }
 
     .contact-title span {
-      color: var(--accent);
+      color:
+        var(--accent);
     }
 
     .contact-copy {
-      max-width: 340px;
+      max-width: 330px;
 
-      color: var(--muted);
+      color:
+        var(--muted);
 
       font-size: 11px;
 
-      line-height: 1.8;
+      line-height:
+        1.8;
     }
 
     .contact-button {
@@ -1721,7 +1889,8 @@
 
       cursor: pointer;
 
-      white-space: nowrap;
+      white-space:
+        nowrap;
 
       transition:
         transform 0.2s ease,
@@ -1753,10 +1922,11 @@
 
       padding: 22px;
 
-      opacity: 0;
-      visibility: hidden;
-
       z-index: 1000;
+
+      opacity: 0;
+
+      visibility: hidden;
 
       transition:
         opacity 0.25s ease,
@@ -1786,23 +1956,25 @@
 
       z-index: 2;
 
-      width: min(
-        610px,
-        100%
-      );
+      width:
+        min(
+          610px,
+          100%
+        );
 
       max-height: 90vh;
 
       overflow-y: auto;
 
-      padding: 36px;
-
-      background:
-        #151816;
+      padding:
+        36px;
 
       border:
         1px solid
         var(--border-strong);
+
+      background:
+        #151816;
 
       box-shadow:
         0 35px 100px
@@ -1822,19 +1994,21 @@
         1px solid
         var(--border);
 
-      background: transparent;
+      background:
+        transparent;
 
-      color: var(--muted-light);
+      color:
+        var(--muted-light);
 
       font-size: 20px;
 
-      line-height: 1;
-
-      cursor: pointer;
+      cursor:
+        pointer;
     }
 
     .contact-modal-close:hover {
-      color: var(--accent);
+      color:
+        var(--accent);
 
       border-color:
         var(--accent);
@@ -1843,7 +2017,7 @@
     .contact-form-title {
       margin-top: 3px;
 
-      margin-bottom: 32px;
+      margin-bottom: 31px;
 
       font-size:
         clamp(
@@ -1852,9 +2026,11 @@
           53px
         );
 
-      line-height: 0.96;
+      line-height:
+        0.96;
 
-      letter-spacing: -0.05em;
+      letter-spacing:
+        -0.05em;
 
       font-weight: 700;
     }
@@ -1868,7 +2044,8 @@
 
       margin-bottom: 7px;
 
-      color: var(--muted-light);
+      color:
+        var(--muted-light);
 
       font-family:
         "DM Mono",
@@ -1876,9 +2053,11 @@
 
       font-size: 9px;
 
-      text-transform: uppercase;
+      text-transform:
+        uppercase;
 
-      letter-spacing: 0.08em;
+      letter-spacing:
+        0.08em;
     }
 
     .form-field input,
@@ -1903,15 +2082,12 @@
       outline: none;
 
       resize: vertical;
-
-      transition:
-        border-color 0.2s ease,
-        background 0.2s ease;
     }
 
     .form-field input::placeholder,
     .form-field textarea::placeholder {
-      color: #62665f;
+      color:
+        #62665f;
     }
 
     .form-field input:focus,
@@ -1933,7 +2109,8 @@
       padding:
         13px 18px;
 
-      border: none;
+      border:
+        none;
 
       background:
         var(--accent);
@@ -1945,19 +2122,13 @@
 
       font-weight: 800;
 
-      cursor: pointer;
-
-      transition:
-        transform 0.2s ease,
-        background 0.2s ease;
+      cursor:
+        pointer;
     }
 
     .form-submit:hover {
       background:
         var(--accent-bright);
-
-      transform:
-        translateY(-2px);
     }
 
 
@@ -1971,7 +2142,7 @@
         var(--border);
 
       padding:
-        24px 0;
+        23px 0;
     }
 
     .footer-inner {
@@ -1980,8 +2151,6 @@
       align-items: center;
 
       justify-content: space-between;
-
-      gap: 20px;
 
       color:
         var(--muted);
@@ -2008,61 +2177,53 @@
        RESPONSIVE
     ========================================= */
 
-    @media (max-width: 1100px) {
+    @media (max-width: 1120px) {
 
       .hero-grid {
         grid-template-columns:
-          1fr 1fr;
+          0.72fr
+          1.28fr;
       }
 
       .workflow-canvas {
         transform:
-          scale(0.92);
+          scale(0.90);
+
         transform-origin:
-          center center;
+          center;
       }
 
       .capabilities-layout {
         grid-template-columns:
-          0.65fr 1fr;
+          0.75fr
+          1fr;
       }
 
-      .capability-side {
-        grid-column: span 2;
-        max-width: 500px;
+      .capability-middle {
+        grid-column:
+          span 1;
       }
 
       .about-layout {
-        gap: 50px;
+        gap:
+          48px;
       }
 
       .process-layout {
-        grid-template-columns:
-          0.7fr 1.3fr;
-
-        gap: 40px;
+        gap:
+          38px;
       }
 
-      .process-list {
-        grid-template-columns:
-          repeat(3, 1fr);
-
-        row-gap: 35px;
-      }
-
-      .process-item:nth-child(4) {
-        border-left: none;
-      }
     }
 
 
-    @media (max-width: 850px) {
+    @media (max-width: 900px) {
 
       .container {
         width:
           min(
             var(--max-width),
-            calc(100% - 34px)
+            calc(100% - 40px)
           );
       }
 
@@ -2070,21 +2231,14 @@
         display: none;
       }
 
-      .hero {
-        padding:
-          80px 0 90px;
-      }
-
       .hero-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+          1fr;
       }
 
       .hero-copy {
-        text-align: center;
-      }
-
-      .hero-topline {
-        justify-content: center;
+        text-align:
+          center;
       }
 
       .hero-description {
@@ -2093,58 +2247,72 @@
       }
 
       .hero-actions {
-        justify-content: center;
+        justify-content:
+          center;
       }
 
       .hero-workflow {
-        min-height: 500px;
+        min-height:
+          500px;
       }
 
       .workflow-canvas {
-        transform: none;
+        transform:
+          none;
       }
 
       .capabilities-layout {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+          1fr;
       }
 
-      .capability-side {
-        grid-column: auto;
+      .capability-middle {
+        grid-column:
+          auto;
       }
 
       .about-layout {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+          1fr;
       }
 
-      .about-visual {
-        min-height: 420px;
+      .about-copy-column {
+        max-width:
+          720px;
       }
 
       .projects-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .process-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .process-list {
         grid-template-columns:
           repeat(2, 1fr);
       }
 
-      .process-item:nth-child(3) {
-        border-left: none;
+      .process-layout {
+        grid-template-columns:
+          1fr;
+      }
+
+      .process-list {
+        grid-template-columns:
+          repeat(5, 1fr);
       }
 
       .contact-box {
-        grid-template-columns: 1fr;
-        gap: 25px;
+        grid-template-columns:
+          1fr 1fr;
+
+        gap:
+          28px;
       }
+
+      .contact-action {
+        grid-column:
+          span 2;
+      }
+
     }
 
 
-    @media (max-width: 620px) {
+    @media (max-width: 680px) {
 
       .container {
         width:
@@ -2152,7 +2320,8 @@
       }
 
       .nav-inner {
-        min-height: 68px;
+        min-height:
+          68px;
       }
 
       .nav-button {
@@ -2160,11 +2329,17 @@
           9px 12px;
       }
 
+      .hero {
+        padding:
+          72px 0
+          82px;
+      }
+
       .hero-title {
         font-size:
           clamp(
-            55px,
-            16vw,
+            54px,
+            15vw,
             90px
           );
 
@@ -2173,115 +2348,100 @@
       }
 
       .hero-workflow {
-        min-height: 410px;
+        min-height:
+          410px;
       }
 
       .workflow-canvas {
-        height: 420px;
+        height:
+          410px;
       }
 
       .workflow-node {
-        min-width: 96px;
+        min-width:
+          86px;
 
         padding:
-          10px 11px;
+          9px 10px;
       }
 
       .workflow-node.main {
-        min-width: 145px;
+        min-width:
+          130px;
       }
 
-      .workflow-node .node-label {
-        font-size: 8px;
+      .node-label {
+        font-size:
+          8px;
       }
 
-      .workflow-node .node-sub {
-        font-size: 6px;
+      .node-sub {
+        font-size:
+          6px;
       }
 
-      .workflow-node .node-icon {
-        font-size: 14px;
-      }
-
-      .node-trigger {
-        left: 7%;
-      }
-
-      .node-collect {
-        left: 39%;
-      }
-
-      .node-understand {
-        left: 4%;
-      }
-
-      .node-agent {
-        left: 37%;
-      }
-
-      .node-integrate {
-        left: 68%;
-      }
-
-      .node-act {
-        left: 7%;
-      }
-
-      .node-review {
-        left: 38%;
-      }
-
-      .node-notify {
-        left: 69%;
-      }
-
-      .node-done {
-        left: 37%;
+      .node-icon {
+        font-size:
+          13px;
       }
 
       .workflow-human {
-        display: none;
+        display:
+          none;
+      }
+
+      .section {
+        padding:
+          82px 0;
+      }
+
+      .section-header {
+        display:
+          block;
+
+        margin-bottom:
+          35px;
+      }
+
+      .section-description {
+        margin-top:
+          18px;
       }
 
       .about-visual {
-        min-height: 350px;
-      }
-
-      .about-board {
-        left: 16%;
-        top: 15%;
-        width: 74%;
-      }
-
-      .about-person {
-        width: 35%;
+        min-height:
+          370px;
       }
 
       .about-large {
-        font-size: 33px;
+        font-size:
+          34px;
       }
 
       .projects-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+          1fr;
       }
 
       .project {
-        min-height: 400px;
+        min-height:
+          405px;
       }
 
       .process-list {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+          1fr;
       }
 
-      .process-item,
-      .process-item:nth-child(4),
-      .process-item:nth-child(3) {
-        min-height: auto;
+      .process-item {
+        min-height:
+          auto;
 
         padding:
-          20px 0;
+          18px 0;
 
-        border-left: none;
+        border-right:
+          none;
 
         border-bottom:
           1px solid
@@ -2289,34 +2449,97 @@
       }
 
       .process-item:last-child {
-        border-bottom: none;
+        border-bottom:
+          none;
       }
 
       .contact {
         padding:
-          75px 0;
+          70px 0;
       }
 
       .contact-box {
+        grid-template-columns:
+          1fr;
+
         padding:
           28px 24px;
       }
 
-      .contact-title {
-        font-size: 34px;
-      }
-
-      .contact-modal-box {
-        padding:
-          28px 20px;
+      .contact-action {
+        grid-column:
+          auto;
       }
 
       .footer-inner {
-        flex-direction: column;
+        flex-direction:
+          column;
 
-        align-items: flex-start;
+        align-items:
+          flex-start;
+
+        gap:
+          12px;
       }
+
     }
+
+
+    @media (max-width: 470px) {
+
+      .logo {
+        font-size:
+          15px;
+      }
+
+      .logo-mark {
+        width:
+          24px;
+        height:
+          24px;
+      }
+
+      .hero-topline {
+        font-size:
+          8px;
+      }
+
+      .hero-description {
+        font-size:
+          13px;
+      }
+
+      .about-large {
+        font-size:
+          31px;
+      }
+
+      .project-icon-area {
+        height:
+          155px;
+      }
+
+      .project-icon {
+        width:
+          88px;
+        height:
+          88px;
+      }
+
+      .project-icon svg {
+        width:
+          50px;
+        height:
+          50px;
+      }
+
+      .contact-title {
+        font-size:
+          31px;
+      }
+
+    }
+
   </style>
 </head>
 
@@ -2325,12 +2548,13 @@
 
 
   <!-- =========================================
-       NAVIGATION
+       NAV
   ========================================= -->
 
   <nav>
 
     <div class="container nav-inner">
+
 
       <a
         href="#"
@@ -2384,6 +2608,7 @@
         <span>↗</span>
       </a>
 
+
     </div>
 
   </nav>
@@ -2398,11 +2623,12 @@
     <div class="container hero-grid">
 
 
-      <!-- Hero copy -->
+      <!-- HERO COPY -->
 
       <div class="hero-copy">
 
-        <div class="hero-topline">
+
+        <div class="hero-topline mono">
 
           <span class="status-dot"></span>
 
@@ -2438,6 +2664,7 @@
 
         <div class="hero-actions">
 
+
           <a
             href="#work"
             class="button primary"
@@ -2454,16 +2681,19 @@
             About Michelle
           </a>
 
+
         </div>
+
 
       </div>
 
 
-      <!-- Hero workflow -->
+      <!-- HERO WORKFLOW -->
 
       <div class="hero-workflow">
 
         <div class="workflow-canvas">
+
 
           <div class="workflow-glow"></div>
 
@@ -2474,17 +2704,14 @@
           <div class="workflow-line line-2"></div>
           <div class="workflow-line line-3"></div>
           <div class="workflow-line line-4"></div>
-
           <div class="workflow-line line-5"></div>
-
           <div class="workflow-line dashed line-6"></div>
           <div class="workflow-line dashed line-7"></div>
           <div class="workflow-line dashed line-8"></div>
-
           <div class="workflow-line line-9"></div>
 
 
-          <!-- Notes -->
+          <!-- Small notes -->
 
           <div class="workflow-note note-one">
             too many<br>
@@ -2502,7 +2729,7 @@
           </div>
 
 
-          <!-- Nodes -->
+          <!-- Trigger -->
 
           <div class="workflow-node node-trigger">
 
@@ -2521,6 +2748,8 @@
           </div>
 
 
+          <!-- Collect -->
+
           <div class="workflow-node node-collect">
 
             <div class="node-icon">
@@ -2538,6 +2767,8 @@
           </div>
 
 
+          <!-- Understand -->
+
           <div class="workflow-node node-understand">
 
             <div class="node-icon">
@@ -2549,11 +2780,13 @@
             </div>
 
             <div class="node-sub">
-              Understand the real process
+              Understand the process
             </div>
 
           </div>
 
+
+          <!-- AI Agent -->
 
           <div class="workflow-node main node-agent">
 
@@ -2572,6 +2805,8 @@
           </div>
 
 
+          <!-- Integrate -->
+
           <div class="workflow-node node-integrate">
 
             <div class="node-icon">
@@ -2588,6 +2823,8 @@
 
           </div>
 
+
+          <!-- Act -->
 
           <div class="workflow-node node-act">
 
@@ -2606,6 +2843,8 @@
           </div>
 
 
+          <!-- Review -->
+
           <div class="workflow-node node-review">
 
             <div class="node-icon">
@@ -2622,6 +2861,8 @@
 
           </div>
 
+
+          <!-- Notify -->
 
           <div class="workflow-node node-notify">
 
@@ -2640,6 +2881,8 @@
           </div>
 
 
+          <!-- Done -->
+
           <div class="workflow-node node-done">
 
             <div class="node-icon">
@@ -2657,7 +2900,7 @@
           </div>
 
 
-          <!-- Minimal human figure -->
+          <!-- Small human line-art -->
 
           <div class="workflow-human">
 
@@ -2665,7 +2908,6 @@
               viewBox="0 0 180 220"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
             >
 
               <circle
@@ -2728,9 +2970,11 @@
 
           </div>
 
+
         </div>
 
       </div>
+
 
     </div>
 
@@ -2751,13 +2995,16 @@
 
       <div class="container">
 
+
         <div class="section-header">
+
 
           <div>
 
             <div class="section-kicker">
               What I do
             </div>
+
 
             <h2 class="section-title">
               Less manual.<br>
@@ -2768,10 +3015,10 @@
 
 
           <p class="section-description">
-            I use the right combination of workflow
-            automation, AI, code, and integrations
-            based on the problem being solved.
+            Practical automation built around the problem,
+            not around a particular tool.
           </p>
+
 
         </div>
 
@@ -2779,7 +3026,10 @@
         <div class="capabilities-layout">
 
 
+          <!-- Capability list -->
+
           <div class="capability-list">
+
 
             <div class="capability-item">
 
@@ -2885,16 +3135,26 @@
 
             </div>
 
+
           </div>
 
 
-          <div class="capability-side">
+          <!-- Explanation -->
+
+          <div class="capability-middle">
+
 
             <p>
               The tools change depending on the process.
               The goal stays the same: remove unnecessary
-              manual work and make the workflow easier
-              to run.
+              manual work and make the workflow easier to run.
+            </p>
+
+
+            <p>
+              I use the right combination of workflow automation,
+              AI, code, and integrations based on the problem
+              being solved.
             </p>
 
 
@@ -2902,7 +3162,13 @@
               n8n · Python · Claude Code · Codex
             </div>
 
+
           </div>
+
+
+          <!-- Empty balance column -->
+
+          <div></div>
 
 
         </div>
@@ -2926,6 +3192,7 @@
 
         <div class="section-header">
 
+
           <div>
 
             <div class="section-kicker">
@@ -2939,17 +3206,20 @@
             A process-first approach to automation.
           </p>
 
+
         </div>
 
 
         <div class="about-layout">
 
 
-          <!-- Human workflow illustration -->
+          <!-- Illustration -->
 
           <div class="about-visual">
 
+
             <div class="about-board">
+
 
               <div class="about-board-title">
                 Process map
@@ -2960,7 +3230,7 @@
                 INPUT
               </div>
 
-              <div class="about-mini-node mini-2">
+              <div class="about-mini-node mini-2 active">
                 AI
               </div>
 
@@ -2968,7 +3238,7 @@
                 SYSTEM
               </div>
 
-              <div class="about-mini-node mini-4">
+              <div class="about-mini-node mini-4 active">
                 DECISION
               </div>
 
@@ -2986,8 +3256,11 @@
               <div class="about-mini-line mini-line-3"></div>
               <div class="about-mini-line mini-line-4"></div>
 
+
             </div>
 
+
+            <!-- Human -->
 
             <div class="about-person">
 
@@ -2995,7 +3268,6 @@
                 viewBox="0 0 240 300"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
               >
 
                 <circle
@@ -3059,8 +3331,7 @@
             </div>
 
 
-            <div class="about-desk"></div>
-
+            <!-- Plant -->
 
             <div class="about-plant">
 
@@ -3068,7 +3339,6 @@
                 viewBox="0 0 60 90"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
               >
 
                 <path
@@ -3104,6 +3374,7 @@
               </svg>
 
             </div>
+
 
           </div>
 
@@ -3142,6 +3413,7 @@
 
           </div>
 
+
         </div>
 
       </div>
@@ -3150,7 +3422,7 @@
 
 
     <!-- =========================================
-         WORK
+         SELECTED WORK
     ========================================= -->
 
     <section
@@ -3189,13 +3461,16 @@
             ↗
           </a>
 
+
         </div>
 
 
         <div class="projects-grid">
 
 
-          <!-- PROJECT 01 -->
+          <!-- =====================================
+               BUDGET
+          ====================================== -->
 
           <article class="project">
 
@@ -3250,6 +3525,7 @@
 
             <div class="project-info">
 
+
               <h3>
                 Budget Monitor
               </h3>
@@ -3291,12 +3567,16 @@
                 GitHub ↗
               </a>
 
+
             </div>
+
 
           </article>
 
 
-          <!-- PROJECT 02 -->
+          <!-- =====================================
+               RESUME
+          ====================================== -->
 
           <article class="project">
 
@@ -3374,6 +3654,7 @@
 
             <div class="project-info">
 
+
               <h3>
                 Resume Screening
               </h3>
@@ -3416,12 +3697,16 @@
                 GitHub ↗
               </a>
 
+
             </div>
+
 
           </article>
 
 
-          <!-- PROJECT 03 -->
+          <!-- =====================================
+               INVOICE
+          ====================================== -->
 
           <article class="project">
 
@@ -3506,6 +3791,7 @@
 
             <div class="project-info">
 
+
               <h3>
                 Invoice Processing
               </h3>
@@ -3552,7 +3838,9 @@
                 GitHub ↗
               </a>
 
+
             </div>
+
 
           </article>
 
@@ -3584,19 +3872,14 @@
               How I work
             </div>
 
-
-            <h2 class="section-title">
-              Think first.<br>
-              Automate second.
-            </h2>
-
           </div>
 
 
           <p class="section-description">
-            The build is only useful when the workflow
-            solves the right problem.
+            Understand the problem first.
+            Build only what actually helps.
           </p>
+
 
         </div>
 
@@ -3606,14 +3889,13 @@
 
           <div>
 
-            <p class="process-large">
-              The hard part is knowing
+            <h2 class="process-title">
+              Think first.<br>
+              Automate
               <span class="highlight">
-                what deserves automation
-              </span>,
-              then making the workflow simple enough
-              for real people to use.
-            </p>
+                second.
+              </span>
+            </h2>
 
           </div>
 
@@ -3708,6 +3990,7 @@
 
           </div>
 
+
         </div>
 
       </div>
@@ -3739,7 +4022,10 @@
 
             <h2 class="contact-title">
               What's eating
-              your <span>team's time?</span>
+              your
+              <span>
+                team's time?
+              </span>
             </h2>
 
           </div>
@@ -3763,6 +4049,7 @@
             </button>
 
           </div>
+
 
         </div>
 
@@ -3824,14 +4111,15 @@
 
 
       <!--
-        Replace YOUR_FORM_ID with your Formspree form ID.
-        Your real email does not appear in this HTML.
+        Replace YOUR_FORM_ID with your Formspree ID.
+        Your real email does not appear in the HTML.
       -->
 
       <form
         action="https://formspree.io/f/YOUR_FORM_ID"
         method="POST"
       >
+
 
         <div class="form-field">
 
@@ -3894,7 +4182,9 @@
           <span>↗</span>
         </button>
 
+
       </form>
+
 
     </div>
 
@@ -3909,6 +4199,7 @@
 
     <div class="container footer-inner">
 
+
       <span>
         © 2026 Michelle Project
       </span>
@@ -3916,12 +4207,13 @@
 
       <a
         href="https://github.com/michelleproject"
+        class="footer-link"
         target="_blank"
         rel="noopener noreferrer"
-        class="footer-link"
       >
         GitHub ↗
       </a>
+
 
     </div>
 
@@ -3957,16 +4249,17 @@
 
       setTimeout(() => {
 
-        const nameInput =
+        const input =
           document.getElementById(
             "name"
           );
 
-        if (nameInput) {
-          nameInput.focus();
+        if (input) {
+          input.focus();
         }
 
       }, 200);
+
     }
 
 
@@ -3984,6 +4277,7 @@
       document.body.classList.remove(
         "modal-open"
       );
+
     }
 
 
@@ -3999,6 +4293,7 @@
     );
 
   </script>
+
 
 </body>
 </html>
