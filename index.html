@@ -4,18 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Added Google Fonts: Inter -->
+  <title>Michelle | Automation & Workflow Systems</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <title>Michelle | Automation Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --bg: #11110f;
+      --bg-soft: #171714;
+      --panel: #1b1b17;
+      --panel-2: #20201b;
+      --text: #f1eee5;
+      --muted: #8f9087;
+      --muted-light: #b8b8ad;
+      --accent: #ff7957;
+      --accent-soft: rgba(255, 121, 87, 0.12);
+      --border: rgba(241, 238, 229, 0.13);
+      --border-strong: rgba(241, 238, 229, 0.23);
+      --max-width: 1280px;
+    }
+
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     html {
@@ -23,190 +37,707 @@
     }
 
     body {
-      /* Updated font family here */
-      font-family: 'Inter', sans-serif;
-      background: #0f172a;
-      color: #e2e8f0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Manrope", sans-serif;
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(
+          rgba(255,255,255,0.025) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,0.025) 1px,
+          transparent 1px
+        );
+      background-size: 70px 70px;
+      mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent 75%
+      );
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      width: 700px;
+      height: 700px;
+      top: 4%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: radial-gradient(
+        circle,
+        rgba(255,121,87,0.10),
+        transparent 65%
+      );
+      filter: blur(40px);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .mono {
+      font-family: "DM Mono", monospace;
+    }
+
+    /* NAVIGATION */
+
     nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 8%;
-      background: rgba(15, 23, 42, 0.95);
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+      background: rgba(17,17,15,0.88);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
     .logo {
-      color: #38bdf8;
-      font-size: 24px;
-      font-weight: bold;
-    }
-
-    nav ul {
-      display: flex;
-      gap: 24px;
-      list-style: none;
-    }
-
-    nav a {
-      color: #e2e8f0;
-      text-decoration: none;
-    }
-
-    nav a:hover {
-      color: #38bdf8;
-    }
-
-    .hero {
-      min-height: 85vh;
       display: flex;
       align-items: center;
-      padding: 70px 8%;
-      background:
-        radial-gradient(circle at top right, #1d4ed8 0%, transparent 35%),
-        #0f172a;
+      gap: 11px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      font-size: 18px;
+    }
+
+    .logo-mark {
+      width: 25px;
+      height: 25px;
+      border: 2px solid var(--text);
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+
+    .logo-mark::after {
+      content: "";
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+      font-size: 13px;
+      color: var(--muted-light);
+    }
+
+    .nav-links a {
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-button {
+      border: 1px solid var(--border-strong);
+      padding: 10px 15px;
+      font-size: 12px;
+      display: flex;
+      gap: 9px;
+      align-items: center;
+      transition: 0.2s ease;
+    }
+
+    .nav-button:hover {
+      background: var(--accent-soft);
+      border-color: rgba(255,121,87,0.4);
+      color: var(--accent);
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: calc(100vh - 76px);
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding: 90px 0 120px;
     }
 
     .hero-content {
-      max-width: 750px;
+      width: 100%;
+      text-align: center;
+      position: relative;
     }
 
-    .eyebrow {
-      color: #38bdf8;
-      font-weight: bold;
+    .hero-topline {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--border);
+      padding: 8px 13px;
+      color: var(--muted-light);
+      font-size: 11px;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 15px;
+      margin-bottom: 28px;
+      background: rgba(255,255,255,0.015);
     }
 
-    h1 {
-      font-size: clamp(44px, 8vw, 80px);
-      line-height: 1.05;
-      margin-bottom: 20px;
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(255,121,87,0.8);
     }
 
-    h1 span {
-      color: #38bdf8;
+    .hero-title {
+      font-size: clamp(65px, 11vw, 155px);
+      line-height: 0.88;
+      letter-spacing: -0.075em;
+      font-weight: 800;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-title span {
+      display: block;
+    }
+
+    .hero-title .outline {
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(241,238,229,0.28);
+    }
+
+    .hero-title .accent {
+      color: var(--accent);
     }
 
     .hero-description {
-      max-width: 650px;
-      color: #cbd5e1;
-      font-size: 19px;
-      margin-bottom: 30px;
+      max-width: 620px;
+      margin: 34px auto 0;
+      color: var(--muted-light);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 34px;
+      flex-wrap: wrap;
     }
 
     .button {
-      display: inline-block;
-      background: #38bdf8;
-      color: #082f49;
-      padding: 13px 24px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      margin-right: 10px;
-      margin-bottom: 10px;
+      padding: 13px 19px;
+      border: 1px solid var(--border-strong);
+      font-size: 12px;
+      letter-spacing: 0.02em;
+      transition: 0.25s ease;
     }
 
-    .button.secondary {
-      background: transparent;
-      color: #38bdf8;
-      border: 1px solid #38bdf8;
+    .button.primary {
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
+      font-weight: 700;
     }
 
-    section {
-      padding: 80px 8%;
+    .button.primary:hover {
+      background: var(--accent);
+      border-color: var(--accent);
     }
 
-    section h2 {
-      font-size: 36px;
-      margin-bottom: 15px;
+    .button.secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
     }
 
-    .section-intro {
-      max-width: 700px;
-      color: #94a3b8;
-      margin-bottom: 35px;
+    /* FLOATING HERO PANELS */
+
+    .floating-card {
+      position: absolute;
+      border: 1px solid var(--border);
+      background: rgba(27,27,23,0.82);
+      backdrop-filter: blur(14px);
+      padding: 16px;
+      text-align: left;
+      width: 235px;
+      box-shadow: 0 25px 80px rgba(0,0,0,0.25);
     }
 
-    .about {
-      background: #111c31;
+    .floating-card.left {
+      left: 0;
+      top: 27%;
     }
 
-    .skills {
+    .floating-card.right {
+      right: 0;
+      top: 48%;
+    }
+
+    .card-label {
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 25px;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      color: var(--muted);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-family: "DM Mono", monospace;
     }
 
-    .skill {
-      background: #1e293b;
-      color: #7dd3fc;
-      padding: 9px 15px;
-      border-radius: 999px;
+    .card-title {
+      font-size: 13px;
+      line-height: 1.5;
+      font-weight: 600;
     }
 
-    .project-grid {
+    .card-line {
+      margin-top: 16px;
+      height: 1px;
+      background: var(--border);
+      position: relative;
+    }
+
+    .card-line span {
+      position: absolute;
+      width: 38%;
+      height: 1px;
+      background: var(--accent);
+      left: 0;
+      top: 0;
+    }
+
+    /* SECTION HEADER */
+
+    .section {
+      padding: 120px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+
+    .section-kicker {
+      font-family: "DM Mono", monospace;
+      color: var(--accent);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 13px;
+    }
+
+    .section-title {
+      font-size: clamp(42px, 6vw, 80px);
+      line-height: 0.95;
+      letter-spacing: -0.055em;
+    }
+
+    .section-description {
+      max-width: 420px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* SERVICES */
+
+    .service-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--border);
+      border-left: 1px solid var(--border);
     }
 
-    .project-card {
-      background: #1e293b;
+    .service-card {
+      min-height: 310px;
       padding: 28px;
-      border-radius: 14px;
-      border: 1px solid #334155;
-      transition: transform 0.2s, border-color 0.2s;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      transition: background 0.3s ease;
     }
 
-    .project-card:hover {
-      transform: translateY(-5px);
-      border-color: #38bdf8;
+    .service-card:hover {
+      background: var(--panel);
     }
 
-    .project-card h3 {
-      color: #7dd3fc;
+    .service-number {
+      font-family: "DM Mono", monospace;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      border: 1px solid var(--border-strong);
+      display: grid;
+      place-items: center;
+      margin: 40px 0 28px;
+      color: var(--accent);
+      font-family: "DM Mono", monospace;
+    }
+
+    .service-card h3 {
+      font-size: 22px;
+      letter-spacing: -0.035em;
       margin-bottom: 12px;
     }
 
-    .project-card p {
-      color: #cbd5e1;
+    .service-card p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+      max-width: 320px;
+    }
+
+    .service-arrow {
+      position: absolute;
+      right: 25px;
+      bottom: 24px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    /* ABOUT */
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 90px;
+      align-items: start;
+    }
+
+    .about-large {
+      font-size: clamp(30px, 4vw, 52px);
+      letter-spacing: -0.05em;
+      line-height: 1.08;
+      max-width: 750px;
+    }
+
+    .about-large span {
+      color: var(--accent);
+    }
+
+    .about-copy {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+      margin-top: 30px;
+      max-width: 670px;
+    }
+
+    .skill-list {
+      border-top: 1px solid var(--border);
+      margin-top: 40px;
+    }
+
+    .skill-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+
+    .skill-item span:last-child {
+      font-family: "DM Mono", monospace;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    /* PROJECTS */
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .project {
+      min-height: 440px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      padding: 25px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .project:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-strong);
+    }
+
+    .project:nth-child(3) {
+      grid-column: span 2;
+      min-height: 350px;
+    }
+
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      font-family: "DM Mono", monospace;
+      color: var(--muted);
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+
+    .project-visual {
+      position: absolute;
+      inset: 75px 25px 95px;
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(
+          120deg,
+          rgba(255,121,87,0.08),
+          transparent 45%
+        ),
+        var(--bg-soft);
+      overflow: hidden;
+    }
+
+    .project-visual::before {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border: 1px solid rgba(255,121,87,0.25);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .project-visual::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      background: rgba(241,238,229,0.12);
+      top: 50%;
+      left: 0;
+      box-shadow:
+        0 -70px 0 rgba(241,238,229,0.06),
+        0 70px 0 rgba(241,238,229,0.06);
+    }
+
+    .project-content {
+      position: absolute;
+      left: 25px;
+      right: 25px;
+      bottom: 23px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 20px;
+    }
+
+    .project-content h3 {
+      font-size: 24px;
+      letter-spacing: -0.04em;
+    }
+
+    .project-content p {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 6px;
+      max-width: 500px;
+    }
+
+    .project-link {
+      font-family: "DM Mono", monospace;
+      font-size: 11px;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    /* CONTACT */
+
+    .contact {
+      padding: 140px 0;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-label {
+      color: var(--accent);
+      font-family: "DM Mono", monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
       margin-bottom: 20px;
     }
 
-    .project-card a {
-      color: #38bdf8;
-      font-weight: bold;
-      text-decoration: none;
+    .contact-title {
+      font-size: clamp(55px, 9vw, 125px);
+      line-height: 0.88;
+      letter-spacing: -0.07em;
+      max-width: 950px;
+      margin: 0 auto;
     }
 
-    .contact {
-      text-align: center;
-      background: #111c31;
+    .contact-title span {
+      color: var(--accent);
     }
+
+    .contact-copy {
+      color: var(--muted);
+      max-width: 520px;
+      margin: 30px auto;
+      font-size: 14px;
+    }
+
+    .contact-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--accent);
+      color: #17100d;
+      padding: 15px 21px;
+      font-weight: 800;
+      font-size: 12px;
+      transition: transform 0.2s ease;
+    }
+
+    .contact-button:hover {
+      transform: translateY(-3px);
+    }
+
+    /* FOOTER */
 
     footer {
-      text-align: center;
-      padding: 25px;
-      color: #64748b;
+      border-top: 1px solid var(--border);
+      padding: 25px 0;
     }
 
-    @media (max-width: 650px) {
-      nav {
-        flex-direction: column;
-        gap: 12px;
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 11px;
+      font-family: "DM Mono", monospace;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 1000px) {
+      .floating-card {
+        display: none;
       }
 
-      nav ul {
-        gap: 14px;
+      .service-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-layout {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(100% - 32px, var(--max-width));
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-inner {
+        min-height: 68px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 100px 0 100px;
+      }
+
+      .hero-title {
+        font-size: clamp(58px, 17vw, 100px);
+      }
+
+      .hero-description {
         font-size: 14px;
+      }
+
+      .section {
+        padding: 90px 0;
+      }
+
+      .section-header {
+        display: block;
+      }
+
+      .section-description {
+        margin-top: 20px;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project:nth-child(3) {
+        grid-column: auto;
+      }
+
+      .project {
+        min-height: 380px;
+      }
+
+      .project-content {
+        display: block;
+      }
+
+      .project-link {
+        display: inline-block;
+        margin-top: 12px;
+      }
+
+      .contact {
+        padding: 100px 0;
+      }
+
+      .footer-inner {
+        flex-direction: column;
       }
     }
   </style>
@@ -214,102 +745,451 @@
 
 <body>
 
-  <nav>
-    <div class="logo">Michelle.</div>
+  <!-- NAV -->
 
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+  <nav>
+    <div class="container nav-inner">
+
+      <a href="#" class="logo">
+        <span class="logo-mark"></span>
+        Michelle.
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#services">Capabilities</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Work</a></li>
+      </ul>
+
+      <a href="#contact" class="nav-button">
+        Let's talk
+        <span>↗</span>
+      </a>
+
+    </div>
   </nav>
 
-  <header class="hero">
-    <div class="hero-content">
-      <p class="eyebrow">Automation Portfolio</p>
 
-      <h1>Hello, I'm <span>Michelle.</span></h1>
+  <!-- HERO -->
+
+  <header class="hero">
+
+    <div class="container hero-content">
+
+      <div class="hero-topline mono">
+        <span class="status-dot"></span>
+        Workflow systems / available for projects
+      </div>
+
+      <h1 class="hero-title">
+        <span>MAKE WORK</span>
+        <span class="outline">FLOW</span>
+        <span class="accent">BETTER.</span>
+      </h1>
 
       <p class="hero-description">
-        I build practical automation solutions that simplify repetitive work,
-        improve efficiency, and help people save time.
+        I design practical automation systems that remove repetitive work,
+        connect tools, and turn manual processes into reliable workflows.
       </p>
 
-      <a class="button" href="#projects">View my projects</a>
-      <a class="button secondary" href="#contact">Contact me</a>
+      <div class="hero-actions">
+        <a href="#projects" class="button primary">
+          Explore my work
+        </a>
+
+        <a href="#contact" class="button secondary">
+          Start a conversation
+        </a>
+      </div>
+
+
+      <!-- FLOATING CARDS -->
+
+      <div class="floating-card left">
+
+        <div class="card-label">
+          <span>01 / Input</span>
+          <span>READY</span>
+        </div>
+
+        <div class="card-title">
+          Repetitive tasks identified and mapped into a clear workflow.
+        </div>
+
+        <div class="card-line">
+          <span></span>
+        </div>
+
+      </div>
+
+
+      <div class="floating-card right">
+
+        <div class="card-label">
+          <span>02 / System</span>
+          <span>ACTIVE</span>
+        </div>
+
+        <div class="card-title">
+          Tools connected. Actions triggered automatically. Output delivered.
+        </div>
+
+        <div class="card-line">
+          <span></span>
+        </div>
+
+      </div>
+
     </div>
+
   </header>
 
+
   <main>
-    <section class="about" id="about">
-      <h2>About Me</h2>
 
-      <p class="section-intro">
-        I'm interested in automation, technology, and creating reliable
-        workflows. This portfolio showcases the projects I'm building as I
-        develop my technical skills.
-      </p>
 
-      <div class="skills">
-        <span class="skill">Workflow Automation</span>
-        <span class="skill">PowerShell</span>
-        <span class="skill">GitHub</span>
-        <span class="skill">HTML & CSS</span>
-        <span class="skill">Problem Solving</span>
+    <!-- SERVICES -->
+
+    <section class="section" id="services">
+
+      <div class="container">
+
+        <div class="section-header">
+
+          <div>
+            <div class="section-kicker">What I build</div>
+
+            <h2 class="section-title">
+              Systems that<br>
+              save time.
+            </h2>
+          </div>
+
+          <p class="section-description">
+            I focus on workflow automation rather than complicated
+            infrastructure. The goal is simple: fewer repetitive steps,
+            clearer processes, and dependable results.
+          </p>
+
+        </div>
+
+
+        <div class="service-grid">
+
+          <article class="service-card">
+
+            <div class="service-number">01</div>
+
+            <div class="service-icon">↯</div>
+
+            <h3>Workflow Automation</h3>
+
+            <p>
+              Connect everyday tools and automate repetitive processes from
+              trigger to final output.
+            </p>
+
+            <div class="service-arrow">↗</div>
+
+          </article>
+
+
+          <article class="service-card">
+
+            <div class="service-number">02</div>
+
+            <div class="service-icon">◌</div>
+
+            <h3>Process Design</h3>
+
+            <p>
+              Break down manual processes and turn them into structured,
+              reusable workflows.
+            </p>
+
+            <div class="service-arrow">↗</div>
+
+          </article>
+
+
+          <article class="service-card">
+
+            <div class="service-number">03</div>
+
+            <div class="service-icon">+</div>
+
+            <h3>Automation Scripts</h3>
+
+            <p>
+              Build lightweight scripts for repetitive tasks involving files,
+              data, reporting, and internal operations.
+            </p>
+
+            <div class="service-arrow">↗</div>
+
+          </article>
+
+        </div>
+
       </div>
+
     </section>
 
-    <section id="projects">
-      <h2>Featured Projects</h2>
 
-      <p class="section-intro">
-        Replace these examples with your real projects as you complete them.
-      </p>
+    <!-- ABOUT -->
 
-      <div class="project-grid">
-        <article class="project-card">
-          <h3>File Organization Automation</h3>
-          <p>
-            A script that automatically sorts files into folders according to
-            their file type, reducing repetitive manual work.
+    <section class="section" id="about">
+
+      <div class="container">
+
+        <div class="section-header">
+
+          <div>
+            <div class="section-kicker">About</div>
+          </div>
+
+          <p class="section-description">
+            A practical approach to automation, focused on solving real
+            problems instead of adding unnecessary complexity.
           </p>
-          <a href="#">Project coming soon →</a>
-        </article>
 
-        <article class="project-card">
-          <h3>Automated Reporting</h3>
-          <p>
-            A workflow that collects information and generates a clear,
-            reusable report.
-          </p>
-          <a href="#">Project coming soon →</a>
-        </article>
+        </div>
 
-        <article class="project-card">
-          <h3>Task Management Workflow</h3>
-          <p>
-            An automation system designed to organize recurring tasks and
-            improve productivity.
-          </p>
-          <a href="#">Project coming soon →</a>
-        </article>
+
+        <div class="about-layout">
+
+          <div>
+
+            <p class="about-large">
+              I turn repetitive digital work into
+              <span>clear systems</span> that are easier
+              to run, maintain, and improve.
+            </p>
+
+            <p class="about-copy">
+              My interest is in workflow automation, scripting, and building
+              practical tools that make everyday work more efficient.
+              I enjoy taking messy manual processes and reducing them into
+              simple, repeatable steps.
+            </p>
+
+          </div>
+
+
+          <div class="skill-list">
+
+            <div class="skill-item">
+              <span>Workflow Automation</span>
+              <span>01</span>
+            </div>
+
+            <div class="skill-item">
+              <span>PowerShell</span>
+              <span>02</span>
+            </div>
+
+            <div class="skill-item">
+              <span>GitHub</span>
+              <span>03</span>
+            </div>
+
+            <div class="skill-item">
+              <span>HTML / CSS</span>
+              <span>04</span>
+            </div>
+
+            <div class="skill-item">
+              <span>Process Thinking</span>
+              <span>05</span>
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
+
     </section>
+
+
+    <!-- PROJECTS -->
+
+    <section class="section" id="projects">
+
+      <div class="container">
+
+        <div class="section-header">
+
+          <div>
+            <div class="section-kicker">Selected work</div>
+
+            <h2 class="section-title">
+              Built to<br>
+              reduce friction.
+            </h2>
+          </div>
+
+          <p class="section-description">
+            A collection of automation projects and experiments.
+            Replace these examples with your live GitHub projects as they
+            become available.
+          </p>
+
+        </div>
+
+
+        <div class="projects-grid">
+
+
+          <article class="project">
+
+            <div class="project-meta">
+              <span>Automation / 001</span>
+              <span>Prototype</span>
+            </div>
+
+            <div class="project-visual"></div>
+
+            <div class="project-content">
+
+              <div>
+                <h3>File Organization System</h3>
+
+                <p>
+                  Automatically sorts files into structured folders based
+                  on file type and rules.
+                </p>
+              </div>
+
+              <a href="#" class="project-link">
+                View project ↗
+              </a>
+
+            </div>
+
+          </article>
+
+
+          <article class="project">
+
+            <div class="project-meta">
+              <span>Workflow / 002</span>
+              <span>Prototype</span>
+            </div>
+
+            <div class="project-visual"></div>
+
+            <div class="project-content">
+
+              <div>
+                <h3>Automated Reporting</h3>
+
+                <p>
+                  Collects information from multiple sources and turns it
+                  into a reusable report.
+                </p>
+              </div>
+
+              <a href="#" class="project-link">
+                View project ↗
+              </a>
+
+            </div>
+
+          </article>
+
+
+          <article class="project">
+
+            <div class="project-meta">
+              <span>Systems / 003</span>
+              <span>In progress</span>
+            </div>
+
+            <div class="project-visual"></div>
+
+            <div class="project-content">
+
+              <div>
+                <h3>Task Management Workflow</h3>
+
+                <p>
+                  A workflow designed to organize recurring tasks,
+                  reduce manual updates, and improve visibility.
+                </p>
+              </div>
+
+              <a href="#" class="project-link">
+                View project ↗
+              </a>
+
+            </div>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
 
     <section class="contact" id="contact">
-      <h2>Let's Work Together</h2>
 
-      <p class="section-intro" style="margin-left:auto; margin-right:auto;">
-        Interested in automation or want to discuss a project? Send me an email.
-      </p>
+      <div class="container">
 
-      <!-- Replace the email address below with your real email -->
-      <a class="button" href="mailto:your-email@example.com">Email Me</a>
+        <div class="contact-label">
+          Have a process that needs fixing?
+        </div>
+
+        <h2 class="contact-title">
+          LET'S BUILD<br>
+          <span>BETTER FLOWS.</span>
+        </h2>
+
+        <p class="contact-copy">
+          Tell me what currently takes too many clicks, too many steps,
+          or too much manual work.
+        </p>
+
+        <a
+          href="mailto:your-email@example.com"
+          class="contact-button"
+        >
+          Email Michelle
+          <span>↗</span>
+        </a>
+
+      </div>
+
     </section>
+
   </main>
 
+
+  <!-- FOOTER -->
+
   <footer>
-    <p>© 2026 Michelle. Built with HTML, CSS, and GitHub Pages.</p>
+
+    <div class="container footer-inner">
+
+      <span>
+        © 2026 Michelle
+      </span>
+
+      <span>
+        Built with HTML, CSS & GitHub Pages
+      </span>
+
+      <span>
+        Automation / Workflow / Systems
+      </span>
+
+    </div>
+
   </footer>
 
 </body>
