@@ -136,7 +136,7 @@
     }
 
     .hero {
-      padding: 72px 0 56px;
+      padding: 84px 0 68px;
       overflow: hidden;
       background:
         radial-gradient(circle at 58% 23%, rgba(51, 141, 229, 0.09), transparent 28%),
@@ -237,7 +237,7 @@
     .capabilities h2,
     .work-heading h2,
     .process-heading h2 {
-      margin-top: 14px;
+      margin-top: 18px;
       font-size: clamp(38px, 4vw, 52px);
       line-height: 0.95;
       letter-spacing: -0.04em;
@@ -299,17 +299,27 @@
       display: grid;
       grid-template-columns: 1fr 0.96fr;
       gap: 54px;
-      align-items: center;
+      align-items: start;
     }
 
     .about-image {
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.01);
-      padding: 14px;
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
+    .about-image img {
+  width: 100%;
+  display: block;
+  filter: none;
+}
+
+    .about-copy {
+      padding-top: 8px;
     }
 
     .about-copy h2 {
-      margin-top: 14px;
+      margin-top: 18px;
       font-size: clamp(34px, 4vw, 48px);
       line-height: 1.01;
       letter-spacing: -0.04em;
@@ -338,12 +348,16 @@
     .work-grid {
       display: grid;
       grid-template-columns: 230px 1fr;
-      gap: 64px;
+      gap: 72px;
       align-items: start;
     }
 
-    .work-heading h2 {
+    .work-heading h2,
+    .process-heading h2 {
+      margin-top: 18px;
       font-size: 44px;
+      line-height: 0.98;
+      max-width: 230px;
     }
 
     .work-heading h2 span {
@@ -428,13 +442,9 @@
 
     .process-grid {
       display: grid;
-      grid-template-columns: 190px 1fr;
-      gap: 36px;
-      align-items: center;
-    }
-
-    .process-heading h2 {
-      font-size: 44px;
+      grid-template-columns: 230px 1fr;
+      gap: 72px;
+      align-items: start;
     }
 
     .process-heading h2 span {
@@ -888,6 +898,19 @@
   </footer>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
