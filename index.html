@@ -330,8 +330,8 @@
 
     .work-grid {
       display: grid;
-      grid-template-columns: 180px 1fr;
-      gap: 40px;
+      grid-template-columns: 230px 1fr;
+      gap: 64px;
       align-items: start;
     }
 
@@ -352,7 +352,7 @@
     .card {
       border: 1px solid var(--line);
       background: rgba(255,255,255,0.012);
-      padding: 16px;
+      padding: 22px;
       min-height: 250px;
       display: flex;
       flex-direction: column;
@@ -370,13 +370,18 @@
 
     .card-icon {
       margin-top: 18px;
-      width: 54px;
-      height: 54px;
+      width: 52px;
+      height: 52px;
       border: 1px solid rgba(85,169,255,0.55);
       display: grid;
       place-items: center;
       color: var(--blue);
-      font-size: 23px;
+    }
+
+    .card-icon svg {
+      width: 27px;
+      height: 27px;
+      display: block;
     }
 
     .card h3 {
@@ -748,8 +753,8 @@
     <section class="section" id="work">
       <div class="container work-grid">
         <div class="work-heading">
-          <div class="eyebrow">Selected work</div>
-          <h2>Real work.<br />Automated.</h2>
+          <div class="eyebrow">Automation prototypes</div>
+          <h2>Automation<br /><span>Prototypes.</span></h2>
         </div>
 
         <div class="cards">
@@ -885,4 +890,12 @@
   </footer>
 </body>
 </html>
+
+
+
+
+
+
+
+
 
